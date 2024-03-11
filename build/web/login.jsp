@@ -1,198 +1,115 @@
 <%-- 
     Document   : login
-    Created on : Sep 27, 2023, 11:14:38 PM
-    Author     : LiusDev
+    Created on : Mar 5, 2024, 5:42:56 PM
+    Author     : nofom
 --%>
-
-<%
-    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-    if(session.getAttribute("user") != null) response.sendRedirect("/");
-%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Login | ${initParam['webName']}</title>
-        <script src="https://cdn.tailwindcss.com"></script>
-        
-        <!-- Font awesome 5 -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content=""/>
+        <meta name="author" content=""/>
+        <title>Login</title>
+        <!-- Favicon -->
+        <link rel="icon" type="image/x-icon" href="./images/favicon.png"/>
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+        <link href="css/my-styles.css" rel="stylesheet">
     </head>
-    <body class="bg-gray-100">
-        <div class="min-h-screen flex items-center justify-center">
-            <div class="bg-white w-96 max-w-[calc(100vw - 5rem)] px-8 py-10 rounded-2xl drop-shadow-xl flex flex-col gap-8">
-                <a href="/">
-                    <img src="https://bootstrap-ecommerce-web.netlify.app/images/logo.svg" alt="Logo" class="w-28" />
-                </a>
-                <div id="loginMessage" class="flex items-center py-3 px-4 bg-black/5 rounded-md border border-black/20 hidden">
-                    <i class="fa-solid fa-triangle-exclamation mr-3 text-red-600"></i>
-                    <p class="text-sm text-black/70"></p>
-                </div>
-                <div class="flex flex-col gap-1">
-                    <h1 class="font-semibold text-xl leading-6">Login</h1>
-                </div>
-                <div class="flex flex-col gap-8">
-                    <form id="loginForm" class="flex flex-col gap-4">
-                        <div class="flex flex-col gap-2">
-                            <div class="flex flex-col">
-                                <div class="mb-1">
-                                    <label
-                                        for="email"
-                                        class="text-sm leading-5 font-medium"
-                                    >
-                                        Email
-                                    </label>
+
+    <body>
+        <!-- Contact Head -->
+        <%@include file="components/contactHeadComponent.jsp" %>
+        <!-- Navigation -->
+        <%@include file="components/loginHeaderComponent.jsp" %>
+        <!-- Login Session -->
+        <section class="vh-100" style="background-color: #9A616D;">
+            <div class="container py-5 h-100">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col col-xl-10">
+                        <div class="card" style="border-radius: 1rem;">
+                            <div class="row g-0">
+                                <div class="col-md-6 col-lg-5 d-none d-md-block">
+                                    <img
+                                        src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
+                                        alt="login form"
+                                        class="img-fluid" style="border-radius: 1rem 0 0 1rem;"
+                                        />
                                 </div>
-                                <input
-                                    id="email"
-                                    type="text"
-                                    class="py-2 px-4 border border-black/20 rounded-md"
-                                    name="email"
-                                    required
-                                />
-                            </div>
-                            <div class="flex flex-col">
-                                <div class="mb-1">
-                                    <label
-                                        for="password"
-                                        class="text-sm leading-5 font-medium"
-                                    >
-                                        Password
-                                    </label>
-                                </div>
-                                <input
-                                    id="password"
-                                    type="password"
-                                    class="py-2 px-4 border border-black/20 rounded-md mb-2"
-                                    name="password"
-                                    required
-                                />
-                                <div>
-                                    <a
-                                        href="/forgot-password"
-                                        class="flex justify-end text-blue-600 hover:text-blue-700 transition-all text-sm"
-                                    >
-                                        Forgot password?
-                                    </a>
+                                <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                                    <div class="card-body p-4 p-lg-5 text-black">
+                                        <form action="LoginController" method="POST">
+                                            <div class="d-flex align-items-center mb-3 pb-1 default-cursor">
+                                                <i class="bi bi-flower1 fa-2x fa-cubes me-3" style="color: #ff6219;"></i>
+                                                <span class="h1 fw-bold mb-0">Flower Shop</span>
+                                            </div>
+                                            <h5 class="fw-normal pb-3 default-cursor" style="letter-spacing: 1px;">Sign into your account</h5>
+                                            <c:if test="${not empty requestScope.ERROR_MASSEGE}">
+                                                <!-- Error MSG -->
+                                                <div class="alert alert-danger" role="alert">
+                                                    ${requestScope.ERROR_MASSEGE}
+                                                </div>
+                                            </c:if>
+                                            <c:if test="${not empty requestScope.MSG_SUCCESS}">
+                                                <!-- Error MSG -->
+                                                <div class="alert alert-success" role="alert">
+                                                    ${requestScope.MSG_SUCCESS}
+                                                </div>
+                                            </c:if>
+                                            <div class="form-outline mb-2">
+                                                <label class="form-label" for="form2Example17">Email address</label>
+                                                <input type="email" id="form2Example17" class="form-control form-control-lg" name="email" value="${requestScope.email}" required placeholder="example@gmail.com"/>
+                                            </div>
+                                            <div class="form-outline mb-2">
+                                                <label class="form-label" for="form2Example27">Password</label>
+                                                <input type="password" id="form2Example27" class="form-control form-control-lg" name="password" required placeholder="password"/>
+                                            </div>
+                                            <!-- Checkbox -->
+                                            <div class="form-check d-flex justify-content-start mb-4">
+                                                <input class="form-check-input me-2" type="checkbox" name="remember" value="true" id="form1Example3"/>
+                                                <label class="form-check-label" for="form1Example3"> Remember me </label>
+                                            </div>
+                                            <div class="pt-1 mb-4">
+                                                <button class="btn btn-dark btn-lg btn-block" type="submit">Login</button>
+                                            </div>
+
+                                            <a class="small text-muted" href="#!">Forgot password?</a>
+                                            <p class="mb-3 pb-lg-2" style="color: #393f81;">
+                                                Don't have an account?
+                                                <c:url var="regisLink" value="RegistrationController"></c:url>
+                                                <a href="${regisLink}" style="color: #393f81;">Register here</a>
+                                            </p>
+                                            <p class="mb-3 pb-lg-2" style="color: #393f81;">
+                                                Or quickly sign in by
+                                                <a href="https://accounts.google.com/o/oauth2/auth?scope=email%20profile%20openid&redirect_uri=http://localhost:8080/FlowerShop/LoginGoogleController&response_type=code
+                                                   &client_id=1063985034301-03cecevenstd13h2o75brk09j5qj1u0i.apps.googleusercontent.com&approval_prompt=force"
+                                                   class="btn btn-danger text-white"><i class="bi bi-google"></i> Google</a>
+                                            </p>
+                                            <a href="#!" class="small text-muted">Terms of use.</a>
+                                            <a href="#!" class="small text-muted">Privacy policy</a>
+                                        </form>
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <button
-                            id="loginBtn"
-                            type="button"
-                            class="py-2 px-4 text-sm text-center bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center rounded-md transition-all duration-500 disabled:text-gray-600 disabled:bg-gray-300 disabled:hover:border-gray-300 disabled:cursor-not-allowed"
-                        >
-                            <span class="text-white font-semibold">
-                                Login
-                            </span>
-                        </button>
-                    </form>
-                    <div class="text-sm flex items-center justify-center gap-1">
-                        <span>Don't have account?</span>
-                        <a
-                            href="/register"
-                            class="text-blue-600 hover:text-blue-700 transition-all"
-                        >
-                            Register now
-                        </a>
                     </div>
                 </div>
             </div>
-        </div>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script>
-            const loginBtn = document.querySelector("#loginBtn");
-            const loginMessageBox = document.querySelector("#loginMessage");
-            const loginMessage = loginMessageBox.querySelector("p");
-            
-            const email = document.querySelector("#email");
-            const password = document.querySelector("#password");
-            
-            const inputs = [email, password];
-            
-            inputs.forEach((input) => {
-                input.onchange = () => {
-                    loginMessageBox.classList.add("hidden");
-                }
-            })
-            
-            const loadingChild =
-                `<svg
-                    class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                >
-                    <circle
-                        class="opacity-25"
-                        cx="12"
-                        cy="12"
-                        r="10"
-                        stroke="currentColor"
-                        strokeWidth="4"
-                    ></circle>
-                    <path
-                        class="opacity-75"
-                        fill="currentColor"
-                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                    ></path>
-                </svg>`;
-            const setBtnLoading = (isLoading) => {
-                if(isLoading) {
-                    loginBtn.disabled = true;
-                    loginBtn.innerHTML = loadingChild;
-                } else {
-                    loginBtn.disabled = false;
-                    loginBtn.innerHTML = `<span class="text-white font-semibold">Login</span>`
-                }
-            }
-            
-            loginBtn.onclick = () => {
-                setBtnLoading(true);
-                $.ajax({
-                    type:"post",
-                    url:"/login",
-                    data: {
-                        email: email.value,
-                        password: password.value,
-                        redirect: (new URL(document.location)).searchParams.get("redirect")
-                    },
-                    cache: false,
-                    success: function (response) {
-                        switch(response) {
-                            case "Logged":
-                                window.open("/", "_self");
-                                break;
-                            case "Invalid email":
-                                setBtnLoading(false);
-                                loginMessageBox.classList.remove("hidden");
-                                loginMessage.textContent = "Invalid email, please try again!";
-                                break;
-                            case "Invalid password":
-                                setBtnLoading(false);
-                                loginMessageBox.classList.remove("hidden");
-                                loginMessage.textContent = "Incorrect password, please try again!";
-                                break;
-                            case "Banned":
-                                setBtnLoading(false);
-                                loginMessageBox.classList.remove("hidden");
-                                loginMessage.textContent = "You have been banned by the administrator!";
-                                break;
-                            default:
-                                window.open(response, "_self");
-                        }
-                    }
-                });
-            }
-            window.addEventListener('keyup', function(event) {
-                if (event.keyCode === 13) {
-                    loginBtn.click();
-                }
-            });
-        </script>
+        </section>
+        <!-- Footer -->
+        <%@include file="components/footerComponent.jsp" %>
+        <!-- Bootstrap core JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS -->
+        <script src="js/scripts.js"></script>
     </body>
+
 </html>

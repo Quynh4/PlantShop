@@ -3,7 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/PRJProject/PlantShop/web/index.html</file>
+            <file>file:/D:/PRJProject/FlowerS/src/java/controller/sync/LoginController.java</file>
+            <file>file:/D:/PRJProject/FlowerS/web/META-INF/context.xml</file>
+            <file>file:/D:/PRJProject/FlowerS/nbproject/build-impl.xml</file>
+            <file>file:/D:/PRJProject/FlowerS/src/java/dao/AccountDAO.java</file>
+            <file>file:/D:/PRJProject/FlowerS/src/java/util/DBUtils.java</file>
+            <file>file:/D:/PRJProject/FlowerS/web/WEB-INF/web.xml</file>
         </group>
     </open-files>
 </project-private>

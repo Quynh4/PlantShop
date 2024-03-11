@@ -1,244 +1,207 @@
 <%-- 
     Document   : search
-    Created on : Sep 15, 2023, 3:09:23 PM
-    Author     : LiusDev
+    Created on : Mar 4, 2024, 9:22:49 PM
+    Author     : nofom
 --%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Search for ${param.keyword} | ${initParam['webName']}</title>
-        <%@include file="components/headerLink.html" %>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content=""/>
+        <meta name="author" content=""/>
+        <title>Search</title>
+        <!-- Favicon -->
+        <link rel="icon" type="image/x-icon" href="./images/favicon.png"/>
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+        <link href="css/my-styles.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+<link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
+<link rel="stylesheet" type="text/css" href="css/util.css">
+        <link rel="stylesheet" type="text/css" href="css/main.css">
     </head>
-    <body>
-        <%@include file="components/header.jsp" %>
-        <section class="mt-5">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-2 col-lg-3"></div>
-                    <aside class="col-xl-2 col-lg-3 position-fixed" style="max-width: 12%">
 
-                        <button class="btn btn-outline-secondary mb-3 w-100  d-lg-none" data-bs-toggle="collapse" data-bs-target="#aside_filter">Show filter</button>
-
-                        <!-- ===== Card for sidebar filter ===== -->
-                        <div id="aside_filter" class="collapse d-lg-block mb-5">
-
-                            <!-- filterby item -->
-                            <article>
-                                <a href="/" class="fw-bold text-dark py-3 d-block border-top" data-bs-toggle="collapse" data-bs-target="#collapse_aside1">
-                                    <i class="icon-control fa fa-chevron-down"></i>
-                                    Category
-                                </a>
-                                <div class="collapse show" id="collapse_aside1">
-                                    <div class="pb-3">
-                                        <ul class="list-menu mb-0 nav nav-pills d-block" id="categories">
-                                            <c:forEach var="category" items="${categories}">
-                                                <li><a class="nav-link" data-slug="${category.slug}" style="cursor: pointer">${category.name}</a></li>
-                                                </c:forEach>
-                                        </ul>
-                                    </div>
-                                </div> <!-- collapse .// -->
-                            </article>
-                            <!-- filterby item .// -->
-
-                            <!-- filterby item -->
-                            <article>
-                                <a href="/" class="fw-bold text-dark py-3 d-block border-top" data-bs-toggle="collapse" data-bs-target="#collapse_aside2">
-                                    <i class="icon-control fa fa-chevron-down"></i>
-                                    Price range
-                                </a>
-                                <div class="collapse show" id="collapse_aside2">
-                                    <div class="pb-3">
-                                        <form id="priceForm">
-                                            <div class="row mb-2 g-2">
-                                                <div class="col-6">
-                                                    <label for="min" class="form-label">Min</label>
-                                                    <input type="number" class="form-control" id="minPrice" name="minPrice" placeholder="₫0" value="${param.minPrice}">
-                                                </div> <!-- col end.// -->
-
-                                                <div class="col-6">
-                                                    <label for="max" class="form-label">Max</label>
-                                                    <input type="number" class="form-control" id="maxPrice" name="maxPrice" placeholder="₫99999" value="${param.maxPrice}">
-                                                </div> <!-- col end.// -->
-                                            </div> <!-- row end.// -->
-                                            <button class="btn btn-light text-primary w-100">Apply</button>
-                                        </form>
-                                    </div>
-                                </div> <!-- collapse .// -->
-                            </article>
-                            <article class="py-3 d-block border-top">
-                                <a class="btn btn-primary w-100" href="/search?keyword=${param.keyword}"><b>Reset</b></a>
-                            </article>
-                        </div> <!-- card.// -->
-
-                        <!-- ===== Card for sidebar filter .// ===== -->
-
-                    </aside> <!-- col .// -->
-                    <main class="col-xl-10 col-lg-9">
-
-                        <header class="card mb-3">
-                            <div class="p-3 d-md-flex align-items-center">
-                                <!-- left   -->
-                                <span class="d-block py-2">Found <b>${productCount}</b> items</span>
-                                <!-- left  .//  -->
-                                <!-- right -->
-                                <div class="ms-auto d-md-flex align-items-center gap-3">
-                                    <select class="form-select d-inline-block w-auto" title="sortBy" name="sortBy" id="sortByForm">
-                                        <option value="default">Default</option>
-                                        <option value="createdAt">Latest</option>
-                                        <option value="sales">Sales</option>
-                                        <option value="priceAsc">Price: Ascending</option>
-                                        <option value="priceDesc">Price: Descending</option>
+    <body class="animsition">
+        <!-- Home Menu -->
+        <%@include file="components/headerComponent.jsp" %>
+        <!-- Sub-nav search page -->
+        <div id="search-nav" class="d-flex align-items-center">
+            <div class="container text-center">
+                <span class="body">
+                    <a class="home-page text-white text-decoration-none" href="HomeController">Home page</a>
+                    <span class="open-icon txt-m-bold text-white"><i class="bi bi-caret-right-fill"></i></span>
+                    <span class="txt-m-bold txt-orange default-cursor text-warning">Searching</span>
+                </span>
+            </div>
+        </div>
+        <!-- Toast MSG -->
+        <div id="toast"></div>
+        <!-- Search Session -->
+        <c:if test="${not empty requestScope.NO_RESULT}">
+            <!-- No Result -->
+            <div id="no-result" class="mb-5">
+                <div class="container">
+                    <span class="sub-title fs-3 text-black">Couldn't find any results for the above keywords.</span>
+                    <div class="main-title">Enter keywords to search</div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 col-sm-9">
+                            <form class="py-md-2" action="SearchController">
+                                <div class="mb-3">
+                                    <input class="form-control " type="text" placeholder="Search" name="keyword" value="${requestScope.keyword}">
+                                </div>
+                                <div class="mb-3">
+                                    <select class="form-select" name="searchby" style="width: 100%;">
+                                        <option value="byname" ${requestScope.searchby eq "byname" ? "selected" : ""}>By Name</option>
+                                        <option value="bycategory" ${requestScope.searchby eq "bycategory" ? "selected" : ""}>By Category</option>
                                     </select>
-                                </div>  <!-- right .//-->
-                            </div>
-                        </header>  <!-- card .//-->
-
-                        <!-- ========= content items ========= -->
-
-                        <c:choose>
-                            <c:when test="${products == null || products.size() == 0}">
-                                <p>Oops, cannot find any product :(</p>
-                            </c:when>
-                            <c:otherwise>
-                                <div class="row">
-                                    <c:forEach var="product" items="${products}">
-                                        <div class="col-xxl-3 col-xl-4 col-sm-6 col-12">
-                                            <figure class="card card-product-grid">
-                                                <a href="product?slug=${product.slug}" class="img-wrap"> <img src="image/product?id=${product.image.id}" alt="${product.image.alt}">  </a>
-                                                <figcaption class="p-3 border-top">
-                                                    <!--                          <a href="https://bootstrap-ecommerce-web.netlify.app/p-market-list-grid#" class="float-end btn btn-light btn-icon"> <i class="fa fa-heart"></i> </a>-->
-                                                    <div class="price-wrap mb-1">
-                                                        <strong class="price text-lg">${product.minPrice} ₫</strong>
-                                                        <span> - </span>
-                                                        <strong class="price text-lg">₫${product.maxPrice} ₫</strong>
-                                                    </div> <!-- price-wrap.// -->
-                                                    <!--                          <div class="rating-wrap mb-1">
-                                                                                <ul class="rating-stars">
-                                                                                  <li class="stars-active" style="width: 40%;">
-                                                                                    <img src="./searchPage_files/stars-active.svg" alt="">
-                                                                                  </li>
-                                                                                  <li> <img src="./searchPage_files/starts-disable.svg" alt=""> </li>
-                                                                                </ul>
-                                                                                <span class="label-rating text-warning">3.5</span>
-                                                                              </div>  rating-wrap .// -->
-                                                    <a href="product?slug=${product.slug}" class="title text-truncate"> ${product.name} </a>
-                                                </figcaption>
-                                            </figure> <!-- card // -->
-                                        </div> <!-- col .// -->
+                                </div>
+                                <button type="submit" value="search" class="btn btn-outline-danger">Search</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </c:if>
+        <c:if test="${not empty requestScope.listPlants}">
+            <!-- Have result -->
+            <div id="result" class="pt-4">
+                <div class="container">
+                    <div class="main-title text-black">
+                        There are <span>${requestScope.totalPlants}</span> matching search results
+                    </div>
+                    <div class="container px-4 px-lg-5 mt-4">
+                        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                            <c:forEach items="${requestScope.listPlants}" var="L">
+                                <!-- Product -->
+                                <div class="col mb-5">
+                                    <div class="card h-100">
+                                        <!-- Sale badge-->
+                                        <div class="position-absolute bg-black text-white default-cursor"
+                                             style="padding: 5px 15px; left: 15px; top: 15px;">
+                                            ${L.status == 1 ? "Available" : "Sold out"}
+                                        </div>
+                                        <!-- Product image-->
+                                        <c:url var="linkImg" value="PlantDetailController">
+                                            <c:param name="pid" value="${L.id}"></c:param>
+                                        </c:url>
+                                        <a href="${linkImg}" class="img-h-350"><img src="${L.imgPath}" alt="Plant Img" /></a>
+                                        <!-- Product details-->
+                                        <div class="card-body p-2">
+                                            <div class="text-center product-info">
+                                                <div class="category ms-3 mt-3 text-start">
+                                                    ${sessionScope.listCategories.get(L.categoryId)}
+                                                </div>
+                                                <!-- Product name-->
+                                                <div class="name">
+                                                    <c:url var="linkName" value="PlantDetailController">
+                                                        <c:param name="pid" value="${L.id}"></c:param>
+                                                    </c:url>
+                                                    <a class="text-decoration-none text-black" href="${linkName}">
+                                                        ${L.name}
+                                                    </a>
+                                                </div>
+                                                <!-- Product reviews-->
+                                                <div class="d-flex justify-content-center small text-warning mb-2">
+                                                    <div class="bi-star-fill"></div>
+                                                    <div class="bi-star-fill"></div>
+                                                    <div class="bi-star-fill"></div>
+                                                    <div class="bi-star-fill"></div>
+                                                    <div class="bi-star-fill"></div>
+                                                </div>
+                                                <!-- Product price-->
+                                                <div class="price text-center fs-4 fw-bold default-cursor text-black">
+                                                    <span class="text-muted text-decoration-line-through">$20</span>
+                                                    $${L.price}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Product actions-->
+                                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                            <div class="text-center">
+                                                <a onclick="addToCartAsync(${L.id})" class="btn btn-outline-dark mt-auto w-50"><i
+                                                        class="bi bi-cart-plus-fill"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c:forEach>
+                        </div>
+                        <nav class="d-flex justify-content-center mb-5" aria-label="Page navigation">
+                            <ul class="pagination">
+                                <c:url var="prepagelink" value="SearchController">
+                                    <c:param name="pagenumber" value="${page - 1}"></c:param>
+                                    <c:param name="keyword" value="${requestScope.keyword}"></c:param>
+                                    <c:param name="searchby" value="${requestScope.searchby}"></c:param>
+                                </c:url>
+                                <li class="page-item ${page == 1 ? "disabled" : ""}"><a class="page-link" href="${prepagelink}">Previous</a></li>
+                                    <c:forEach begin="1" end="${requestScope.totalPage}" var="i">
+                                        <c:url var="curpagelink" value="SearchController">
+                                            <c:param name="pagenumber" value="${i}"></c:param>
+                                            <c:param name="keyword" value="${requestScope.keyword}"></c:param>
+                                            <c:param name="searchby" value="${requestScope.searchby}"></c:param>
+                                        </c:url>
+                                    <li class="page-item ${i == page ? "active" : ""}"><a class="page-link" href="${curpagelink}">${i}</a></li>
                                     </c:forEach>
-                                </div> <!-- row.// -->
-                                <footer class="d-flex my-4">
-                                    <nav>
-                                        <ul class="pagination" id="pages">
-                                            <!--                                <li class="page-item">
-                                                                                <a class="page-link" style="cursor: pointer" data-page="prev">Prev</a>
-                                                                            </li>-->
-                                            <c:forEach var = "i" begin = "1" end ="${totalPage}">
-                                                <li class="page-item"><a class="page-link" style="cursor: pointer" data-page="${i}">${i}</a></li>
-                                                </c:forEach>
-                                            <!--                                <li class="page-item">
-                                                                                <a class="page-link" style="cursor: pointer" data-page="next">Next</a>
-                                                                            </li>-->
-                                        </ul>
-                                    </nav>
-                                </footer>
-                            </c:otherwise>
-                        </c:choose>
-                    </main> <!-- col .// -->
-                </div> <!-- row .// -->
-            </div> <!-- container .//  -->
-        </section>
-        <%@include file="components/footerLink.html" %>
-
+                                    <c:url var="nextpagelink" value="SearchController">
+                                        <c:param name="pagenumber" value="${page + 1}"></c:param>
+                                        <c:param name="keyword" value="${requestScope.keyword}"></c:param>
+                                        <c:param name="searchby" value="${requestScope.searchby}"></c:param>
+                                    </c:url>
+                                <li class="page-item ${page == totalPage ? "disabled" : ""}"><a class="page-link" href="${nextpagelink}">Next</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </c:if>
+        <!-- Subscribe News Letter -->
+        <%@include file="components/subscribeNewsLetterComponent.jsp" %>
+        <!-- Footer -->
+        <%@include file="components/footerComponent.jsp" %>
+        <!-- Bootstrap core JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Axios Async -->
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="js/toast-alert.js"></script>
+        <script src="js/add-to-cart-async.js"></script>
+        <!-- Jquery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <!-- Toast Alert script -->
+        <script src="js/toast-alert.js"></script>
+        <script src="js/subscribe-newsletter.js"></script>
+        <!-- Home Slider JS -->
+        <script src="vendor/slick/slick.min.js"></script>
+        <script src="js/slick-custom.js"></script>
+<script src="vendor/animsition/js/animsition.min.js"></script>
+<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
         <script>
-            let params = new URL(document.location).searchParams;
-            let keyword = params.get("keyword");
-            let category = params.get("category");
-            let minPrice = params.get("minPrice");
-            let maxPrice = params.get("maxPrice");
-            let sortBy = params.get("sortBy");
-            let page = params.get("page");
+                                                    $('.js-pscroll').each(function () {
+                                                        $(this).css('position', 'relative');
+                                                        $(this).css('overflow', 'hidden');
+                                                        var ps = new PerfectScrollbar(this, {
+                                                            wheelSpeed: 1,
+                                                            scrollingThreshold: 1000,
+                                                            wheelPropagation: false,
+                                                        });
 
-            const categories = document.querySelector("#categories");
-            const categoryChilds = Array.from(categories.querySelectorAll("a"));
-            categoryChilds.forEach(child => {
-                child.addEventListener("click", (e) => {
-                    e.preventDefault();
-                    submitParams(keyword, child.dataset.slug);
-                });
-            });
-
-            const priceForm = document.querySelector("#priceForm");
-            const minPriceInput = priceForm.querySelector("#minPrice");
-            const maxPriceInput = priceForm.querySelector("#maxPrice");
-
-            priceForm.addEventListener("submit", (e) => {
-                e.preventDefault();
-                submitParams(keyword, category, minPriceInput.value, maxPriceInput.value);
-            });
-
-            const sortByForm = document.querySelector("#sortByForm");
-            const sortByOption = Array.from(sortByForm.querySelectorAll("option"));
-            sortByForm.onchange = () => {
-                submitParams(keyword, category, minPrice, maxPrice, sortByForm.value);
-            };
-            sortByOption.forEach(option => {
-                if (option.value === sortBy) {
-                    option.selected = true;
-                }
-            });
-
-            const pages = document.querySelector("#pages");
-
-            if (pages !== null) {
-                const allPage = Array.from(pages.querySelectorAll("li"));
-                allPage.forEach(pageChild => {
-                    const pageAnchor = pageChild.querySelector("a");
-                    pageAnchor.addEventListener("click", (e) => {
-                        e.preventDefault();
-                        submitParams(keyword, category, minPrice, maxPrice, sortBy, pageAnchor.dataset.page);
-                    })
-                });
-
-                if (page != null) {
-                    allPage.forEach(pageChild => {
-                        const pageAnchor = pageChild.querySelector("a");
-                        if (pageAnchor.dataset.page === page)
-                            pageChild.classList.add("active");
-                    });
-                } else {
-                    allPage[0].classList.add("active");
-                }
-            }
-
-            const submitParams = (keyword, category, minPrice, maxPrice, sortBy, page) => {
-                let searchParams = {
-                    keyword,
-                    category,
-                    minPrice,
-                    maxPrice,
-                    sortBy,
-                    page
-                };
-
-                Object.keys(searchParams).forEach(key => {
-                    if (searchParams[key] == null) {
-                        delete searchParams[key];
-                    }
-                });
-
-                let searchString = "";
-                for (const [key, value] of Object.entries(searchParams)) {
-                    searchString += key + "=" + value + "&";
-                }
-                ;
-
-                const {origin, pathname} = window.location;
-                window.open(pathname + "?" + searchString, "_self");
-            };
+                                                        $(window).on('resize', function () {
+                                                            ps.update();
+                                                        })
+                                                    });
         </script>
+        <!-- Main -->
+        <script src="js/main.js"></script>
     </body>
+
 </html>
+
