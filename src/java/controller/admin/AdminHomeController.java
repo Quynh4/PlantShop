@@ -21,13 +21,9 @@ import jakarta.servlet.http.HttpSession;
  * @author nofom
  */
 public class AdminHomeController extends HttpServlet {
-    
-    private static final String ADMIN_PAGE = "admin.jsp";
-
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ADMIN_PAGE;
         try {
             HttpSession session = request.getSession();
             
@@ -37,6 +33,7 @@ public class AdminHomeController extends HttpServlet {
             List<Order> listOrders = new OrderDAO().getAllOrders();
             
             session.setAttribute("listCategories", listCategories);
+            
             request.setAttribute("listPlants", listPlants);
             request.setAttribute("listAccounts", listAccounts);
             request.setAttribute("listOrders", listOrders);
@@ -44,7 +41,7 @@ public class AdminHomeController extends HttpServlet {
         } catch (Exception e) {
             log("Error at AdminHomeController: " + e.toString());
         } finally {
-            request.getRequestDispatcher(url).forward(request, response);
+            request.getRequestDispatcher("admin.jsp").forward(request, response);
         }
     }
 

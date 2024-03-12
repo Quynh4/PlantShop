@@ -79,12 +79,12 @@ public class LoginController extends HttpServlet {
                         }
                         session.setAttribute("destPage", "home");
                         url = HOME;
-                    } 
+                    }
                     else if (role == 1) {
                         session.setAttribute("destPage", "admin");
                         url = ADMIN_PAGE;
                     }
-                } 
+                }
                 else {
                     session.setAttribute("destPage", "home");
                     url = HOME;
@@ -106,12 +106,12 @@ public class LoginController extends HttpServlet {
                         if (account.getStatus() == 0) {
                             request.setAttribute("ERROR_MASSEGE", "Your account has been locked! Please contact admin to get it unlocked!");
                             url = LOGIN;
-                        } else {
+                        }else {
                             session.setAttribute("LOGIN_USER", account);
                             if (ADMIN == account.getRole()) {
                                 session.setAttribute("destPage", "admin");
                                 url = ADMIN_PAGE;
-                            } else if (USER == account.getRole()) {
+                            }else if (USER == account.getRole()) {
 
                                 // If user from Checkout page to here to checkout 
                                 // => send response back to CheckoutController to show response.jsp
@@ -119,12 +119,12 @@ public class LoginController extends HttpServlet {
                                 if (destPage != null && destPage.equals("checkOut")) {
                                     response.sendRedirect("CheckOutController");
                                     return;
-                                } else {
+                                }else {
                                     // Else set url to User page
                                     session.setAttribute("destPage", "user");
                                     url = USER_PAGE;
                                 }
-                            } else {
+                            }else {
                                 request.setAttribute("ERROR_MASSEGE", "Your role is not support!");
                             }
 
@@ -137,16 +137,16 @@ public class LoginController extends HttpServlet {
                                 response.addCookie(cookie);
                             }
                         }
-                    } else {
+                    }else {
                         url = LOGIN;
                         request.setAttribute("email", email);
                         request.setAttribute("ERROR_MASSEGE", "Incorrect email or password!");
                     }
                 }
             }
-        } catch (Exception e) {
+        }catch (Exception e) {
             log("Error at LoginController: " + e.toString());
-        } finally {
+        }finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
     }

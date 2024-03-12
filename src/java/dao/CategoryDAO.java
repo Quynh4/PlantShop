@@ -17,6 +17,7 @@ public class CategoryDAO {
     private static final String GET_CATEGORIES = "SELECT cateId, cateName FROM Categories";
     private static final String UPDATE_CATEGORY_INFO = "UPDATE Categories SET cateName = ? WHERE cateId = ?";
     private static final String INSERT_NEW_CATEGORY = "INSERT INTO Categories (cateName) VALUES (?)";
+    private static final String DELETE_CATEGORY = "DELETE FROM Categories WHERE cateId = ?";
 
     public boolean insertNewCategory(String cateName) throws SQLException {
         boolean check = false;
@@ -46,6 +47,26 @@ public class CategoryDAO {
             if (conn != null) {
                 psm = conn.prepareStatement(UPDATE_CATEGORY_INFO);
                 psm.setString(1, cateName);
+                psm.setInt(2, cateId);
+                check = psm.executeUpdate() > 0 ? true : false;
+            }
+        } catch (Exception e) {
+        } finally {
+            if (psm != null) psm.close();
+            if (conn != null) conn.close();
+        }
+        return check;
+    }
+    
+    
+    public boolean deleteCategory(int cateId) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement psm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                psm = conn.prepareStatement(UPDATE_CATEGORY_INFO);
                 psm.setInt(2, cateId);
                 check = psm.executeUpdate() > 0 ? true : false;
             }

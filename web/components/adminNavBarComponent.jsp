@@ -7,9 +7,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
     <!-- Navbar Brand-->
-    <a class="navbar-brand ps-3" href="AdminHomeController"><i class="bi bi-briefcase"></i> Welcome, ${sessionScope.LOGIN_USER.fullName}!</a>
+    <a class="navbar-brand ps-3" href="AdminHomeController"></i> Welcome, ${sessionScope.LOGIN_USER.fullName}!</a>
     <!-- Sidebar Toggle-->
     <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+    
     <!-- Navbar-->
     <ul class="d-none d-md-inline-block navbar-nav ms-auto me-0 me-md-3 my-2 my-md-0">
         <li class="nav-item dropdown">

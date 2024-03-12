@@ -3,12 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/PRJProject/FlowerS/src/java/controller/sync/LoginController.java</file>
-            <file>file:/D:/PRJProject/FlowerS/web/META-INF/context.xml</file>
-            <file>file:/D:/PRJProject/FlowerS/nbproject/build-impl.xml</file>
-            <file>file:/D:/PRJProject/FlowerS/src/java/dao/AccountDAO.java</file>
-            <file>file:/D:/PRJProject/FlowerS/src/java/util/DBUtils.java</file>
-            <file>file:/D:/PRJProject/FlowerS/web/WEB-INF/web.xml</file>
+            <file>file:/D:/PlantShop/web/login.jsp</file>
+            <file>file:/D:/PlantShop/web/WEB-INF/web.xml</file>
+            <file>file:/D:/PlantShop/web/META-INF/context.xml</file>
+            <file>file:/D:/PlantShop/src/java/controller/client/UserHomeController.java</file>
+            <file>file:/D:/PlantShop/src/java/controller/admin/AdminHomeController.java</file>
+            <file>file:/D:/PlantShop/web/components/adminNavBarComponent.jsp</file>
+            <file>file:/D:/PlantShop/src/java/controller/async/AddToCartAsyncController.java</file>
+            <file>file:/D:/PlantShop/web/admin.jsp</file>
         </group>
     </open-files>
 </project-private>

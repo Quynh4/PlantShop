@@ -15,6 +15,7 @@
     <body class="sb-nav-fixed">
         <!-- Admin navbar -->
         <%@include file="components/adminNavBarComponent.jsp" %>
+        
         <div id="layoutSidenav">
             <!-- Admin Slidenav -->
             <%@include file="components/adminSlideNavComponent.jsp" %>
@@ -64,27 +65,16 @@
                                             <th>Role</th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Id</th>
-                                            <th>Email</th>
-                                            <th>Name</th>
-                                            <th>Password</th>
-                                            <th>Phone</th>
-                                            <th>Status</th>
-                                            <th>Role</th>
-                                        </tr>
-                                    </tfoot>
                                     <tbody>
-                                        <c:forEach items="${requestScope.listAccounts}" var="LA">
+                                        <c:forEach items="${requestScope.listAccounts}" var="o">
                                             <tr>
-                                                <td>${LA.accId}</td>
-                                                <td>${LA.email}</td>
-                                                <td>${LA.fullName}</td>
-                                                <td>${LA.password}</td>
-                                                <td>${LA.phone}</td>
+                                                <td>${o.accId}</td>
+                                                <td>${o.email}</td>
+                                                <td>${o.fullName}</td>
+                                                <td>${o.password}</td>
+                                                <td>${o.phone}</td>
                                                 <c:choose>
-                                                    <c:when test="${LA.status == 1}">
+                                                    <c:when test="${o.status == 1}">
                                                         <td style="color: blue;">Active</td>
                                                     </c:when>
                                                     <c:otherwise>
@@ -92,7 +82,7 @@
                                                     </c:otherwise>
                                                 </c:choose>
                                                 <c:choose>
-                                                    <c:when test="${LA.role == 1}">
+                                                    <c:when test="${o.role == 1}">
                                                         <td style="color: purple;">Admin</td>
                                                     </c:when>
                                                     <c:otherwise>
@@ -125,18 +115,6 @@
                                             <th>Shipping Id</th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Id</th>
-                                            <th>Order Date</th>
-                                            <th>Ship Date</th>
-                                            <th>Note</th>
-                                            <th>Total Price</th>
-                                            <th>Status</th>
-                                            <th>Acc Id</th>
-                                            <th>Shipping Id</th>
-                                        </tr>
-                                    </tfoot>
                                     <tbody>
                                         <c:forEach items="${requestScope.listOrders}" var="LO">
                                             <tr>
@@ -194,27 +172,16 @@
                                             <th>Category</th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Id</th>
-                                            <th>Name</th>
-                                            <th style="width: 100px;">Image</th>
-                                            <th>Price</th>
-                                            <th>Description</th>
-                                            <th>Status</th>
-                                            <th>Category</th>
-                                        </tr>
-                                    </tfoot>
                                     <tbody>
-                                        <c:forEach items="${requestScope.listPlants}" var="LP">
+                                        <c:forEach items="${requestScope.listPlants}" var="o">
                                             <tr>
-                                                <td>${LP.id}</td>
-                                                <td>${LP.name}</td>
-                                                <td style="width: 100px;"><img src="${LP.imgPath}" style="width: 50%;"></td>
-                                                <td>$${LP.price}</td>
-                                                <td>${LP.description}</td>
+                                                <td>${o.id}</td>
+                                                <td>${o.name}</td>
+                                                <td style="width: 100px;"><img src="${o.imgPath}" style="width: 50%;"></td>
+                                                <td>$${o.price}</td>
+                                                <td>${o.description}</td>
                                                 <c:choose>
-                                                    <c:when test="${LP.status == 1}">
+                                                    <c:when test="${o.status == 1}">
                                                         <td style="color: blue;">Available</td>
                                                     </c:when>
                                                     <c:otherwise>
@@ -222,7 +189,7 @@
                                                     </c:otherwise>
                                                 </c:choose>
                                                 <td>
-                                                    ${sessionScope.listCategories.get(LP.categoryId)}
+                                                    ${sessionScope.listCategories.get(o.categoryId)}
                                                 </td>
                                             </tr>
                                         </c:forEach>

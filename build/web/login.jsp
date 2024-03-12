@@ -38,7 +38,7 @@
                             <div class="row g-0">
                                 <div class="col-md-6 col-lg-5 d-none d-md-block">
                                     <img
-                                        src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
+                                        src="https://hoanghamobile.com/tin-tuc/wp-content/webp-express/webp-images/uploads/2023/08/hinh-nen-mau-xanh-1.jpg.webp"
                                         alt="login form"
                                         class="img-fluid" style="border-radius: 1rem 0 0 1rem;"
                                         />
@@ -69,7 +69,7 @@
                                             </div>
                                             <div class="form-outline mb-2">
                                                 <label class="form-label" for="form2Example27">Password</label>
-                                                <input type="password" id="form2Example27" class="form-control form-control-lg" name="password" required placeholder="password"/>
+                                                <input type="password" id="form2Example27" class="form-control form-control-lg" name="password" required placeholder="Password"/>
                                             </div>
                                             <!-- Checkbox -->
                                             <div class="form-check d-flex justify-content-start mb-4">

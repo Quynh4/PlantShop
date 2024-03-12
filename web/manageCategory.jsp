@@ -11,6 +11,13 @@
     <head>
         <%@include file="components/adminHeadComponent.jsp" %>
         <title>Manage Category</title>
+        <script type="text/javascript">
+            function doDelete(id) {
+                if (confirm("Are you sure to delete this category?")) {
+                    window.location = "DeleteCategory?id=" + id;
+                }
+            }
+        </script>
     </head>
     <body class="sb-nav-fixed">
         <!-- Admin navbar -->
@@ -91,19 +98,19 @@
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        <c:forEach items="${sessionScope.listCategories}" var="LC">
+                                        <c:forEach items="${sessionScope.listCategories}" var="o">
                                             <tr>
-                                                <td>${LC.key}</td>
-                                                <td>${LC.value}</td>
+                                                <td>${o.key}</td>
+                                                <td>${o.value}</td>
                                                 <td>
                                                     <!-- Block btn -->
                                                     <span>
                                                         <!-- Button trigger modal -->
-                                                        <button type="button" class="btn btn-outline-success w-100" data-bs-toggle="modal" data-bs-target="#blockBtn${LC.key}">
+                                                        <button type="button" class="btn btn-outline-success w-100" data-bs-toggle="modal" data-bs-target="#blockBtn${o.key}">
                                                             Update
                                                         </button>
                                                         <!-- Modal -->
-                                                        <div class="modal fade" id="blockBtn${LC.key}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal fade" id="blockBtn${o.key}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                             <div class="modal-dialog modal-dialog-centered">
                                                                 <div class="modal-content">
                                                                     <div class="modal-header">
@@ -114,12 +121,12 @@
                                                                         <div class="modal-body">
                                                                             <div class="form-outline mb-3">
                                                                                 <label class="form-label" for="id3Example">Id</label>
-                                                                                <input type="text" id="id3Example" class="form-control form-control-lg" name="cateId" value="${LC.key}" readonly/>
+                                                                                <input type="text" id="id3Example" class="form-control form-control-lg" name="cateId" value="${o.key}" readonly/>
                                                                             </div>
                                                                             <div class="form-outline mb-3">
                                                                                 <label class="form-label" for="name3Example">Name <span style="color: red; font-weight: bold">*</span></label>
                                                                                 <input type="text" id="name3Example" class="form-control form-control-lg"
-                                                                                       required name="cateName" value="${LC.value}"/>
+                                                                                       required name="cateName" value="${o.value}"/>
                                                                             </div>
                                                                         </div>
                                                                         <div class="modal-footer">
@@ -130,7 +137,8 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </span>
+                                                    </span>                      
+                                                    <a href="#" onclick="doDelete(${o.key})">Delete</a>
                                                 </td>
                                             </tr>
                                         </c:forEach>
