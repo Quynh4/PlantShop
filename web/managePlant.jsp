@@ -10,6 +10,13 @@
 <html lang="en">
     <head>
         <%@include file="components/adminHeadComponent.jsp" %>
+        <script type="text/javascript">
+            function doDelete(id) {
+                if (confirm("Are you sure to delete this plant?")) {
+                    window.location = "DeletePlant?pid=" + id;
+                }
+            }
+        </script>
     </head>
     <body class="sb-nav-fixed">
         <!-- Admin navbar -->
@@ -116,30 +123,20 @@
                                             <th>Status</th>
                                             <th>Category</th>
                                             <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Id</th>
-                                            <th>Name</th>
-                                            <th style="width: 100px">Image</th>
-                                            <th>Price</th>
-                                            <th>Description</th>
-                                            <th>Status</th>
-                                            <th>Category</th>
                                             <th>Action</th>
                                         </tr>
-                                    </tfoot>
+                                    </thead>
+                                   
                                     <tbody>
-                                        <c:forEach items="${requestScope.listPlants}" var="LP">
+                                        <c:forEach items="${requestScope.listPlants}" var="o">
                                             <tr>
-                                                <td>${LP.id}</td>
-                                                <td>${LP.name}</td>
-                                                <td style="width: 100px"><img src="${LP.imgPath}" style="width: 50%;"></td>
-                                                <td>$${LP.price}</td>
-                                                <td>${LP.description}</td>
+                                                <td>${o.id}</td>
+                                                <td>${o.name}</td>
+                                                <td style="width: 100px"><img src="${o.imgPath}" style="width: 50%;"></td>
+                                                <td>$${o.price}</td>
+                                                <td>${o.description}</td>
                                                 <c:choose>
-                                                    <c:when test="${LP.status == 1}">
+                                                    <c:when test="${o.status == 1}">
                                                         <td style="color: blue;">Available</td>
                                                     </c:when>
                                                     <c:otherwise>
@@ -147,17 +144,17 @@
                                                     </c:otherwise>
                                                 </c:choose>
                                                 <td>
-                                                    ${sessionScope.listCategories.get(LP.categoryId)}
+                                                    ${sessionScope.listCategories.get(o.categoryId)}
                                                 </td>
                                                 <td>
                                                     <!-- Block btn -->
                                                     <span>
                                                         <!-- Button trigger modal -->
-                                                        <button type="button" class="btn btn-outline-success w-100" data-bs-toggle="modal" data-bs-target="#blockBtn${LP.id}">
+                                                        <button type="button" class="btn btn-outline-success w-100" data-bs-toggle="modal" data-bs-target="#blockBtn${o.id}">
                                                             Update
                                                         </button>
                                                         <!-- Modal -->
-                                                        <div class="modal fade" id="blockBtn${LP.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal fade" id="blockBtn${o.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                             <div class="modal-dialog modal-dialog-centered">
                                                                 <div class="modal-content">
                                                                     <div class="modal-header">
@@ -166,39 +163,39 @@
                                                                     </div>
                                                                     <form action="UpdatePlantController" method="POST">
                                                                         <div class="modal-body">
-                                                                            <input type="hidden" name="pid" value="${LP.id}"/>
+                                                                            <input type="hidden" name="pid" value="${o.id}"/>
                                                                             <div class="form-outline mb-3">
                                                                                 <label class="form-label" for="name3Example">Name <span style="color: red; font-weight: bold">*</span></label>
                                                                                 <input type="text" id="name3Example" class="form-control form-control-lg"
-                                                                                       required name="name" value="${LP.name}"/>
+                                                                                       required name="name" value="${o.name}"/>
                                                                             </div>
                                                                             <div class="form-outline mb-3">
                                                                                 <label class="form-label" for="img3Example">Image Path <span style="color: red; font-weight: bold">*</span></label>
                                                                                 <input type="text" id="img3Example" class="form-control form-control-lg"
-                                                                                       required name="imgPath" value="${LP.imgPath}"/>
+                                                                                       required name="imgPath" value="${o.imgPath}"/>
                                                                             </div>
                                                                             <div class="form-outline mb-3">
                                                                                 <label class="form-label" for="price3Example">Price <span style="color: red; font-weight: bold">*</span></label>
                                                                                 <input type="number" min="0" max="999" pattern="^[1-9]\d*$" id="price3Example" class="form-control form-control-lg"
-                                                                                       required name="price" value="${LP.price}"/>
+                                                                                       required name="price" value="${o.price}"/>
                                                                             </div>
                                                                             <div class="form-outline mb-3">
                                                                                 <label class="form-label" for="descr3Example">Description <span style="color: red; font-weight: bold">*</span></label>
                                                                                 <textarea type="text" id="descr3Example" class="form-control form-control-lg"
-                                                                                          required name="description">${LP.description}</textarea>
+                                                                                          required name="description">${o.description}</textarea>
                                                                             </div>
                                                                             <div class="form-outline mb-3">
                                                                                 <label class="form-label" for="status3Example">Status <span style="color: red; font-weight: bold">*</span></label>
                                                                                 <select name="status" class="form-select form-select-lg" id="status3Example">
-                                                                                    <option ${LP.status eq 1 ? "selected" : ""} value="1">Available</option>
-                                                                                    <option ${LP.status eq 0 ? "selected" : ""} value="0">Unavailable</option>
+                                                                                    <option ${o.status eq 1 ? "selected" : ""} value="1">Available</option>
+                                                                                    <option ${o.status eq 0 ? "selected" : ""} value="0">Unavailable</option>
                                                                                 </select>
                                                                             </div>
                                                                             <div class="form-outline mb-3">
                                                                                 <label class="form-label" for="cate3Example">Category <span style="color: red; font-weight: bold">*</span></label>
                                                                                 <select name="cateId" class="form-select form-select-lg" id="cate3Example">
                                                                                     <c:forEach items="${sessionScope.listCategories}" var="LC">
-                                                                                        <option ${LP.categoryId eq LC.key ? "selected" : ""} value="${LC.key}">${LC.value}</option>
+                                                                                        <option ${o.categoryId eq LC.key ? "selected" : ""} value="${LC.key}">${LC.value}</option>
                                                                                     </c:forEach>
                                                                                 </select>
                                                                             </div>
@@ -212,6 +209,10 @@
                                                             </div>
                                                         </div>
                                                     </span>
+                                                </td>
+                                                <td><button type="button" onclick="doDelete(${o.id})" class="btn btn-outline-danger w-100" ">
+                                                            Delete
+                                                        </button>
                                                 </td>
                                             </tr>
                                         </c:forEach>

@@ -35,6 +35,7 @@ public class PlantDAO {
     private static final String GET_TOTAL_PLANTS_BY_CATEGORY = "SELECT COUNT(pId) AS total FROM Plants WHERE cateId = ?";
     private static final String UPDATE_PLANT_INFO = "UPDATE Plants SET pName = ? , price = ? , imgPath = ?\n"
             + "      , description = ?, status = ?, cateId = ? WHERE pId = ?";
+    private static final String DELETE_PLANT = "DELETE FROM Plants WHERE pId = ?";
     private static final String INSERT_NEW_PLANT = "INSERT INTO Plants (pName, price, imgPath, description, status, cateId) VALUES (?, ?, ?, ?, ?, ?)";
     private static final String GET_LIST_TOP_PLANTS_RANDOM = "SELECT TOP(?) * FROM Plants WHERE cateId = ? ORDER BY NEWID()";
     private static final String GET_RANDOM_N_PLANTS = "SELECT TOP(?) * FROM Plants ORDER BY NEWID()";
@@ -146,6 +147,25 @@ public class PlantDAO {
                 psm.setInt(5, status);
                 psm.setInt(6, cateId);
                 psm.setInt(7, pid);
+                check = psm.executeUpdate() > 0 ? true : false;
+            }
+        } catch (Exception e) {
+        } finally {
+            if (psm != null) psm.close();
+            if (conn != null) conn.close();
+        }
+        return check;
+    }
+    
+    public boolean deletePlant(int pid) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement psm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                psm = conn.prepareStatement(DELETE_PLANT);
+                psm.setInt(1, pid);
                 check = psm.executeUpdate() > 0 ? true : false;
             }
         } catch (Exception e) {
