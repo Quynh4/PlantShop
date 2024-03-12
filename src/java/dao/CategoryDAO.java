@@ -6,7 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import model.Category;
 
 /**
  *
@@ -66,9 +68,9 @@ public class CategoryDAO {
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
-                psm = conn.prepareStatement(UPDATE_CATEGORY_INFO);
-                psm.setInt(2, cateId);
-                check = psm.executeUpdate() > 0 ? true : false;
+                psm = conn.prepareStatement(DELETE_CATEGORY);
+                psm.setInt(1, cateId);
+                check = psm.executeUpdate() > 0;
             }
         } catch (Exception e) {
         } finally {
@@ -78,6 +80,13 @@ public class CategoryDAO {
         return check;
     }
 
+//    public static void main(String[] args) throws SQLException {
+//        CategoryDAO dao = new CategoryDAO();
+//        Map<Integer, String> list = dao.getCategories();
+//        dao.deleteCategory(5);
+//        System.out.println("ok");
+//    }
+    
     public Map<Integer, String> getCategories() throws SQLException {
         Map<Integer, String> list = new LinkedHashMap<>();
         Connection conn = null;

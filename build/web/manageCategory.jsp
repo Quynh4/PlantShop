@@ -13,7 +13,7 @@
         <title>Manage Category</title>
         <script type="text/javascript">
             function doDelete(id) {
-                if (confirm("Are you sure to delete this category?")) {
+                if (confirm("Are you sure to delete this category?" + id)) {
                     window.location = "DeleteCategory?id=" + id;
                 }
             }
@@ -88,15 +88,10 @@
                                             <th>Id</th>
                                             <th>Name</th>
                                             <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Id</th>
-                                            <th>Name</th>
                                             <th>Action</th>
                                         </tr>
-                                    </tfoot>
+                                    </thead>
+                               
                                     <tbody>
                                         <c:forEach items="${sessionScope.listCategories}" var="o">
                                             <tr>
@@ -138,7 +133,10 @@
                                                             </div>
                                                         </div>
                                                     </span>                      
-                                                    <a href="#" onclick="doDelete(${o.key})">Delete</a>
+                                                </td>
+                                                <td><button type="button" onclick="doDelete(${o.key})" class="btn btn-outline-danger w-100" ">
+                                                            Delete
+                                                        </button>
                                                 </td>
                                             </tr>
                                         </c:forEach>

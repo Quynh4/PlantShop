@@ -3,13 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/D:/PlantShop/src/java/controller/admin/AdminManagePlantController.java</file>
+            <file>file:/D:/PlantShop/src/java/controller/client/UserHomeController.java</file>
+            <file>file:/D:/PlantShop/src/java/controller/admin/AdminManageCategoryController.java</file>
+            <file>file:/D:/PlantShop/web/components/adminNavBarComponent.jsp</file>
+            <file>file:/D:/PlantShop/src/java/controller/admin/UpdateCategoryController.java</file>
+            <file>file:/D:/PlantShop/web/manageCategory.jsp</file>
+            <file>file:/D:/PlantShop/src/java/controller/admin/DeleteCategory.java</file>
             <file>file:/D:/PlantShop/web/login.jsp</file>
             <file>file:/D:/PlantShop/web/WEB-INF/web.xml</file>
             <file>file:/D:/PlantShop/web/META-INF/context.xml</file>
-            <file>file:/D:/PlantShop/src/java/controller/client/UserHomeController.java</file>
             <file>file:/D:/PlantShop/src/java/controller/admin/AdminHomeController.java</file>
-            <file>file:/D:/PlantShop/web/components/adminNavBarComponent.jsp</file>
             <file>file:/D:/PlantShop/src/java/controller/async/AddToCartAsyncController.java</file>
+            <file>file:/D:/PlantShop/src/java/dao/CategoryDAO.java</file>
             <file>file:/D:/PlantShop/web/admin.jsp</file>
         </group>
     </open-files>

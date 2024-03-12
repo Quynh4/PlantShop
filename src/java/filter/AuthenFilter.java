@@ -60,6 +60,7 @@ public class AuthenFilter implements Filter {
         ADMIN_LIST.add("UpdatePlantController");
         ADMIN_LIST.add("AdminSearchOrderController");
         ADMIN_LIST.add("SendEmailController");
+        ADMIN_LIST.add("DeleteCategory");
 
         USER_LIST = new ArrayList<>();
         USER_LIST.add("user.jsp");
