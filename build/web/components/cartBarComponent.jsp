@@ -31,7 +31,7 @@
                             <c:forEach items="${sessionScope.carts}" var="C">
                                 <li class="header-cart-item flex-w flex-t m-b-12">
                                     <div class="header-cart-item-img">
-                                        <img src="${C.value.plant.imgPath}" alt="IMG">
+                                <img src="${C.value.plant.imgPath}" alt="IMG">
                                     </div>
 
                                     <div class="header-cart-item-txt p-t-8">

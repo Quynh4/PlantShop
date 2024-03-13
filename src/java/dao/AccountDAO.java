@@ -30,6 +30,33 @@ public class AccountDAO {
     private static final String CHECK_OLD_PASSWORD = "SELECT Password FROM Accounts WHERE accId = ?";
     private static final String UPDATE_PASSWORD = "UPDATE Accounts Set password = ? WHERE accId = ?";
 
+    public Account checkAccountExistByEmail(String email) {
+
+        try {
+            String strSelect = "select * from Account where  [email]=?";
+            Connection conn = null;
+            PreparedStatement psm = null;
+            ResultSet rs = null;
+            psm = conn.prepareStatement(strSelect);
+            psm.setString(1, email);
+            rs = psm.executeQuery();
+            while (rs.next()) {
+                int AccId = rs.getInt("AccID");
+                    String Email = rs.getString("Email");
+                    String Password = rs.getString("Password");
+                    String FullName = rs.getString("FullName");
+                    String Phone = rs.getString("Phone");
+                    int Status = rs.getInt("Status");
+                    int Role = rs.getInt("Role");
+                 Account acc = new Account(AccId, Email, Password, FullName, Status, Phone, Role);
+               return acc;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+
     public boolean updateAccountPassword(int accId, String newPassword) throws SQLException {
         boolean check = false;
         Connection conn = null;
@@ -45,8 +72,12 @@ public class AccountDAO {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if (psm != null) psm.close();
-            if (conn != null) conn.close();
+            if (psm != null) {
+                psm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return check;
     }
@@ -72,9 +103,15 @@ public class AccountDAO {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if (rs != null) rs.close();
-            if (psm != null) psm.close();
-            if (conn != null) conn.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (psm != null) {
+                psm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return check;
     }
@@ -97,9 +134,15 @@ public class AccountDAO {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if (rs != null) rs.close();
-            if (stm != null) stm.close();
-            if (conn != null) conn.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return role;
     }
@@ -122,9 +165,15 @@ public class AccountDAO {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if (rs != null) rs.close();
-            if (psm != null) psm.close();
-            if (conn != null) conn.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (psm != null) {
+                psm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return check;
     }
@@ -144,12 +193,16 @@ public class AccountDAO {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if (psm != null) psm.close();
-            if (conn != null) conn.close();
+            if (psm != null) {
+                psm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return check;
     }
-    
+
     public boolean getAccountByEmail(String email) throws SQLException {
         boolean check = false;
         Connection conn = null;
@@ -168,9 +221,15 @@ public class AccountDAO {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if (rs != null) rs.close();
-            if (stm != null) stm.close();
-            if (conn != null) conn.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return check;
     }
@@ -200,13 +259,19 @@ public class AccountDAO {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if (rs != null) rs.close();
-            if (stm != null) stm.close();
-            if (conn != null) conn.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return acc;
     }
-    
+
     public Account getAccount(int accId) throws SQLException {
         Connection conn = null;
         PreparedStatement stm = null;
@@ -232,9 +297,15 @@ public class AccountDAO {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if (rs != null) rs.close();
-            if (stm != null) stm.close();
-            if (conn != null) conn.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return acc;
     }
@@ -264,9 +335,15 @@ public class AccountDAO {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if (rs != null) rs.close();
-            if (stm != null) stm.close();
-            if (conn != null) conn.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return acc;
     }
@@ -296,9 +373,15 @@ public class AccountDAO {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if (rs != null) rs.close();
-            if (stm != null) stm.close();
-            if (conn != null) conn.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return acc;
     }
@@ -335,9 +418,15 @@ public class AccountDAO {
             }
         } catch (Exception e) {
         } finally {
-            if (rs != null) rs.close();
-            if (stm != null) stm.close();
-            if (conn != null) conn.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return list;
     }
@@ -356,8 +445,12 @@ public class AccountDAO {
             }
         } catch (Exception e) {
         } finally {
-            if (stm != null) stm.close();
-            if (conn != null) conn.close();
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return check;
     }
@@ -379,8 +472,12 @@ public class AccountDAO {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if (stm != null) stm.close();
-            if (conn != null) conn.close();
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return check;
     }
@@ -401,8 +498,12 @@ public class AccountDAO {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if (stm != null) stm.close();
-            if (conn != null) conn.close();
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return check;
     }
@@ -426,8 +527,12 @@ public class AccountDAO {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if (stm != null) stm.close();
-            if (conn != null) conn.close();
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return check;
     }

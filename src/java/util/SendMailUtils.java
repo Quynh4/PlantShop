@@ -11,8 +11,13 @@ import javax.mail.internet.*;
  */
 public class SendMailUtils {
 
-    private static final String USER = "nofomtre@gmail.com";
-    private static final String PASSWORD = "ektotbrpyuycdflr";
+//    private static final String USER = "nofomtre@gmail.com";
+//    private static final String PASSWORD = "ektotbrpyuycdflr";
+    
+    
+        private static final String USER = "buisyduc2710@gmail.com";
+    private static final String PASSWORD = "demdblquwwtzlfsh";
+    
 //    ekto tbrp yuyc dflr
 
 
