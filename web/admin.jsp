@@ -13,54 +13,54 @@
         <title>Admin - Dashboard</title>
         <style>
 
-.widget-small {
-  background-color: #f2f2f2;
-  border-radius: 5px;
-  padding: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  margin: 0 1px 30px 1px; 
-}
+            .widget-small {
+                background-color: #f2f2f2;
+                border-radius: 5px;
+                padding: 15px;
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                margin: 0 1px 30px 1px;
+            }
 
-.widget-small.primary {
-  background-color: #007bff;
-  color: #fff;
-}
+            .widget-small.primary {
+                background-color: #007bff;
+                color: #fff;
+            }
 
-.widget-small.info {
-  background-color: #17a2b8;
-  color: #fff;
-}
+            .widget-small.info {
+                background-color: #17a2b8;
+                color: #fff;
+            }
 
-.widget-small.warning {
-  background-color: #ffc107;
-  color: #fff;
-}
+            .widget-small.warning {
+                background-color: #ffc107;
+                color: #fff;
+            }
 
-.widget-small.danger {
-  background-color: #dc3545;
-  color: #fff;
-}
+            .widget-small.danger {
+                background-color: #dc3545;
+                color: #fff;
+            }
 
-.widget-small i {
-  font-size: 5em;
-  padding: 0 30px;
-}
+            .widget-small i {
+                font-size: 5em;
+                padding: 0 30px;
+            }
 
-.info {
-  text-align: left;
-}
+            .info {
+                text-align: left;
+            }
 
-.info h4 {
-  margin-top: 0;
-  font-size: 18px;
-}
+            .info h4 {
+                margin-top: 0;
+                font-size: 18px;
+            }
 
-.info p b {
-  margin-bottom: 5px;
-  font-size: 30px;
-}
+            .info p b {
+                margin-bottom: 5px;
+                font-size: 30px;
+            }
         </style>
     </head>
     <body class="sb-nav-fixed">
@@ -78,44 +78,51 @@
                             <li class="breadcrumb-item active">Overview</li>
                         </ol>
 
-<!--COUNT-->
+                        <!--COUNT-->
                         <div class="row">
                             <!-- col-6 -->
                             <div class="col-md-4">
-                                <div class="widget-small primary">
-                                    <i class="bi bi-person"></i>
-                                    <div class="info">
-                                        <h4>Accounts</h4>
-                                        <p><b>${requestScope.listAccounts.size()} accounts</b></p>
-                                        <p class="info-tong">Total number of accounts</p>
+                                <a href="AdminManageAccountController" style="text-decoration: none">
+
+                                    <div class="widget-small primary">
+                                        <i class="bi bi-person"></i>
+                                        <div class="info">
+                                            <h4>Accounts</h4>
+                                            <p><b>${requestScope.listAccounts.size()} accounts</b></p>
+                                            <p class="info-tong">Total number of accounts</p>
+                                        </div>
                                     </div>
-                                </div>
+
+                                </a>
                             </div>
-                            <!-- col-6 -->
+
                             <div class="col-md-4">
-                                <div class="widget-small info">
-                                    <i class="bi bi-tree-fill"></i>
-                                    <div class="info">
-                                        <h4>Products</h4>
-                                        <p><b>${requestScope.listPlants.size()} products</b></p>
-                                        <p class="info-tong">Total number of products</p>
-                                    </div>
-                                </div>
+                                <a href="AdminManagePlantController" style="text-decoration: none"><div class="widget-small info">
+                                        <i class="bi bi-tree-fill"></i>
+                                        <div class="info">
+                                            <h4>Products</h4>
+                                            <p><b>${requestScope.listPlants.size()} products</b></p>
+                                            <p class="info-tong">Total number of products</p>
+                                        </div>
+                                    </div></a>
                             </div>
-                            <!-- col-6 -->
+
                             <div class="col-md-4">
-                                <div class="widget-small warning">
-                                    <i class="bi bi-cart3"></i> 
-                                    <div class="info">
-                                        <h4>Orders</h4>
-                                        <p><b>${requestScope.listOrders.size()} orders</b></p>
-                                        <p class="info-tong">Total number of orders</p>
+                                <a href="AdminManageOrderController" style="text-decoration: none">
+
+                                    <div class="widget-small warning">
+                                        <i class="bi bi-cart3"></i> 
+                                        <div class="info">
+                                            <h4>Orders</h4>
+                                            <p><b>${requestScope.listOrders.size()} orders</b></p>
+                                            <p class="info-tong">Total number of orders</p>
+                                        </div>
                                     </div>
-                                </div>
+
+                                </a>
                             </div>
-                            
                         </div>       
-                                        
+
                         <div class="row">
                             <div class="col-xl-6">
                                 <div class="card mb-4">
@@ -149,7 +156,7 @@
                                             <th>Id</th>
                                             <th>Email</th>
                                             <th>Name</th>
-<!--                                            <th>Password</th>-->
+                                            <!--                                            <th>Password</th>-->
                                             <th>Phone</th>
                                             <th>Status</th>
                                             <th>Role</th>
