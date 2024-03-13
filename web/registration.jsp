@@ -39,8 +39,8 @@
         <%@include file="components/registrationNavComponent.jsp" %>
         <!-- Registration Session -->
         <section class="bg-image"
-                 style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
-            <div class="mask d-flex align-items-center gradient-custom-3">
+                 style="background-image: url('https://media.istockphoto.com/id/638730224/vector/heart-pattern.jpg?s=612x612&w=0&k=20&c=px-vGXGmt3dSSa854-GroCNhPByaaWr5w_kJWrjd7Es=');">
+            <!--<div class="mask d-flex align-items-center gradient-custom-3">-->
                 <div class="container">
                     <div class="row d-flex justify-content-center align-items-center h-100">
                         <div class="col-12 col-md-9 col-lg-7 col-xl-6 pt-5 pb-5">
@@ -168,7 +168,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            <!--</div>-->
         </section>
         <!-- Footer -->
         <%@include file="components/footerComponent.jsp" %>

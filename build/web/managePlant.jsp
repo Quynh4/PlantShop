@@ -104,12 +104,6 @@
                                     </div>
                                 </span>
                             </div>
-                            <div class="card-body">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="bi bi-table"></i>
-                                        Plants table
-                                    </div>
                                     <div class="card-body">
                                         <table id="plantsTable">
                                             <thead>
@@ -244,7 +238,6 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                </div>
                             </div>
                         </div>
                     </div>
