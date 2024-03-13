@@ -7,6 +7,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.eclipse.jdt.internal.compiler.batch.Main;
 
 /**
  *
@@ -22,6 +23,9 @@ public class SendEmailController extends HttpServlet {
             String action = request.getParameter("action");
             if (action != null) {
                 if (action.equals("subscribeEmail")) {
+                    request.setCharacterEncoding("utf-8");
+                    response.setCharacterEncoding("utf-8");
+                    
                     String email = request.getParameter("email");
                     String subject = "Register to receive promotional information successfully";
                     String message = "<!DOCTYPE html>\n"
@@ -64,6 +68,8 @@ public class SendEmailController extends HttpServlet {
             log("Error at SendEmailController: " + e.toString());
         }
     }
+    
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

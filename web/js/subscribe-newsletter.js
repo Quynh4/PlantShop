@@ -3,7 +3,7 @@ function subscribeNewsLetter() {
         params: {
             email: document.getElementById("emailSubscribe").value,
             action: document.getElementById("subscribeEmail").value
-        },
+        }
     }).then((response) => {
         toast({
             title: 'Success',

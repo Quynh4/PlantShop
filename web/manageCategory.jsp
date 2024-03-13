@@ -13,7 +13,7 @@
         <title>Manage Category</title>
         <script type="text/javascript">
             function doDelete(id) {
-                if (confirm("Are you sure to delete this category?" + id)) {
+                if (confirm("Are you sure to delete this category?")) {
                     window.location = "DeleteCategory?id=" + id;
                 }
             }

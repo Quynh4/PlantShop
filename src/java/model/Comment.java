@@ -19,7 +19,6 @@ import lombok.ToString;
 @Setter
 @ToString
 public class Comment {
-    
     private int id;
     private int blogId;
     private int accId;
