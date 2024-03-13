@@ -10,13 +10,6 @@
 <html lang="en">
     <head>
         <%@include file="components/adminHeadComponent.jsp" %>
-        <script type="text/javascript">
-            function doDelete(id) {
-                if (confirm("Are you sure to delete this plant?")) {
-                    window.location = "DeletePlant?pid=" + id;
-                }
-            }
-        </script>
     </head>
     <body class="sb-nav-fixed">
         <!-- Admin navbar -->
@@ -27,7 +20,7 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Manage Orders</h1>
+                        <h1 class="mt-4">Manage Plants</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">All current orders in system</li>
                         </ol>
@@ -112,124 +105,169 @@
                                 </span>
                             </div>
                             <div class="card-body">
-                                <table id="plantsTable">
-                                    <thead>
-                                        <tr>
-                                            <th>Id</th>
-                                            <th>Name</th>
-                                            <th style="width: 100px">Image</th>
-                                            <th>Price</th>
-                                            <th>Description</th>
-                                            <th>Status</th>
-                                            <th>Category</th>
-                                            <th>Action</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                   
-                                    <tbody>
-                                        <c:forEach items="${requestScope.listPlants}" var="o">
-                                            <tr>
-                                                <td>${o.id}</td>
-                                                <td>${o.name}</td>
-                                                <td style="width: 100px"><img src="${o.imgPath}" style="width: 50%;"></td>
-                                                <td>$${o.price}</td>
-                                                <td>${o.description}</td>
-                                                <c:choose>
-                                                    <c:when test="${o.status == 1}">
-                                                        <td style="color: blue;">Available</td>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <td style="color: red;">Unavailable</td>
-                                                    </c:otherwise>
-                                                </c:choose>
-                                                <td>
-                                                    ${sessionScope.listCategories.get(o.categoryId)}
-                                                </td>
-                                                <td>
-                                                    <!-- Block btn -->
-                                                    <span>
-                                                        <!-- Button trigger modal -->
-                                                        <button type="button" class="btn btn-outline-success w-100" data-bs-toggle="modal" data-bs-target="#blockBtn${o.id}">
-                                                            Update
-                                                        </button>
-                                                        <!-- Modal -->
-                                                        <div class="modal fade" id="blockBtn${o.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                            <div class="modal-dialog modal-dialog-centered">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        <h5 class="modal-title" id="exampleModalLabel">Product Information</h5>
-                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                        <i class="bi bi-table"></i>
+                                        Plants table
+                                    </div>
+                                    <div class="card-body">
+                                        <table id="plantsTable">
+                                            <thead>
+                                                <tr>
+                                                    <th>Id</th>
+                                                    <th>Name</th>
+                                                    <th style="width: 100px;">Image</th>
+                                                    <th>Price</th>
+                                                    <th>Description</th>
+                                                    <th>Status</th>
+                                                    <th>Category</th>
+                                                    <th>Action</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <c:forEach items="${requestScope.listPlants}" var="o">
+                                                    <tr>
+                                                        <td>${o.id}</td>
+                                                        <td>${o.name}</td>
+                                                        <td style="width: 100px;"><img src="${o.imgPath}" style="width: 50%;"></td>
+                                                        <td>$${o.price}</td>
+                                                        <td>${o.description}</td>
+                                                        <c:choose>
+                                                            <c:when test="${o.status == 1}">
+                                                                <td style="color: blue;">Available</td>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <td style="color: red;">Unavailable</td>
+                                                            </c:otherwise>
+                                                        </c:choose>
+                                                        <td>
+                                                            ${sessionScope.listCategories.get(o.categoryId)}
+                                                        </td>
+                                                        <td>
+                                                            <!-- Block btn -->
+                                                            <span>
+                                                                <!-- Button trigger modal -->
+                                                                <button type="button" class="btn btn-outline-success w-100" data-bs-toggle="modal" data-bs-target="#blockBtn${o.id}">
+                                                                    Update
+                                                                </button>
+                                                                <!-- Modal -->
+                                                                <div class="modal fade" id="blockBtn${o.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                    <div class="modal-dialog modal-dialog-centered">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <h5 class="modal-title" id="exampleModalLabel">Product Information</h5>
+                                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                            </div>
+                                                                            <form action="UpdatePlantController" method="POST">
+                                                                                <div class="modal-body">
+                                                                                    <input type="hidden" name="pid" value="${o.id}"/>
+                                                                                    <div class="form-outline mb-3">
+                                                                                        <label class="form-label" for="name3Example">Name <span style="color: red; font-weight: bold">*</span></label>
+                                                                                        <input type="text" id="name3Example" class="form-control form-control-lg"
+                                                                                               required name="name" value="${o.name}"/>
+                                                                                    </div>
+                                                                                    <div class="form-outline mb-3">
+                                                                                        <label class="form-label" for="img3Example">Image Path <span style="color: red; font-weight: bold">*</span></label>
+                                                                                        <input type="text" id="img3Example" class="form-control form-control-lg"
+                                                                                               required name="imgPath" value="${o.imgPath}"/>
+                                                                                    </div>
+                                                                                    <div class="form-outline mb-3">
+                                                                                        <label class="form-label" for="price3Example">Price <span style="color: red; font-weight: bold">*</span></label>
+                                                                                        <input type="number" min="0" max="999" pattern="^[1-9]\d*$" id="price3Example" class="form-control form-control-lg"
+                                                                                               required name="price" value="${o.price}"/>
+                                                                                    </div>
+                                                                                    <div class="form-outline mb-3">
+                                                                                        <label class="form-label" for="descr3Example">Description <span style="color: red; font-weight: bold">*</span></label>
+                                                                                        <textarea type="text" id="descr3Example" class="form-control form-control-lg"
+                                                                                                  required name="description">${o.description}</textarea>
+                                                                                    </div>
+                                                                                    <div class="form-outline mb-3">
+                                                                                        <label class="form-label" for="status3Example">Status <span style="color: red; font-weight: bold">*</span></label>
+                                                                                        <select name="status" class="form-select form-select-lg" id="status3Example">
+                                                                                            <option ${o.status eq 1 ? "selected" : ""} value="1">Available</option>
+                                                                                            <option ${o.status eq 0 ? "selected" : ""} value="0">Unavailable</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                    <div class="form-outline mb-3">
+                                                                                        <label class="form-label" for="cate3Example">Category <span style="color: red; font-weight: bold">*</span></label>
+                                                                                        <select name="cateId" class="form-select form-select-lg" id="cate3Example">
+                                                                                            <c:forEach items="${sessionScope.listCategories}" var="LC">
+                                                                                                <option ${o.categoryId eq LC.key ? "selected" : ""} value="${LC.key}">${LC.value}</option>
+                                                                                            </c:forEach>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="modal-footer">
+                                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                                    <button id="update-profile-btn" type="submit" class="btn btn-danger" name="action" value="updatePlant">Update</button>
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
                                                                     </div>
-                                                                    <form action="UpdatePlantController" method="POST">
-                                                                        <div class="modal-body">
-                                                                            <input type="hidden" name="pid" value="${o.id}"/>
-                                                                            <div class="form-outline mb-3">
-                                                                                <label class="form-label" for="name3Example">Name <span style="color: red; font-weight: bold">*</span></label>
-                                                                                <input type="text" id="name3Example" class="form-control form-control-lg"
-                                                                                       required name="name" value="${o.name}"/>
-                                                                            </div>
-                                                                            <div class="form-outline mb-3">
-                                                                                <label class="form-label" for="img3Example">Image Path <span style="color: red; font-weight: bold">*</span></label>
-                                                                                <input type="text" id="img3Example" class="form-control form-control-lg"
-                                                                                       required name="imgPath" value="${o.imgPath}"/>
-                                                                            </div>
-                                                                            <div class="form-outline mb-3">
-                                                                                <label class="form-label" for="price3Example">Price <span style="color: red; font-weight: bold">*</span></label>
-                                                                                <input type="number" min="0" max="999" pattern="^[1-9]\d*$" id="price3Example" class="form-control form-control-lg"
-                                                                                       required name="price" value="${o.price}"/>
-                                                                            </div>
-                                                                            <div class="form-outline mb-3">
-                                                                                <label class="form-label" for="descr3Example">Description <span style="color: red; font-weight: bold">*</span></label>
-                                                                                <textarea type="text" id="descr3Example" class="form-control form-control-lg"
-                                                                                          required name="description">${o.description}</textarea>
-                                                                            </div>
-                                                                            <div class="form-outline mb-3">
-                                                                                <label class="form-label" for="status3Example">Status <span style="color: red; font-weight: bold">*</span></label>
-                                                                                <select name="status" class="form-select form-select-lg" id="status3Example">
-                                                                                    <option ${o.status eq 1 ? "selected" : ""} value="1">Available</option>
-                                                                                    <option ${o.status eq 0 ? "selected" : ""} value="0">Unavailable</option>
-                                                                                </select>
-                                                                            </div>
-                                                                            <div class="form-outline mb-3">
-                                                                                <label class="form-label" for="cate3Example">Category <span style="color: red; font-weight: bold">*</span></label>
-                                                                                <select name="cateId" class="form-select form-select-lg" id="cate3Example">
-                                                                                    <c:forEach items="${sessionScope.listCategories}" var="LC">
-                                                                                        <option ${o.categoryId eq LC.key ? "selected" : ""} value="${LC.key}">${LC.value}</option>
-                                                                                    </c:forEach>
-                                                                                </select>
-                                                                            </div>
+                                                                </div>
+                                                            </span>
+                                                        </td>
+                                                        <td>
+                                                            <button type="button" class="btn btn-outline-danger w-100" data-bs-toggle="modal" data-bs-target="#deleBtn${o.id}">
+                                                                Delete
+                                                            </button>
+<!--                                                            <button type="button" onclick="doDelete(${o.id})" class="btn btn-outline-danger w-100" ">
+                                                          Delete
+                                                      </button>-->
+                                                            <div class="modal fade" id="deleBtn${o.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog modal-dialog-centered">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title" id="exampleModalLabel">Delete product</h5>
+                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                         </div>
-                                                                        <div class="modal-footer">
-                                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                                            <button id="update-profile-btn" type="submit" class="btn btn-danger" name="action" value="updatePlant">Update</button>
-                                                                        </div>
-                                                                    </form>
+                                                                        <form action="DeletePlant">
+
+                                                                            <div class="modal-body">
+                                                                                Do you want to delete this plant?
+                                                                                <input type="hidden" name="pid" value="${o.id}"/>
+                                                                            </div>
+                                                                            <div class="modal-footer">  
+                                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    </span>
-                                                </td>
-                                                <td><button type="button" onclick="doDelete(${o.id})" class="btn btn-outline-danger w-100" ">
-                                                            Delete
-                                                        </button>
-                                                </td>
-                                            </tr>
-                                        </c:forEach>
-                                    </tbody>
-                                </table>
+                                                        </td>
+
+
+                                                    </tr>
+                                                </c:forEach>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </main>
                 <!-- Footer -->
                 <jsp:include page="components/adminFooter.jsp"></jsp:include>
+                </div>
             </div>
-        </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-        <script src="js/datatables-simple-demo.js"></script>
-    </body>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/boscriptotstrap.bundle.min.js" crossorigin="anonymous"></script>
+            <script src="js/scripts.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+            <script src="js/datatables-simple-demo.js"></script>
+
+            <!-- Footer -->
+        <jsp:include page="components/adminFooter.jsp"></jsp:include>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<!--sidebarToggle-->
+<script src="js/scripts.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+<script src="js/datatables-simple-demo.js"></script>
+</body>
 </html>

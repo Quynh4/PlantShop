@@ -83,19 +83,6 @@
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Id</th>
-                                            <th>Order Date</th>
-                                            <th>Ship Date</th>
-                                            <th>Note</th>
-                                            <th>Total Price</th>
-                                            <th>Status</th>
-                                            <th>Acc Id</th>
-                                            <th>Shipping Id</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </tfoot>
                                     <tbody>
                                         <c:forEach items="${requestScope.listOrders}" var="LO">
                                             <c:if test="${LO.status == 1}">

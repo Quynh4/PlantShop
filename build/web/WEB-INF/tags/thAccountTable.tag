@@ -12,7 +12,7 @@
 <th>Id</th>
 <th>Email</th>
 <th>Name</th>
-<th>Password</th>
+<!--<th>Password</th>-->
 <th>Phone</th>
 <th>Status</th>
 <th>Role</th>

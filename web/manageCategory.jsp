@@ -11,13 +11,13 @@
     <head>
         <%@include file="components/adminHeadComponent.jsp" %>
         <title>Manage Category</title>
-        <script type="text/javascript">
-            function doDelete(id) {
-                if (confirm("Are you sure to delete this category?")) {
-                    window.location = "DeleteCategory?id=" + id;
-                }
-            }
-        </script>
+        <!--        <script type="text/javascript">
+                    function doDelete(id) {
+                        if (confirm("Are you sure to delete this category?")) {
+                            window.location = "DeleteCategory?id=" + id;
+                        }
+                    }
+                </script>-->
     </head>
     <body class="sb-nav-fixed">
         <!-- Admin navbar -->
@@ -91,7 +91,7 @@
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                               
+
                                     <tbody>
                                         <c:forEach items="${sessionScope.listCategories}" var="o">
                                             <tr>
@@ -134,10 +134,33 @@
                                                         </div>
                                                     </span>                      
                                                 </td>
-                                                <td><button type="button" onclick="doDelete(${o.key})" class="btn btn-outline-danger w-100" ">
-                                                            Delete
-                                                        </button>
+                                                <td>
+                                                    <button type="button" class="btn btn-outline-danger w-100" data-bs-toggle="modal" data-bs-target="#deleteBtn${o.key}">
+                                                        Delete
+                                                    </button>
+                                                    <div class="modal fade" id="deleteBtn${o.key}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel">Delete product</h5>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                </div>
+                                                                <form action="DeleteCategory">
+
+                                                                    <div class="modal-body">
+                                                                        Do you want to delete this category?
+                                                                        <input type="hidden" name="id" value="${o.key}"/>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </td>
+
                                             </tr>
                                         </c:forEach>
                                     </tbody>

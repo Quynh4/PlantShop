@@ -51,11 +51,6 @@
                                             <tag:thAccountTable/>
                                         </tr>
                                     </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <tag:thAccountTable/>
-                                        </tr>
-                                    </tfoot>
                                     <tbody>
                                         <c:forEach items="${requestScope.listAccounts}" var="LA">
                                             <c:if test="${LA.role eq 1}">
@@ -63,7 +58,7 @@
                                                     <td>${LA.accId}</td>
                                                     <td>${LA.email}</td>
                                                     <td>${LA.fullName}</td>
-                                                    <td>${LA.password}</td>
+                                                    <!--<td>${LA.password}</td>-->
                                                     <td>${not empty LA.phone ? LA.phone : "Null"}</td>
                                                     <td><span style="color: blue;">Active</span></td>
                                                     <td>Admin</td>
@@ -88,12 +83,7 @@
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <tag:thAccountTable/>
-                                            <th>Action</th>
-                                        </tr>
-                                    </tfoot>
+                                    
                                     <tbody>
                                         <c:forEach items="${requestScope.listAccounts}" var="LA">
                                             <c:if test="${LA.status eq 1 and LA.role eq 0}">
@@ -101,7 +91,7 @@
                                                     <td>${LA.accId}</td>
                                                     <td>${LA.email}</td>
                                                     <td>${LA.fullName}</td>
-                                                    <td>${LA.password}</td>
+                                                    <!--<td>${LA.password}</td>-->
                                                     <td>${LA.phone}</td>
                                                     <td><span style="color: blue;">Active</span></td>
                                                     <td>User</td>
@@ -170,7 +160,7 @@
                                                     <td>${LA.accId}</td>
                                                     <td>${LA.email}</td>
                                                     <td>${LA.fullName}</td>
-                                                    <td>${LA.password}</td>
+                                                    <!--<td>${LA.password}</td>-->
                                                     <td>${LA.phone}</td>
                                                     <td><span style="color: blue;">Active</span></td>
                                                     <td>User</td>

@@ -78,7 +78,7 @@
                             <li class="breadcrumb-item active">Overview</li>
                         </ol>
 
-
+<!--COUNT-->
                         <div class="row">
                             <!-- col-6 -->
                             <div class="col-md-4">
@@ -149,7 +149,7 @@
                                             <th>Id</th>
                                             <th>Email</th>
                                             <th>Name</th>
-                                            <th>Password</th>
+<!--                                            <th>Password</th>-->
                                             <th>Phone</th>
                                             <th>Status</th>
                                             <th>Role</th>
@@ -161,7 +161,7 @@
                                                 <td>${o.accId}</td>
                                                 <td>${o.email}</td>
                                                 <td>${o.fullName}</td>
-                                                <td>${o.password}</td>
+                                                <!--<td>${o.password}</td>-->
                                                 <td>${o.phone}</td>
                                                 <c:choose>
                                                     <c:when test="${o.status == 1}">
