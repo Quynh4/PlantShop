@@ -30,33 +30,7 @@ public class AccountDAO {
     private static final String CHECK_OLD_PASSWORD = "SELECT Password FROM Accounts WHERE accId = ?";
     private static final String UPDATE_PASSWORD = "UPDATE Accounts Set password = ? WHERE accId = ?";
 
-    public Account checkAccountExistByEmail(String email) {
-
-        try {
-            String strSelect = "select * from Account where  [email]=?";
-            Connection conn = null;
-            PreparedStatement psm = null;
-            ResultSet rs = null;
-            psm = conn.prepareStatement(strSelect);
-            psm.setString(1, email);
-            rs = psm.executeQuery();
-            while (rs.next()) {
-                int AccId = rs.getInt("AccID");
-                    String Email = rs.getString("Email");
-                    String Password = rs.getString("Password");
-                    String FullName = rs.getString("FullName");
-                    String Phone = rs.getString("Phone");
-                    int Status = rs.getInt("Status");
-                    int Role = rs.getInt("Role");
-                 Account acc = new Account(AccId, Email, Password, FullName, Status, Phone, Role);
-               return acc;
-            }
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-        return null;
-    }
-
+ 
     public boolean updateAccountPassword(int accId, String newPassword) throws SQLException {
         boolean check = false;
         Connection conn = null;

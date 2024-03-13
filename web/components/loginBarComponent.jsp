@@ -79,7 +79,7 @@
 
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="RegistrationController">New around here? Sign up</a>
-                    <a class="dropdown-item" href="#">Forgot password?</a>
+                    <a class="dropdown-item" href="ForgotPassword">Forgot password?</a>
                 </div>
             </div>
         </c:otherwise>

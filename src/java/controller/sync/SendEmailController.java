@@ -25,7 +25,7 @@ public class SendEmailController extends HttpServlet {
                 if (action.equals("subscribeEmail")) {
                     request.setCharacterEncoding("utf-8");
                     response.setCharacterEncoding("utf-8");
-                    
+
                     String email = request.getParameter("email");
                     String subject = "Register to receive promotional information successfully";
                     String message = "<!DOCTYPE html>\n"
@@ -45,10 +45,13 @@ public class SendEmailController extends HttpServlet {
                             + "\n"
                             + "</html>";
                     SendMailUtils.send(email, subject, message);
-                } else if (action.equals("pageDirect")) {
+                } 
+                
+                else if (action.equals("pageDirect")) {
                     request.setAttribute("destPage", "sendMail");
                     response.sendRedirect("sendMail.jsp");
-                } else if (action.equals("sendEmailToCust")) {
+                } 
+                else if (action.equals("sendEmailToCust")) {
                     String email = request.getParameter("email");
                     String subject = request.getParameter("subject");
                     String message = request.getParameter("message");
@@ -68,8 +71,6 @@ public class SendEmailController extends HttpServlet {
             log("Error at SendEmailController: " + e.toString());
         }
     }
-    
-    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

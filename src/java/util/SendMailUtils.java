@@ -11,16 +11,9 @@ import javax.mail.internet.*;
  */
 public class SendMailUtils {
 
-//    private static final String USER = "nofomtre@gmail.com";
-//    private static final String PASSWORD = "ektotbrpyuycdflr";
-    
-    
-        private static final String USER = "buisyduc2710@gmail.com";
-    private static final String PASSWORD = "demdblquwwtzlfsh";
-    
-//    ekto tbrp yuyc dflr
-
-
+    private static final String USER = "nofomtre@gmail.com";
+    private static final String PASSWORD = "ektotbrpyuycdflr";
+   
     public static boolean send(String to, String sub, String msg) {
         boolean check = false;
         Properties props = new Properties();
@@ -56,10 +49,6 @@ public class SendMailUtils {
             e.printStackTrace();
         }
         return check;
-    }
-
-    public static void main(String[] args) {
-        send("quynhntnhe181950@fpt.edu.vn", "Hello", "hi");
     }
 
 }
