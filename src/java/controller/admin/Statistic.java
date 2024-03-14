@@ -1,26 +1,27 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ */
 package controller.admin;
 
 import dao.AccountDAO;
 import dao.CategoryDAO;
 import dao.OrderDAO;
 import dao.PlantDAO;
-import model.Account;
-import model.Order;
-import model.Plant;
 import java.io.IOException;
-import java.util.List;
-import java.util.Map;
+import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.util.List;
+import java.util.Map;
+import model.Account;
+import model.Order;
+import model.Plant;
 
-/**
- *
- * @author nofom
- */
-public class AdminHomeController extends HttpServlet {
+public class Statistic extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -84,7 +85,7 @@ public class AdminHomeController extends HttpServlet {
         } catch (Exception e) {
             log("Error at AdminHomeController: " + e.toString());
         } finally {
-            request.getRequestDispatcher("admin.jsp").forward(request, response);
+            request.getRequestDispatcher("statistic.jsp").forward(request, response);
         }
     }
 

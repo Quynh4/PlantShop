@@ -176,6 +176,10 @@
         <servlet-name>RevenueDay</servlet-name>
         <servlet-class>controller.admin.NewServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Statistic</servlet-name>
+        <servlet-class>controller.admin.Statistic</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/HomeController</url-pattern>
@@ -335,6 +339,10 @@
     <servlet-mapping>
         <servlet-name>RevenueDay</servlet-name>
         <url-pattern>/day</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Statistic</servlet-name>
+        <url-pattern>/Statistic</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

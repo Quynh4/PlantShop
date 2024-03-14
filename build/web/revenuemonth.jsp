@@ -45,7 +45,7 @@
                 new Chart(document.getElementById("horizontalBar"), {
                     "type": "horizontalBar",
                     "data": {
-                        "labels": ["Tháng 12", "Tháng 11", "Tháng 10", "Tháng 9", "Tháng 8", "Tháng 7", "Tháng 6", "Tháng 5", "Tháng 4", "Tháng 3", "Tháng 2", "Tháng 1"],
+                        "labels": ["December", "November", "October", "September", "August", "July", "June", "May", "April", "March", "February", "January"],
                         "datasets": [{
                                 "label": "Doanh thu(đồng)",
                                 "data": [${total12}, ${total11}, ${total10}, ${total9}, ${total8}, ${total7}, ${total6}, ${total5}, ${total4}, ${total3}, ${total2}, ${total1}],

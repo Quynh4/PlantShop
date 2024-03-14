@@ -124,7 +124,7 @@
                             </div>
                         </div>       
 
-                                            
+
                         <div class="row">
                             <div class="col-xl-6">
                                 <div class="card mb-4">
@@ -135,29 +135,49 @@
                                     <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
                                 </div>
                             </div>
+
                             <script>
-                                var ctx = document.getElementById("myAreaChart");
-                                var myLineChart = new Chart(ctx, {
+                                var a = document.getElementById("myAreaChart");
+                                var myLineChart = new Chart(a, {
                                     type: 'pie',
                                     data: {
                                         labels: ["Sunday", "Saturday", "Friday", "Thursday", "Wednesday", "Tuesday", "Monday"],
                                         datasets: [{
-                                                data: [${totalMoney1}, ${totalMoney7}, ${totalMoney6}, ${totalMoney5}, ${totalMoney4}, ${totalMoney3}, ${totalMoney2}],
+                                                data: [${wd1}, ${wd7}, ${wd6}, ${wd5}, ${wd4}, ${wd3}, ${wd2}],
                                                 backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360", "#1874CD", "#CDB5CD"]
                                             }]
                                     }
                                 });
                             </script>
+
                             <div class="col-xl-6">
                                 <div class="card mb-4">
                                     <div class="card-header">
                                         <i class="fas fa-chart-bar me-1"></i>
-                                        Bar Chart Example
+                                        Revenue by month 
                                     </div>
                                     <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
                                 </div>
                             </div>
                         </div>
+                        <script>
+
+                            var b = document.getElementById("myBarChart");
+                            var myLineChart = new Chart(b, {
+                                type: 'bar',
+                                data: {
+                                    labels: ["December", "November", "October", "September", "August", "July", "June", "May", "April", "March", "February", "January"],
+                                    datasets: [{
+                                            label: "Revenue",
+                                            backgroundColor: "rgba(2,117,216,1)",
+                                            borderColor: "rgba(2,117,216,1)",
+                                            data: [${month12}, ${month11}, ${month10}, ${month9}, ${month8}, ${month7}, ${month6}, ${month5}, ${month4}, ${month3}, ${month2}, ${month1}],
+                                        }]
+                                }
+                            }
+                            );
+                        </script>
+
 
                         <!-- Account Table -->
                         <div class="card mb-4">
@@ -319,8 +339,8 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-<!--        <script src="demo/chart-area-demo.js"></script>
-        <script src="demo/chart-bar-demo.js"></script>-->
+        <!--                <script src="demo/chart-area-demo.js"></script>
+                        <script src="demo/chart-bar-demo.js"></script>-->
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
     </body>

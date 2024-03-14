@@ -37,7 +37,7 @@ public class OrderDAO {
             + "FROM Orders WHERE orderId = ?";
     private static final String GET_ALL_ORDERS = "SELECT orderId, ordDate, shipDate, note, status, accId, shippingId, totalPrice FROM Orders";
 
-    public int totalMoneyDay(int day){
+    public int weekdayRevenue(int day){
         String query = "select SUM(totalPrice*quantity) from OrderDetails d join Orders o on d.orderId = o.orderId where [status]=2 and DATEPART(dw,ordDate) = ? group by ordDate";
         try {
             conn = DBUtils.getConnection();
@@ -52,24 +52,25 @@ public class OrderDAO {
         }
         return 0;
     }
-    
-    public static void main(String[] args) {
-        OrderDAO dao = new OrderDAO();
-        System.out.println(dao.totalMoneyDay(3));
-    }
+//    
+//    public static void main(String[] args) {
+//        OrderDAO dao = new OrderDAO();
+//        System.out.println(dao.weekdayRevenue(3));
+//    }
 
-    public double totalMoneyMonth(int month) {
+    public int monthRevenue(int month) {
         String query = "select SUM(totalPrice*quantity)\n"
                 + "from OrderDetails d join Orders o\n"
                 + "on d.orderId = o.orderId where [status]=2\n"
                 + "and MONTH(ordDate) = ?\n"
                 + "group by MONTH(ordDate)";
         try {
+            conn = DBUtils.getConnection();
             psm = conn.prepareStatement(query);
             psm.setInt(1, month);
             rs = psm.executeQuery();
             while (rs.next()) {
-                return rs.getDouble(1);
+                return rs.getInt(1);
             }
         } catch (Exception e) {
         }
