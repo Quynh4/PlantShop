@@ -19,22 +19,80 @@ import java.util.Map;
  */
 public class OrderDAO {
 
-    private static final String GET_ORDERS = "SELECT orderId, ordDate, shipDate, note, status, accId, shippingId, totalPrice \n" +
-            "FROM Orders WHERE accId = ?";
-    private static final String GET_ORDERS_BY_STATUS = "SELECT orderId, ordDate, shipDate, note, status, accId, shippingId, totalPrice \n" +
-            "FROM Orders WHERE accId = ? AND status = ?";
+    Connection conn = null;
+    PreparedStatement psm = null;
+    ResultSet rs = null;
+    private static final String GET_ORDERS = "SELECT orderId, ordDate, shipDate, note, status, accId, shippingId, totalPrice \n"
+            + "FROM Orders WHERE accId = ?";
+    private static final String GET_ORDERS_BY_STATUS = "SELECT orderId, ordDate, shipDate, note, status, accId, shippingId, totalPrice \n"
+            + "FROM Orders WHERE accId = ? AND status = ?";
     private static final String UPDATE_ORDER_STATUS = "UPDATE Orders SET status = ? WHERE orderId = ?";
     private static final String FINISH_ORDER = "UPDATE Orders SET status = ?, shipDate = GETDATE() WHERE orderId = ?";
-    private static final String GET_ORDERS_BY_ARRANGE_TIME = "SELECT orderId, ordDate, shipDate, note, status, accId, shippingId, totalPrice \n" +
-            "FROM Orders WHERE accId = ? AND (ordDate >= ? AND ordDate <= ?)";
-    private static final String GET_ORDERS_BY_ARRANGE_TIME_2 = "SELECT orderId, ordDate, shipDate, note, status, accId, shippingId, totalPrice \n" +
-            "FROM Orders WHERE (ordDate >= ? AND ordDate <= ?)";
+    private static final String GET_ORDERS_BY_ARRANGE_TIME = "SELECT orderId, ordDate, shipDate, note, status, accId, shippingId, totalPrice \n"
+            + "FROM Orders WHERE accId = ? AND (ordDate >= ? AND ordDate <= ?)";
+    private static final String GET_ORDERS_BY_ARRANGE_TIME_2 = "SELECT orderId, ordDate, shipDate, note, status, accId, shippingId, totalPrice \n"
+            + "FROM Orders WHERE (ordDate >= ? AND ordDate <= ?)";
     private static final String INSERT_RETURN_ID = "INSERT INTO Orders (accId, totalPrice, note, status, shippingId) VALUES (?, ?, ?, 1, ?)";
-    private static final String GET_ORDER_BY_ID = "SELECT orderId, ordDate, shipDate, note, status, accId, shippingId, totalPrice \n" +
-            "FROM Orders WHERE orderId = ?";
+    private static final String GET_ORDER_BY_ID = "SELECT orderId, ordDate, shipDate, note, status, accId, shippingId, totalPrice \n"
+            + "FROM Orders WHERE orderId = ?";
     private static final String GET_ALL_ORDERS = "SELECT orderId, ordDate, shipDate, note, status, accId, shippingId, totalPrice FROM Orders";
+
+    public int totalMoneyDay(int day){
+        String query = "select SUM(totalPrice*quantity) from OrderDetails d join Orders o on d.orderId = o.orderId where [status]=2 and DATEPART(dw,ordDate) = ? group by ordDate";
+        try {
+            conn = DBUtils.getConnection();
+            psm = conn.prepareStatement(query);
+            psm.setInt(1, day);
+            rs = psm.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return 0;
+    }
     
-     public List<Order> getAllOrders() throws SQLException {
+    public static void main(String[] args) {
+        OrderDAO dao = new OrderDAO();
+        System.out.println(dao.totalMoneyDay(3));
+    }
+
+    public double totalMoneyMonth(int month) {
+        String query = "select SUM(totalPrice*quantity)\n"
+                + "from OrderDetails d join Orders o\n"
+                + "on d.orderId = o.orderId where [status]=2\n"
+                + "and MONTH(ordDate) = ?\n"
+                + "group by MONTH(ordDate)";
+        try {
+            psm = conn.prepareStatement(query);
+            psm.setInt(1, month);
+            rs = psm.executeQuery();
+            while (rs.next()) {
+                return rs.getDouble(1);
+            }
+        } catch (Exception e) {
+        }
+        return 0;
+    }
+
+    public double sumAllInvoice() {
+        String query = "select SUM(totalPrice * quantity)\n"
+                + "from OrderDetails d join Orders o\n"
+                + "on d.orderId = o.orderId where [status]=2";
+        try {
+           
+            psm = conn.prepareStatement(query);
+            rs = psm.executeQuery();
+            while (rs.next()) {
+                return rs.getDouble(1);
+            }
+        } catch (Exception e) {
+        }
+        return 0;
+    }
+
+    public List<Order> getAllOrders() throws SQLException {
         List<Order> list = new ArrayList<>();
         Connection conn = null;
         PreparedStatement psm = null;
@@ -60,13 +118,19 @@ public class OrderDAO {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if (rs != null) rs.close();
-            if (psm != null) psm.close();
-            if (conn != null) conn.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (psm != null) {
+                psm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return list;
     }
-    
+
     public Order getOrderById(int orderId) throws SQLException {
         Order order = null;
         Connection conn = null;
@@ -92,13 +156,19 @@ public class OrderDAO {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if (rs != null) rs.close();
-            if (psm != null) psm.close();
-            if (conn != null) conn.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (psm != null) {
+                psm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return order;
     }
-    
+
     public List<Order> getOrdersByPeriodTime(String from, String to) throws SQLException {
         List<Order> list = new ArrayList<>();
         Connection conn = null;
@@ -127,13 +197,19 @@ public class OrderDAO {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if (rs != null) rs.close();
-            if (psm != null) psm.close();
-            if (conn != null) conn.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (psm != null) {
+                psm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return list;
     }
-    
+
     public List<Order> getOrdersByPeriodTime(int accId, String from, String to) throws SQLException {
         List<Order> list = new ArrayList<>();
         Connection conn = null;
@@ -162,9 +238,15 @@ public class OrderDAO {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if (rs != null) rs.close();
-            if (psm != null) psm.close();
-            if (conn != null) conn.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (psm != null) {
+                psm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return list;
     }
@@ -192,9 +274,15 @@ public class OrderDAO {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if (rs != null) rs.close();
-            if (psm != null) psm.close();
-            if (conn != null) conn.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (psm != null) {
+                psm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return id;
     }
@@ -252,9 +340,15 @@ public class OrderDAO {
             e.printStackTrace();
             check = false;
         } finally {
-            if (rs != null) rs.close();
-            if (psm != null) psm.close();
-            if (conn != null) conn.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (psm != null) {
+                psm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return check;
     }
@@ -285,9 +379,15 @@ public class OrderDAO {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if (rs != null) rs.close();
-            if (psm != null) psm.close();
-            if (conn != null) conn.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (psm != null) {
+                psm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return list;
     }
@@ -319,13 +419,19 @@ public class OrderDAO {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if (rs != null) rs.close();
-            if (psm != null) psm.close();
-            if (conn != null) conn.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (psm != null) {
+                psm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return list;
     }
-    
+
     public boolean finishOrder(int orderId, int orderStatus) throws SQLException {
         boolean check = false;
         Connection conn = null;
@@ -340,8 +446,12 @@ public class OrderDAO {
             }
         } catch (Exception e) {
         } finally {
-            if (stm != null) stm.close();
-            if (conn != null) conn.close();
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return check;
     }
@@ -360,8 +470,12 @@ public class OrderDAO {
             }
         } catch (Exception e) {
         } finally {
-            if (stm != null) stm.close();
-            if (conn != null) conn.close();
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return check;
     }

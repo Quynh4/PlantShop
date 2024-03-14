@@ -62,6 +62,7 @@
                 font-size: 30px;
             }
         </style>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
     </head>
     <body class="sb-nav-fixed">
         <!-- Admin navbar -->
@@ -123,16 +124,30 @@
                             </div>
                         </div>       
 
+                                            
                         <div class="row">
                             <div class="col-xl-6">
                                 <div class="card mb-4">
                                     <div class="card-header">
                                         <i class="fas fa-chart-area me-1"></i>
-                                        Area Chart Example
+                                        Revenue by days of week
                                     </div>
                                     <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
                                 </div>
                             </div>
+                            <script>
+                                var ctx = document.getElementById("myAreaChart");
+                                var myLineChart = new Chart(ctx, {
+                                    type: 'pie',
+                                    data: {
+                                        labels: ["Sunday", "Saturday", "Friday", "Thursday", "Wednesday", "Tuesday", "Monday"],
+                                        datasets: [{
+                                                data: [${totalMoney1}, ${totalMoney7}, ${totalMoney6}, ${totalMoney5}, ${totalMoney4}, ${totalMoney3}, ${totalMoney2}],
+                                                backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360", "#1874CD", "#CDB5CD"]
+                                            }]
+                                    }
+                                });
+                            </script>
                             <div class="col-xl-6">
                                 <div class="card mb-4">
                                     <div class="card-header">
@@ -143,6 +158,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <!-- Account Table -->
                         <div class="card mb-4">
                             <div class="card-header">
@@ -303,8 +319,8 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="demo/chart-area-demo.js"></script>
-        <script src="demo/chart-bar-demo.js"></script>
+<!--        <script src="demo/chart-area-demo.js"></script>
+        <script src="demo/chart-bar-demo.js"></script>-->
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
     </body>

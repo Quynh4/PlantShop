@@ -172,6 +172,10 @@
         <servlet-name>ForgotPassword</servlet-name>
         <servlet-class>controller.client.ForgotPassword</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RevenueDay</servlet-name>
+        <servlet-class>controller.admin.NewServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/HomeController</url-pattern>
@@ -327,6 +331,10 @@
     <servlet-mapping>
         <servlet-name>ForgotPassword</servlet-name>
         <url-pattern>/ForgotPassword</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RevenueDay</servlet-name>
+        <url-pattern>/day</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

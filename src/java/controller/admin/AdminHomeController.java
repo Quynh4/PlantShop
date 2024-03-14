@@ -21,19 +21,37 @@ import jakarta.servlet.http.HttpSession;
  * @author nofom
  */
 public class AdminHomeController extends HttpServlet {
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
             HttpSession session = request.getSession();
-            
+
             Map<Integer, String> listCategories = new CategoryDAO().getCategories();
             List<Plant> listPlants = new PlantDAO().getAllPlants();
             List<Account> listAccounts = new AccountDAO().getAccounts();
             List<Order> listOrders = new OrderDAO().getAllOrders();
-            
+
+            OrderDAO dao = new OrderDAO();
+            double total1 = dao.totalMoneyDay(1);
+            double total2 = dao.totalMoneyDay(2);
+            double total3 = dao.totalMoneyDay(3);
+            double total4 = dao.totalMoneyDay(4);
+            double total5 = dao.totalMoneyDay(5);
+            double total6 = dao.totalMoneyDay(6);
+            double total7 = dao.totalMoneyDay(7);
+            request.setAttribute("totalMoney1", total1);
+            request.setAttribute("totalMoney2", total2);
+            request.setAttribute("totalMoney3", total3);
+            request.setAttribute("totalMoney4", total4);
+            request.setAttribute("totalMoney5", total5);
+            request.setAttribute("totalMoney6", total6);
+            request.setAttribute("totalMoney7", total7);
             session.setAttribute("listCategories", listCategories);
             
+            
+
             request.setAttribute("listPlants", listPlants);
             request.setAttribute("listAccounts", listAccounts);
             request.setAttribute("listOrders", listOrders);
