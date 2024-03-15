@@ -106,7 +106,7 @@
                                 <c:url var="linkImg" value="PlantDetailController">
                                     <c:param name="pid" value="${RL.id}"></c:param>
                                 </c:url>
-                                <a href="${linkImg}" class="img-h-350"><img src="${RL.imgPath}" alt="Plant IMG" /></a>
+                                <a href="${linkImg}" class="img-h-350"><img src="${RL.imgPath}" alt="Plant IMG" class="img-h-350" /></a>
                                 <!-- Product details-->
                                 <div class="card-body p-2">
                                     <div class="text-center product-info">

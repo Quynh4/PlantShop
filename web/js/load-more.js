@@ -20,7 +20,7 @@ function loadMore(action, elem) {
                                     ${plants[i]['status'] == 1 ? "Available" : "Unavailable"}
                                 </div>
                                 <!-- Product image-->
-                                <a href="PlantDetailController?pid=${plants[i]['id']}" class="img-h-350"><img src="${plants[i]['imgPath']}" alt="Plant IMG"/></a>
+                                <a href="PlantDetailController?pid=${plants[i]['id']}" class="img-h-350"><img src="${plants[i]['imgPath']}" alt="Plant IMG" class="img-h-350"/></a>
                                 <!-- Product details-->
                                 <div class="card-body p-2">
                                     <div class="text-center product-info">
@@ -72,7 +72,7 @@ function loadMore(action, elem) {
                                     ${plants[i]['status'] == 1 ? "Available" : "Unavailable"}
                                 </div>
                                 <!-- Product image-->
-                                <a href="PlantDetailController?pid=${plants[i]['id']}" class="img-h-350"><img src="${plants[i]['imgPath']}" alt="Plant IMG"/></a>
+                                <a href="PlantDetailController?pid=${plants[i]['id']}" class="img-h-350"><img src="${plants[i]['imgPath']}" alt="Plant IMG" class="img-h-350"/></a>
                                 <!-- Product details-->
                                 <div class="card-body p-2">
                                     <div class="text-center product-info">
