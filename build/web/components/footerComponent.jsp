@@ -9,7 +9,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-3">
-                <img class="logo" src="images/logo-3.png" alt="Shop Logo">
+                <img class="logo" src="https://www.plantshopgr.com/cdn/shop/files/primary-plant-snake_1800x.png?v=1613533273" alt="Shop Logo">
                 <p class="default-cursor">Duis aute irure dolor in reprehendenderit in voluptate velit esse cillum
                     dolore eu fugiat nulla pariatuur.</p>
             </div>

@@ -6,7 +6,6 @@ package controller.sync;
 
 import dao.CategoryDAO;
 import dao.PlantDAO;
-import dao.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -24,7 +23,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Category;
 import model.Plant;
-import model.Product;
 
 @WebServlet(name = "SearchName", urlPatterns = {"/SearchName"})
 public class SearchName extends HttpServlet {

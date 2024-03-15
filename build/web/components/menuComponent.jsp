@@ -32,7 +32,7 @@
             <nav class="limiter-menu-desktop container">
                 <!-- Logo desktop -->		
                 <a href="${homeUrl}" class="logo">
-                <img src="./images/logo-3.png" alt="IMG-LOGO">
+                <img src="https://www.plantshopgr.com/cdn/shop/files/primary-plant-snake_1800x.png?v=1613533273" alt="IMG-LOGO">
             </a>
 
             <!-- Menu desktop -->
@@ -87,7 +87,7 @@
 <div class="wrap-header-mobile">
     <!-- Logo Moblie -->		
     <div class="logo-mobile">
-        <a href="${homeUrl}"><img src="./images/logo-3.png" alt="IMG-LOGO"></a>
+        <a href="${homeUrl}"><img src="https://www.plantshopgr.com/cdn/shop/files/primary-plant-snake_1800x.png?v=1613533273" alt="IMG-LOGO"></a>
     </div>
 
     <!-- Icon header -->
