@@ -32,9 +32,9 @@
                     Categories
                 </a>
                 <div class="sb-sidenav-menu-heading">Addons</div>
-                <a class="nav-link" href="#!">
+                <a class="nav-link" href="Statistic">
                     <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                    Charts
+                    Statistic
                 </a>
                 <div class="sb-sidenav-menu-heading">Utils</div>
                 <a class="nav-link ${requestScope.destPage eq "sendMail" ? "active" : ""}" href="SendEmailController?action=pageDirect">

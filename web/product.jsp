@@ -49,7 +49,7 @@
         <div class="container mb-5">
             <div class="row">
                 <div class="col-md-3">
-                    <h3 class="mb-4 default-cursor text-black">List Categories</h3>
+                    <h3 class="mb-4 default-cursor text-black">Categories</h3>
                     <div class="list-group">
                         <a type="button" class="list-group-item list-group-item-action ${(empty requestScope.category)? "active" : ""}" href="ViewAllController">All plants</a>
                         <c:forEach items="${sessionScope.listCategories}" var="L">
@@ -59,6 +59,51 @@
                             <a type="button" class="list-group-item list-group-item-action ${(not empty requestScope.category) and (L.key eq requestScope.category) ? "active" : ""}" href="${mylink}">${L.value}</a>
                         </c:forEach>
                     </div>
+                        
+                    <h3 class="mb-4 default-cursor text-black">Search by name</h3>
+                        <div class="md-outline mb-4">
+                            <input oninput="searchByName(this)" value="${txtSearch}" name="txt" type="text" class="form-control" placeholder="Input name...">
+                        </div>
+                        
+<!--                        
+                        <div class="sidebar">
+                                <div class="sidebar__item">
+                                    <h4>Tìm kiếm</h4>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." name='search2' onchange='searchEvent()'>
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-dark" type="button" onclick="searchEvent()">Go!</button>
+                                        </span>
+                                    </div>
+
+                                </div>
+                                <div class="sidebar__item">
+                                    <h4>Phân loại</h4>
+                                    <ul>
+                                        <li class='m-0 w-100'>
+                                                <input type='radio' value='' id='type0' name='type' style='display: none;' onclick='searchEvent(this)'>
+                                                <label for='type0' class="btn-sort m-0 w-100">Tất cả</label>
+                                        </li>
+                                        <c:forEach items="${listProductsTypes}" var="type">
+                                            <li class='m-0 w-100'>
+                                                <input type='radio' value='${type.id}' id='type${type.id}' name='type' style='display: none;' onclick='searchEvent(this)' <c:if test="${currentType==type.id}">checked</c:if>>
+                                                <label for='type${type.id}' class="btn-sort m-0 w-100">${type.name}</label>
+                                            </li>
+                                        </c:forEach>
+
+
+                                    </ul>
+                                </div>
+                                <div class="sidebar__item">
+                                    <h4>Giá</h4>
+                                    <input type="number" class="form-control mb-2" placeholder="Min price" name='minPrice' onchange='searchEvent()'>
+                                    <input type="number" class="form-control" placeholder="Max price" name='maxPrice' onchange='searchEvent()'>
+
+                                </div>
+                            
+                            </div>
+                        -->
+                        
                 </div>
                 <div class="col-md-9 default-cursor">
                     <div class="d-flex align-items-center justify-content-center section-title mb-4 pt-4 pt-md-0 text-black" style="font-size: 35px !important;">
@@ -69,7 +114,7 @@
                     <c:choose>
                         <c:when test="${empty requestScope.NO_PRODUCT}">
                             <!-- Products List -->
-                            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-lg-3 justify-content-center">
+                            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-lg-3 justify-content-center" id="content">
                                 <c:forEach items="${requestScope.listPlants}" var="LP">
                                     <!-- Product -->
                                     <div class="col mb-5">
@@ -79,11 +124,11 @@
                                                  style="padding: 5px 15px; left: 15px; top: 15px;">
                                                 ${LP.status == 1 ? "Available" : "Sold out"}
                                             </div>
-                                            <!-- Product image-->
+                                            <!-- Product image-->  
                                             <c:url var="linkImg" value="PlantDetailController">
                                                 <c:param name="pid" value="${LP.id}"></c:param>
                                             </c:url>
-                                            <a href="${linkImg}" class="img-h-350"><img src="${LP.imgPath}" alt="Plant IMG" /></a>
+                                            <a href="${linkImg}" class="img-h-350"><img src="${LP.imgPath}" class="img-h-350" alt="Plant IMG" class="img-fluid" /></a>
                                             <!-- Product details-->
                                             <div class="card-body p-2">
                                                 <div class="text-center product-info">
@@ -109,8 +154,7 @@
                                                     </div>
                                                     <!-- Product price-->
                                                     <div class="price text-center fs-4 fw-bold default-cursor text-black">
-                                                        <span class="text-muted text-decoration-line-through">$20</span>
-                                                        $${LP.price}
+                                                        ${LP.price}$
                                                     </div>
                                                 </div>
                                             </div>
@@ -190,6 +234,49 @@
                                                                 ps.update();
                                                             })
                                                         });
+                                                        
+                                                        
+                                                        
+            function category(cateid) {
+                $.ajax({
+                    url: "/PlantShop/categoryshop",
+                    type: "get",
+                    data: {
+                        cid: cateid
+                    },
+                    success: function (data) {
+                        document.getElementById("content").innerHTML = data;
+                    }
+                });
+            }
+            function searchByName(param) {
+                var txtSearch = param.value;
+                $.ajax({
+                    url: "/PlantShop/SearchName",
+                    type: "get",
+                    data: {
+                        txt: txtSearch
+                    },
+                    success: function (data) {
+                        document.getElementById("content").innerHTML = data;
+                    }
+                });
+            }
+            function searchByPriceMinToMax() {
+                var numMin = document.getElementById("priceMin").value;
+                var numMax = document.getElementById("priceMax").value;
+                $.ajax({
+                    url: "/PlantShop/searchmintomax",
+                    type: "get",
+                    data: {
+                        priceMin: numMin,
+                        priceMax: numMax
+                    },
+                    success: function (data) {
+                        document.getElementById("content").innerHTML = data;
+                    }
+                });
+            }
         </script>
         <!-- Main -->
         <script src="js/main.js"></script>

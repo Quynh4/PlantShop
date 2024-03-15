@@ -539,6 +539,43 @@ public class PlantDAO {
         }
         return list;
     }
+    
+    public List<Plant> searchByName(String name) throws SQLException {
+        List<Plant> list = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement psm = null;
+        ResultSet rs = null;
+        try {
+            String getPlants = "SELECT pid, pName, price, imgPath, description, status, P.cateId \n"
+                    + "FROM Plants P JOIN Categories C ON P.cateId = C.cateId WHERE pName like ? ";
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                
+                psm = conn.prepareStatement(getPlants);
+                psm.setString(1, "%" + name + "%");
+                rs = psm.executeQuery();
+                if (rs != null) {
+                    while (rs.next()) {
+                        int id = rs.getInt("PID");
+                        String fullName = rs.getString("PName");
+                        int price = rs.getInt("price");
+                        String imgPath = rs.getString("imgPath");
+                        String description = rs.getString("description");
+                        int status = rs.getInt("status");
+                        int cateId = rs.getInt("CateID");
+                        Plant plant = new Plant(id, fullName, price, imgPath, description, status, cateId);
+                        list.add(plant);
+                    }
+                }
+            }
+        } catch (Exception e) {
+        } finally {
+            if (rs != null) rs.close();
+            if (psm != null) psm.close();
+            if (conn != null) conn.close();
+        }
+        return list;
+    }
 
     public List<Plant> getAllPlants() throws SQLException {
         List<Plant> list = new ArrayList<>();
