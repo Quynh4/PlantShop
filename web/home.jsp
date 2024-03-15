@@ -40,8 +40,9 @@
     <body class="animsition">
         <!-- Home Menu -->
         <%@include file="components/homeHeaderComponent.jsp" %>
-        <!-- Home Slider -->
-        <%@include file="components/homeSliderComponent.jsp" %>
+        
+        <img src="https://plnts.com/_next/image?url=https%3A%2F%2Fplnts-api.ams3.digitaloceanspaces.com%2Fmain%2FNieuwe_homepage_banner_2db529dddf.jpg&w=1920&q=80">
+        
         <!-- Toast MSG -->
         <div id="toast"></div>
         <!-- Section Deal of the Day -->
