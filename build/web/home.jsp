@@ -41,7 +41,7 @@
         <!-- Home Menu -->
         <%@include file="components/homeHeaderComponent.jsp" %>
         
-        <img src="https://plnts.com/_next/image?url=https%3A%2F%2Fplnts-api.ams3.digitaloceanspaces.com%2Fmain%2FNieuwe_homepage_banner_2db529dddf.jpg&w=1920&q=80">
+        <img style="width: 100%" src="https://plnts.com/_next/image?url=https%3A%2F%2Fplnts-api.ams3.digitaloceanspaces.com%2Fmain%2FNieuwe_homepage_banner_2db529dddf.jpg&w=1920&q=80">
         
         <!-- Toast MSG -->
         <div id="toast"></div>
@@ -117,8 +117,6 @@
                 </div>
             </div>
         </section>
-        <!-- Banner 2 -->
-        <%@include file="components/homeBanner2Component.jsp" %>
         <!-- Section Loyalty -->
         <%@include file="components/loyaltyComponent.jsp" %>
         <!-- Section Best Seller -->
@@ -202,8 +200,6 @@
         </section>
         <!-- Shop By Category -->
         <%@include file="components/shopByCategoryComponents.jsp" %>
-        <!-- Latest Blog -->
-        <%@include file="components/homeLatestBlogComponent.jsp" %>
         <!-- Client Review -->
         <%@include file="components/clientReviewComponent.jsp" %>
         <!-- Subscribe News Letter -->
