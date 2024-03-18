@@ -42,7 +42,7 @@
                 <div class="default-cursor"><i class="bi bi-building"></i> 11700 183 Rd St, Artesia, CA 90701
                 </div>
                 <div class="default-cursor"><i class="bi bi-phone"></i> +84 123456789</div>
-                <div class="default-cursor"><i class="bi bi-envelope"></i> info@myflower.com</div>
+                <div class="default-cursor"><i class="bi bi-envelope"></i> nofomtre@gmail.com</div>
             </div>
         </div>
         <p class="copyright cl6 txt-center">

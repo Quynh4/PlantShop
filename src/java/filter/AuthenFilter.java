@@ -160,6 +160,7 @@ public class AuthenFilter implements Filter {
             // Pass .jpg, .pgn, .gif, .css files
             if (uri.contains(".jpg") || uri.contains(".png") || uri.contains(".gif") || uri.contains(".css") || uri.contains("fonts")) {
                 chain.doFilter(request, response);
+//                httpRespond.sendRedirect("Home");
                 return;
             }
             // Pass .js files
@@ -169,11 +170,11 @@ public class AuthenFilter implements Filter {
                 chain.doFilter(request, response);
                 return;
             }
-            // If first time access web, it will call LoginController
+            // If first time access web, it will call HomeController
             int index = uri.lastIndexOf("/");
             String resource = uri.substring(index + 1);
             if (resource.isEmpty() || resource.equals("")) {
-                res.sendRedirect("LoginController");
+                res.sendRedirect("HomeController");
                 return;
             }
             HttpSession session = req.getSession();

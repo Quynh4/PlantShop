@@ -23,7 +23,7 @@
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Manage Plants</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">All current orders in system</li>
+                            <li class="breadcrumb-item active">All current plants in system</li>
                         </ol>
                         <c:choose>
                             <c:when test="${not empty requestScope.MSG_SUCCESS}">
@@ -241,10 +241,11 @@
                 <jsp:include page="components/adminFooter.jsp"></jsp:include>
             </div>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/boscriptotstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
+        <script src="js/my-scripts.js"></script>
     </body>
 </html>

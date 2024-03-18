@@ -28,10 +28,10 @@
         <script> new WOW().init();</script>
 <link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
 <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-        <!--===============================================================================================-->
+        
 	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
 <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
-        <!--===============================================================================================-->
+        
 	<link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
 <link rel="stylesheet" type="text/css" href="css/util.css">
         <link rel="stylesheet" type="text/css" href="css/main.css">
@@ -229,7 +229,7 @@
 	<script src="vendor/slick/slick.min.js"></script>
 	<script src="js/slick-custom.js"></script>
 <script src="vendor/animsition/js/animsition.min.js"></script>
-        <!--===============================================================================================-->
+        
 	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 	<script>
 		$('.js-pscroll').each(function () {

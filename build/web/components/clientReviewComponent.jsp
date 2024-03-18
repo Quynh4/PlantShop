@@ -1,6 +1,6 @@
 <%-- 
     Document   : testimonyComponent
-    Created on : Mar 20, 2024, 2:01:22 PM
+    Created on : Feb 20, 2024, 2:01:22 PM
     Author     : nofom
 --%>
 
@@ -10,12 +10,9 @@
         <div class="heading_container justify-content-center">
             <div class="d-flex align-items-center justify-content-center fs-1 section-title pt-5">
                 <hr class="d-inline-block me-3" width="5%" />
-                What Our Customers Say
+                Customer Reviews
                 <hr class="d-inline-block ms-3" width="5%" />
             </div>
-<!--            <div class="section_number">
-                04
-            </div>-->
         </div>
     </div>
     <div class="container">
@@ -28,8 +25,7 @@
                         <h5>
                             Kim Thoa
                         </h5>
-                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of
-                            classical Latin literature from 45 BC, making it over </p>
+                        <p>Kim Thoa love this shop so much!!!</p>
                     </div>
                 </div>
             </div>
@@ -42,8 +38,7 @@
                         <h5>
                             Minh Hai
                         </h5>
-                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of
-                            classical Latin literature from 45 BC, making it over </p>
+                        <p>Best shop ever!</p>
                     </div>
                 </div>
             </div>

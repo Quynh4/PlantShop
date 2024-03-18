@@ -15,7 +15,7 @@
         </div>
         <div class="right flex-grow-1 text-end">
             <a class="text-decoration-none text-white me-2" href="#"><i class="bi bi-phone"></i> +84 123456789</a>
-            <a class="text-decoration-none text-white" href="#"><i class="bi bi-envelope"></i> info@myflower.com</a>
+            <a class="text-decoration-none text-white" href="#"><i class="bi bi-envelope"></i> nofomtre@gmail.com</a>
         </div>
     </div>
 </div>

@@ -1,6 +1,6 @@
 <%-- 
     Document   : homeMenuComponent
-    Created on : Mar 21, 2024, 8:41:40 AM
+    Created on : Feb 21, 2024, 8:41:40 AM
     Author     : nofom
 --%>
 
@@ -20,7 +20,7 @@
                 </div>
                 <div class="right-top-bar flex-w h-full">
                     <a class="text-decoration-none flex-c-m trans-04 p-lr-25" href="#"><i class="bi bi-phone me-2"></i>+84 123456789</a>
-                    <a class="text-decoration-none flex-c-m trans-04 p-lr-25" href="#"><i class="bi bi-envelope me-2"></i>info@myflower.com</a>
+                    <a class="text-decoration-none flex-c-m trans-04 p-lr-25" href="#"><i class="bi bi-envelope me-2"></i>nofomtre@gmail.com</a>
                     <a href="#" class="flex-c-m trans-04 p-lr-25"><i class="bi bi-facebook"></i></a>
                     <a href="#" class="flex-c-m trans-04 p-lr-25"><i class="bi bi-twitter"></i></a>
                     <a href="#" class="flex-c-m trans-04 p-lr-25"><i class="bi bi-instagram"></i></a>
@@ -125,7 +125,7 @@
         <li>
             <div class="right-top-bar flex-w h-full">
                 <a class="text-decoration-none flex-c-m trans-04 p-lr-25" href="#"><i class="bi bi-phone me-2"></i>+84 123456789</a>
-                <a class="text-decoration-none flex-c-m trans-04 p-lr-25" href="#"><i class="bi bi-envelope me-2"></i>info@myflower.com</a>
+                <a class="text-decoration-none flex-c-m trans-04 p-lr-25" href="#"><i class="bi bi-envelope me-2"></i>nofomtre@gmail.com</a>
             </div>
         </li>
         <li>
