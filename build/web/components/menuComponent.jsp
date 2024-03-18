@@ -16,14 +16,13 @@
         <div class="top-bar">
             <div class="content-topbar flex-sb-m h-full container">
                 <div class="left-top-bar">
-                    Free shipping for standard order over $100
+                    Welcome to my shop <3
                 </div>
                 <div class="right-top-bar flex-w h-full">
                     <a class="text-decoration-none flex-c-m trans-04 p-lr-25" href="#"><i class="bi bi-phone me-2"></i>+84 123456789</a>
                     <a class="text-decoration-none flex-c-m trans-04 p-lr-25" href="#"><i class="bi bi-envelope me-2"></i>nofomtre@gmail.com</a>
-                    <a href="#" class="flex-c-m trans-04 p-lr-25"><i class="bi bi-facebook"></i></a>
-                    <a href="#" class="flex-c-m trans-04 p-lr-25"><i class="bi bi-twitter"></i></a>
-                    <a href="#" class="flex-c-m trans-04 p-lr-25"><i class="bi bi-instagram"></i></a>
+                    <a href="https://www.facebook.com/quynh.olaa" class="flex-c-m trans-04 p-lr-25"><i class="bi bi-facebook"></i></a>
+                    <a href="https://www.instagram.com/quynhsatoh/" class="flex-c-m trans-04 p-lr-25"><i class="bi bi-instagram"></i></a>
                 </div>
             </div>
         </div>
@@ -44,14 +43,6 @@
 
                     <li class="${sessionScope.destPage eq "plant" ? "active-menu" : ""}">
                         <a href="${shopUrl}" class="text-decoration-none">Shop</a>
-                    </li>
-
-                    <li class="${sessionScope.destPage eq "blog" ? "active-menu" : ""}">
-                        <a href="${blogUrl}" class="text-decoration-none">Blog</a>
-                    </li>
-
-                    <li class="${sessionScope.destPage eq "about" ? "active-menu" : ""}">
-                        <a href="${aboutUrl}" class="text-decoration-none">About</a>
                     </li>
 
                     <c:if test="${not empty sessionScope.LOGIN_USER && sessionScope.LOGIN_USER.role eq 0}">
