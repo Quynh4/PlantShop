@@ -39,7 +39,7 @@ public class PlantDAO {
     private static final String INSERT_NEW_PLANT = "INSERT INTO Plants (pName, price, imgPath, description, status, cateId) VALUES (?, ?, ?, ?, ?, ?)";
     private static final String GET_LIST_TOP_PLANTS_RANDOM = "SELECT TOP(?) * FROM Plants WHERE cateId = ? ORDER BY NEWID()";
     private static final String GET_RANDOM_N_PLANTS = "SELECT TOP(?) * FROM Plants ORDER BY NEWID()";
-    
+
     public List<Plant> getRandomNPlants(int quantity) throws SQLException {
         List<Plant> list = new ArrayList<>();
         Connection conn = null;
@@ -67,13 +67,19 @@ public class PlantDAO {
             }
         } catch (Exception e) {
         } finally {
-            if (rs != null) rs.close();
-            if (psm != null) psm.close();
-            if (conn != null) conn.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (psm != null) {
+                psm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return list;
     }
-    
+
     public List<Plant> getListTopPlantsRandom(int top, int cateId) throws SQLException {
         List<Plant> list = new ArrayList<>();
         Connection conn = null;
@@ -101,13 +107,19 @@ public class PlantDAO {
             }
         } catch (Exception e) {
         } finally {
-            if (rs != null) rs.close();
-            if (psm != null) psm.close();
-            if (conn != null) conn.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (psm != null) {
+                psm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return list;
     }
-    
+
     public boolean insertNewPlant(String name, String imgPath, int price, String description, int status, int cateId) throws SQLException {
         boolean check = false;
         Connection conn = null;
@@ -126,8 +138,12 @@ public class PlantDAO {
             }
         } catch (Exception e) {
         } finally {
-            if (psm != null) psm.close();
-            if (conn != null) conn.close();
+            if (psm != null) {
+                psm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return check;
     }
@@ -151,12 +167,16 @@ public class PlantDAO {
             }
         } catch (Exception e) {
         } finally {
-            if (psm != null) psm.close();
-            if (conn != null) conn.close();
+            if (psm != null) {
+                psm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return check;
     }
-    
+
     public boolean deletePlant(int pid) throws SQLException {
         boolean check = false;
         Connection conn = null;
@@ -170,8 +190,12 @@ public class PlantDAO {
             }
         } catch (Exception e) {
         } finally {
-            if (psm != null) psm.close();
-            if (conn != null) conn.close();
+            if (psm != null) {
+                psm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return check;
     }
@@ -193,9 +217,15 @@ public class PlantDAO {
             }
         } catch (Exception e) {
         } finally {
-            if (rs != null) rs.close();
-            if (psm != null) psm.close();
-            if (conn != null) conn.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (psm != null) {
+                psm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return total;
     }
@@ -230,9 +260,15 @@ public class PlantDAO {
             }
         } catch (Exception e) {
         } finally {
-            if (rs != null) rs.close();
-            if (psm != null) psm.close();
-            if (conn != null) conn.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (psm != null) {
+                psm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return list;
     }
@@ -253,9 +289,15 @@ public class PlantDAO {
             }
         } catch (Exception e) {
         } finally {
-            if (rs != null) rs.close();
-            if (psm != null) psm.close();
-            if (conn != null) conn.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (psm != null) {
+                psm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return total;
     }
@@ -289,9 +331,15 @@ public class PlantDAO {
             }
         } catch (Exception e) {
         } finally {
-            if (rs != null) rs.close();
-            if (psm != null) psm.close();
-            if (conn != null) conn.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (psm != null) {
+                psm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return list;
     }
@@ -320,9 +368,15 @@ public class PlantDAO {
             }
         } catch (Exception e) {
         } finally {
-            if (rs != null) rs.close();
-            if (psm != null) psm.close();
-            if (conn != null) conn.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (psm != null) {
+                psm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return total;
     }
@@ -364,9 +418,15 @@ public class PlantDAO {
             }
         } catch (Exception e) {
         } finally {
-            if (rs != null) rs.close();
-            if (psm != null) psm.close();
-            if (conn != null) conn.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (psm != null) {
+                psm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return list;
     }
@@ -397,9 +457,15 @@ public class PlantDAO {
             }
         } catch (Exception e) {
         } finally {
-            if (rs != null) rs.close();
-            if (psm != null) psm.close();
-            if (conn != null) conn.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (psm != null) {
+                psm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return list;
     }
@@ -431,9 +497,15 @@ public class PlantDAO {
             }
         } catch (Exception e) {
         } finally {
-            if (rs != null) rs.close();
-            if (psm != null) psm.close();
-            if (conn != null) conn.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (psm != null) {
+                psm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return list;
     }
@@ -464,9 +536,15 @@ public class PlantDAO {
             }
         } catch (Exception e) {
         } finally {
-            if (rs != null) rs.close();
-            if (psm != null) psm.close();
-            if (conn != null) conn.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (psm != null) {
+                psm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return list;
     }
@@ -492,9 +570,15 @@ public class PlantDAO {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if (rs != null) rs.close();
-            if (psm != null) psm.close();
-            if (conn != null) conn.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (psm != null) {
+                psm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return plant;
     }
@@ -533,13 +617,19 @@ public class PlantDAO {
             }
         } catch (Exception e) {
         } finally {
-            if (rs != null) rs.close();
-            if (psm != null) psm.close();
-            if (conn != null) conn.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (psm != null) {
+                psm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return list;
     }
-    
+
     public List<Plant> searchByName(String name) throws SQLException {
         List<Plant> list = new ArrayList<>();
         Connection conn = null;
@@ -550,7 +640,7 @@ public class PlantDAO {
                     + "FROM Plants P JOIN Categories C ON P.cateId = C.cateId WHERE pName like ? ";
             conn = DBUtils.getConnection();
             if (conn != null) {
-                
+
                 psm = conn.prepareStatement(getPlants);
                 psm.setString(1, "%" + name + "%");
                 rs = psm.executeQuery();
@@ -570,9 +660,15 @@ public class PlantDAO {
             }
         } catch (Exception e) {
         } finally {
-            if (rs != null) rs.close();
-            if (psm != null) psm.close();
-            if (conn != null) conn.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (psm != null) {
+                psm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return list;
     }
@@ -603,9 +699,15 @@ public class PlantDAO {
             }
         } catch (Exception e) {
         } finally {
-            if (rs != null) rs.close();
-            if (psm != null) psm.close();
-            if (conn != null) conn.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (psm != null) {
+                psm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return list;
     }

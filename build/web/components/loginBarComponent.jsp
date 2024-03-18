@@ -72,8 +72,7 @@
                     <!-- Login Google Button -->
                     <div class="mt-3">
                         Or quickly sign in by
-                        <a href="https://accounts.google.com/o/oauth2/auth?scope=email%20profile%20openid&redirect_uri=http://localhost:8080/FlowerShop/LoginGoogleController&response_type=code
-                           &client_id=1063985034301-03cecevenstd13h2o75brk09j5qj1u0i.apps.googleusercontent.com&approval_prompt=force"
+                        <a href="https://accounts.google.com/o/oauth2/auth?scope=profile&redirect_uri=http://localhost:9999/PlantShop/LoginGoogleController&response_type=code&client_id=882465672285-e1758m62tskpdkekk5gfv0pq086ogct2.apps.googleusercontent.com&approval_prompt=force"
                            class="btn btn-danger text-white ms-4"><i class="bi bi-google"></i> Google</a>
                     </div>
 

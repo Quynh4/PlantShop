@@ -36,15 +36,19 @@ public class LoginGoogleController extends HttpServlet {
             String code = request.getParameter("code");
             String accessToken = getToken(code);
             UserGoogle user = getUserInfo(accessToken);
+
+            String name = user.getName().replace("@gmail.com", "").replace("@fpt.edu.vn", "");
+
             String email = user.getEmail();
             AccountDAO accDAO = new AccountDAO();
             boolean check = accDAO.getAccountByEmail(email);
             HttpSession session = request.getSession();
+
             if (check) {
                 Account account = accDAO.getAccountInfoByEmail(email);
                 session.setAttribute("LOGIN_USER", account);
             } else {
-                accDAO.insertAccount(email, "******", user.getName(), "", 1, 0);
+                accDAO.insertAccount(email, "******", name, "", 1, 0);
                 Account account = accDAO.getAccountInfoByEmail(email);
                 session.setAttribute("LOGIN_USER", account);
             }
@@ -52,7 +56,7 @@ public class LoginGoogleController extends HttpServlet {
             String token = Tools.generateNewToken();
             new AccountDAO().updateToken(token, email);
             Cookie cookie = new Cookie("selector", token);
-            cookie.setMaxAge(60 * 5);
+            cookie.setMaxAge(60 * 60 * 5);
             response.addCookie(cookie);
 
             String destPage = (String) session.getAttribute("destPage");

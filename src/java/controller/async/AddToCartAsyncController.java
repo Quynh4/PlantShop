@@ -41,7 +41,8 @@ public class AddToCartAsyncController extends HttpServlet {
                 int oldQuantity = carts.get(pid).getQuantity();
                 carts.get(pid).setQuantity(oldQuantity + 1);
 
-            } else { // TH2: Sản phẩm đã có trên giỏ hàng -> Cập nhật lại số lượng sản phẩm trên giỏ hàng (Update Product int session)
+            } else { 
+// TH2: Sản phẩm đã có trên giỏ hàng -> Cập nhật lại số lượng sản phẩm trên giỏ hàng (Update Product int session)
                 Plant plant = new PlantDAO().getPlant(pid);
                 carts.put(pid, Cart.builder().plant(plant).quantity(1).build());
             }

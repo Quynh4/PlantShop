@@ -133,7 +133,7 @@ public class LoginController extends HttpServlet {
                                 token = Tools.generateNewToken();
                                 dao.updateToken(token, email);
                                 Cookie cookie = new Cookie("selector", token);
-                                cookie.setMaxAge(60 * 5);
+                                cookie.setMaxAge(60 *60* 5);
                                 response.addCookie(cookie);
                             }
                         }
