@@ -954,7 +954,8 @@ footer .logo {
 #search-nav {
     font-size: 18px;
     height: 100px;
-    background: linear-gradient(73deg, rgba(219,8,8,1) 0%, rgba(0,0,0,1) 100%, rgba(255,0,0,0) 100%, rgba(255,15,15,1) 100%);
+    background-image: url(https://media.istockphoto.com/id/638730224/vector/heart-pattern.jpg?s=612x612&amp;w=0&amp;k=20&amp;c=px-vGXGmt3dSSa854-GroCNhPByaaWr5w_kJWrjd7Es=);
+/*    background: linear-gradient(73deg, rgba(219,8,8,1) 0%, rgba(0,0,0,1) 100%, rgba(255,0,0,0) 100%, rgba(255,15,15,1) 100%);*/
     margin-bottom: 40px;
 }
 

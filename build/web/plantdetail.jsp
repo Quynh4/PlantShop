@@ -53,11 +53,10 @@
                     <div class="col-md-6 text-md-end"><img class="card-img-top mb-5 mb-md-0" src="${plant.imgPath}" alt="..." style="width: 70%"/>
                     </div>
                     <div class="col-md-6">
-                        <div class="small mb-1 default-cursor">SKU: ${plant.id}</div>
+                        <div class="small mb-1 default-cursor">#${plant.id}</div>
                         <div class="small mb-1 default-cursor">Category: ${sessionScope.listCategories.get(plant.categoryId)}</div>
                         <h1 class="display-5 fw-bolder default-cursor">${plant.name}</h1>
                         <div class="fs-1 mb-3 default-cursor">
-                            <span class="text-decoration-line-through text-black-50">$45</span>
                             <span class="text-danger">$${plant.price}</span>
                         </div>
                         <p class="lead default-cursor">Short description: ${plant.description}</p>
@@ -91,35 +90,35 @@
         <!-- Related items section-->
         <section class="pt-5 bg-light">
             <div class="container px-4 px-lg-5">
-                <h2 class="fw-bolder mb-4">Related products</h2>
+                <h2 class="fw-bolder mb-4">Other products</h2>
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                    <c:forEach items="${requestScope.listRelativePlants}" var="RL">
+                    <c:forEach items="${requestScope.listRelativePlants}" var="o">
                         <!-- Product -->
                         <div class="col mb-5">
                             <div class="card h-100">
                                 <!-- Sale badge-->
                                 <div class="position-absolute bg-black text-white default-cursor"
                                      style="padding: 5px 15px; left: 15px; top: 15px;">
-                                    ${RL.status == 1 ? "Available" : "Unavailable"}
+                                    ${o.status == 1 ? "Available" : "Unavailable"}
                                 </div>
                                 <!-- Product image-->
                                 <c:url var="linkImg" value="PlantDetailController">
-                                    <c:param name="pid" value="${RL.id}"></c:param>
+                                    <c:param name="pid" value="${o.id}"></c:param>
                                 </c:url>
-                                <a href="${linkImg}" class="img-h-350"><img src="${RL.imgPath}" alt="Plant IMG" class="img-h-350" /></a>
+                                <a href="${linkImg}" class="img-h-350"><img src="${o.imgPath}" alt="Plant IMG" class="img-h-350" /></a>
                                 <!-- Product details-->
                                 <div class="card-body p-2">
                                     <div class="text-center product-info">
                                         <div class="category ms-3 mt-3 text-start">
-                                            ${sessionScope.listCategories.get(RL.categoryId)}
+                                            ${sessionScope.listCategories.get(o.categoryId)}
                                         </div>
                                         <!-- Product name-->
                                         <div class="name">
                                             <c:url var="linkName" value="PlantDetailController">
-                                                <c:param name="pid" value="${RL.id}"></c:param>
+                                                <c:param name="pid" value="${o.id}"></c:param>
                                             </c:url>
                                             <a href="${linkName}" class="text-decoration-none text-black">
-                                                ${RL.name}
+                                                ${o.name}
                                             </a>
                                         </div>
                                         <!-- Product reviews-->
@@ -132,15 +131,15 @@
                                         </div>
                                         <!-- Product price-->
                                         <div class="price text-center fs-4 fw-bold default-cursor">
-                                            <span class="text-muted text-decoration-line-through">$20</span>
-                                            $${RL.price}
+                                            
+                                            $${o.price}
                                         </div>
                                     </div>
                                 </div>
                                 <!-- Product actions-->
                                 <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                     <div class="text-center">
-                                        <a onclick="addToCartAsync(${RL.id})" class="btn btn-outline-dark mt-auto w-50"><i
+                                        <a onclick="addToCartAsync(${o.id})" class="btn btn-outline-dark mt-auto w-50"><i
                                                 class="bi bi-cart-plus-fill"></i></a>
                                     </div>
                                 </div>

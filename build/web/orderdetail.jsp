@@ -22,12 +22,12 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
         <link href="css/my-styles.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
-<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
-<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
-<link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
-<link rel="stylesheet" type="text/css" href="css/util.css">
+        <link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+        <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+        <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+        <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+        <link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
+        <link rel="stylesheet" type="text/css" href="css/util.css">
         <link rel="stylesheet" type="text/css" href="css/main.css">
     </head>
 
@@ -140,13 +140,13 @@
                                                             <a href="${plantD}">${P.name}</a>
                                                         </div>
                                                         <div class="product-category">
-                                                        <c:forEach items="${sessionScope.listCategories}" var="C">
-                                                           <c:if test="${C.key eq P.categoryId}">${C.value}</c:if>
-                                                        </c:forEach>
+                                                            <c:forEach items="${sessionScope.listCategories}" var="C">
+                                                                <c:if test="${C.key eq P.categoryId}">${C.value}</c:if>
+                                                            </c:forEach>
                                                         </div>
                                                         <div class="product-id">Product id: <span class="product-id-value">${P.id}</span></div>
                                                     </div>
-                                               </td>
+                                                </td>
                                             </c:if>
                                         </c:forEach>
                                         <td>${D.price} <span>$</span></td>
@@ -177,22 +177,22 @@
         <!-- Home Slider JS -->
         <script src="vendor/slick/slick.min.js"></script>
         <script src="js/slick-custom.js"></script>
-<script src="vendor/animsition/js/animsition.min.js"></script>
-<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+        <script src="vendor/animsition/js/animsition.min.js"></script>
+        <script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
         <script>
-                                                    $('.js-pscroll').each(function () {
-                                                        $(this).css('position', 'relative');
-                                                        $(this).css('overflow', 'hidden');
-                                                        var ps = new PerfectScrollbar(this, {
-                                                            wheelSpeed: 1,
-                                                            scrollingThreshold: 1000,
-                                                            wheelPropagation: false,
-                                                        });
+            $('.js-pscroll').each(function () {
+                $(this).css('position', 'relative');
+                $(this).css('overflow', 'hidden');
+                var ps = new PerfectScrollbar(this, {
+                    wheelSpeed: 1,
+                    scrollingThreshold: 1000,
+                    wheelPropagation: false,
+                });
 
-                                                        $(window).on('resize', function () {
-                                                            ps.update();
-                                                        })
-                                                    });
+                $(window).on('resize', function () {
+                    ps.update();
+                })
+            });
         </script>
         <!-- Main -->
         <script src="js/main.js"></script>

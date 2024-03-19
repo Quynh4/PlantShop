@@ -20,7 +20,7 @@
             <div class="col-md-6">
                 <div class="client_box">
                     <div class="detail_box">
-                        <div class="img_box"><img style="border-radius: 50%;" src="https://scontent.fhan2-4.fna.fbcdn.net/v/t39.30808-1/294690193_1069118590647556_4680392474172980420_n.jpg?stp=dst-jpg_s320x320&_nc_cat=103&ccb=1-7&_nc_sid=5f2048&_nc_ohc=vx4zuhn2EVMAX9kK_G4&_nc_ht=scontent.fhan2-4.fna&oh=00_AfAE-0VcA4711F1CoeXhT0d_pnYlVjPkeECexYb7e44cLQ&oe=65F606E6">
+                        <div class="img_box"><img style="border-radius: 50%;" src="https://scontent.fhph2-1.fna.fbcdn.net/v/t39.30808-6/275921559_987642505461832_6473700607568548355_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeGHycd4yRJRfZgdE5GI1TD1fk1C1Ke1Mhl-TULUp7UyGZx33VpkHftqwHI5C-hNcrlfexF1pQ0yjjdB_wKv0c2E&_nc_ohc=KtshFM8NX2UAX8ZbmfJ&_nc_ht=scontent.fhph2-1.fna&oh=00_AfAG0-nqfsb8aOpa7gXui_hsIfyin84j5-HMCeRy3o-EXQ&oe=65FE9339">
                         </div>
                         <h5>
                             Kim Thoa

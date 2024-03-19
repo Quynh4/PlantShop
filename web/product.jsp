@@ -273,10 +273,10 @@
                                                             if ((maxPrice - minPrice >= priceGap) && maxPrice <= rangeInput[1].max) {
                                                                 if (e.target.className === "input-min") {
                                                                     rangeInput[0].value = minPrice;
-                                                                    range.style.left = ((minPrice / rangeInput[0].max) * 5) + "%";
+                                                                    range.style.left = ((minPrice / rangeInput[0].max) * 100) + "%";
                                                                 } else {
                                                                     rangeInput[1].value = maxPrice;
-                                                                    range.style.right = 5 - (maxPrice / rangeInput[1].max) * 5 + "%";
+                                                                    range.style.right = 100 - (maxPrice / rangeInput[1].max) * 100 + "%";
                                                                 }
                                                             }
                                                         });
@@ -294,8 +294,8 @@
                                                             } else {
                                                                 priceInput[0].value = minVal;
                                                                 priceInput[1].value = maxVal;
-                                                                range.style.left = ((minVal / rangeInput[0].max) * 5) + "%";
-                                                                range.style.right = 5 - (maxVal / rangeInput[1].max) * 5 + "%";
+                                                                range.style.left = ((minVal / rangeInput[0].max) * 100) + "%";
+                                                                range.style.right = 100 - (maxVal / rangeInput[1].max) * 100 + "%";
                                                             }
                                                         });
                                                     });

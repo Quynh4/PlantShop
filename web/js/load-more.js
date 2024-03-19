@@ -43,7 +43,7 @@ function loadMore(action, elem) {
                                         </div>
                                         <!-- Product price-->
                                         <div class="price text-center fs-4 fw-bold default-cursor">
-                                            <span class="text-muted text-decoration-line-through">$20</span>
+                                            
                                             $${plants[i]['price']}
                                         </div>
                                     </div>
@@ -95,7 +95,7 @@ function loadMore(action, elem) {
                                         </div>
                                         <!-- Product price-->
                                         <div class="price text-center fs-4 fw-bold default-cursor">
-                                            <span class="text-muted text-decoration-line-through">$20</span>
+                                            
                                             $${plants[i]['price']}
                                         </div>
                                     </div>

@@ -120,7 +120,7 @@
                                                 </div>
                                                 <!-- Product price-->
                                                 <div class="price text-center fs-4 fw-bold default-cursor text-black">
-                                                    <span class="text-muted text-decoration-line-through">$20</span>
+                                                    
                                                     $${L.price}
                                                 </div>
                                             </div>
