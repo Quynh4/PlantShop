@@ -29,8 +29,6 @@
                         <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
                     </ul>
                 </li>
-                <li class="nav-item"><a class="nav-link ${sessionScope.destPage eq "blog" ? "active" : ""}" href="blog">Blog</a></li>
-                <li class="nav-item"><a class="nav-link ${sessionScope.destPage eq "about" ? "active" : ""}" href="AboutUsController">About</a></li>
                     <c:if test="${not empty sessionScope.LOGIN_USER && sessionScope.LOGIN_USER.role eq 0}">
                     <li class="nav-item"><a class="nav-link ${sessionScope.destPage eq "user" ? "active" : ""}" href="UserHomeController">Personal Page</a></li>
                     <li class="nav-item"><a class="nav-link ${sessionScope.destPage eq "order" ? "active" : ""}" href="UserViewOrderController">Orders</a></li>

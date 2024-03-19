@@ -130,8 +130,6 @@
     <ul class="main-menu-m">
         <li><a href="${homeUrl}" class="text-decoration-none">Home</a></li>
         <li><a href="${shopUrl}" class="text-decoration-none">Shop</a></li>
-        <li><a href="${blogUrl}" class="text-decoration-none">Blog</a></li>
-        <li><a href="${aboutUrl}" class="text-decoration-none">About</a></li>
     </ul>
 </div>
 

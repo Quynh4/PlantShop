@@ -21,12 +21,12 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
         <link href="css/my-styles.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
-<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
-<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
-<link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
-<link rel="stylesheet" type="text/css" href="css/util.css">
+        <link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+        <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+        <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+        <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+        <link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
+        <link rel="stylesheet" type="text/css" href="css/util.css">
         <link rel="stylesheet" type="text/css" href="css/main.css">
     </head>
 
@@ -59,227 +59,249 @@
                             <a type="button" class="list-group-item list-group-item-action ${(not empty requestScope.category) and (L.key eq requestScope.category) ? "active" : ""}" href="${mylink}">${L.value}</a>
                         </c:forEach>
                     </div>
-                        
-                    <h3 class="mb-4 default-cursor text-black">Search by name</h3>
-                        <div class="md-outline mb-4">
-                            <input oninput="searchByName(this)" value="${txtSearch}" name="txt" type="text" class="form-control" placeholder="Input name...">
-                        </div>
-                        
-<!--                        
-                        <div class="sidebar">
-                                <div class="sidebar__item">
-                                    <h4>Tìm kiếm</h4>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Search for..." name='search2' onchange='searchEvent()'>
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-dark" type="button" onclick="searchEvent()">Go!</button>
-                                        </span>
-                                    </div>
 
-                                </div>
-                                <div class="sidebar__item">
-                                    <h4>Phân loại</h4>
-                                    <ul>
-                                        <li class='m-0 w-100'>
-                                                <input type='radio' value='' id='type0' name='type' style='display: none;' onclick='searchEvent(this)'>
-                                                <label for='type0' class="btn-sort m-0 w-100">Tất cả</label>
-                                        </li>
-                                        <c:forEach items="${listProductsTypes}" var="type">
-                                            <li class='m-0 w-100'>
-                                                <input type='radio' value='${type.id}' id='type${type.id}' name='type' style='display: none;' onclick='searchEvent(this)' <c:if test="${currentType==type.id}">checked</c:if>>
-                                                <label for='type${type.id}' class="btn-sort m-0 w-100">${type.name}</label>
-                                            </li>
-                                        </c:forEach>
-
-
-                                    </ul>
-                                </div>
-                                <div class="sidebar__item">
-                                    <h4>Giá</h4>
-                                    <input type="number" class="form-control mb-2" placeholder="Min price" name='minPrice' onchange='searchEvent()'>
-                                    <input type="number" class="form-control" placeholder="Max price" name='maxPrice' onchange='searchEvent()'>
-
-                                </div>
-                            
-                            </div>
-                        -->
-                        
-                </div>
-                <div class="col-md-9 default-cursor">
-                    <div class="d-flex align-items-center justify-content-center section-title mb-4 pt-4 pt-md-0 text-black" style="font-size: 35px !important;">
-                        <hr class="d-inline-block me-3" width="15%" />
-                        List Products
-                        <hr class="d-inline-block ms-3" width="15%" />
+                    <h3 class="my-4 default-cursor text-black">Search by name</h3>
+                    <div class="md-outline mb-4">
+                        <input oninput="searchByName(this)" value="${txtSearch}" name="txt" type="text" class="form-control" placeholder="Input name...">
                     </div>
-                    <c:choose>
-                        <c:when test="${empty requestScope.NO_PRODUCT}">
-                            <!-- Products List -->
-                            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-lg-3 justify-content-center" id="content">
-                                <c:forEach items="${requestScope.listPlants}" var="LP">
-                                    <!-- Product -->
-                                    <div class="col mb-5">
-                                        <div class="card h-100">
-                                            <!-- Sale badge-->
-                                            <div class="position-absolute bg-black text-white default-cursor"
-                                                 style="padding: 5px 15px; left: 15px; top: 15px;">
-                                                ${LP.status == 1 ? "Available" : "Sold out"}
-                                            </div>
-                                            <!-- Product image-->  
-                                            <c:url var="linkImg" value="PlantDetailController">
-                                                <c:param name="pid" value="${LP.id}"></c:param>
-                                            </c:url>
-                                            <a href="${linkImg}" class="img-h-350"><img src="${LP.imgPath}" class="img-h-350" alt="Plant IMG" class="img-h-350" class="img-fluid" /></a>
-                                            <!-- Product details-->
-                                            <div class="card-body p-2">
-                                                <div class="text-center product-info">
-                                                    <div class="category ms-3 mt-3 text-start">
-                                                        ${sessionScope.listCategories.get(LP.categoryId)}
-                                                    </div>
-                                                    <!-- Product name-->
-                                                    <div class="name">
-                                                        <c:url var="linkName" value="PlantDetailController">
-                                                            <c:param name="pid" value="${LP.id}"></c:param>
-                                                        </c:url>
-                                                        <a href="${linkName}" class="text-decoration-none text-black">
-                                                            ${LP.name}
-                                                        </a>
-                                                    </div>
-                                                    <!-- Product reviews-->
-                                                    <div class="d-flex justify-content-center small text-warning mb-2">
-                                                        <div class="bi-star-fill"></div>
-                                                        <div class="bi-star-fill"></div>
-                                                        <div class="bi-star-fill"></div>
-                                                        <div class="bi-star-fill"></div>
-                                                        <div class="bi-star-fill"></div>
-                                                    </div>
-                                                    <!-- Product price-->
-                                                    <div class="price text-center fs-4 fw-bold default-cursor text-black">
-                                                        ${LP.price}$
-                                                    </div>
+                    <h3 class="my-3 default-cursor text-black">Search by price</h3>
+<!--
+                    <form>
+                        <div class="align-items-center d-flex md-outline mb-4">
+                            <div class="md-outline">
+                                <input oninput="searchByPriceMinToMax()" id="priceMin" type="text" class="form-control" placeholder="Min price">
+                            </div> $
+                            <p class="px-2"> - </p>
+                            <div class="md-outline">
+                                <input oninput="searchByPriceMinToMax()" id="priceMax" type="text" class="form-control" placeholder="Max price">
+                            </div>
+                            $
+                        </div>
+                    </form>   -->
+
+                    <div class="price-input">
+                        <div class="field">
+                            <span>Min</span>
+                            <input type="number" class="input-min" value="0">
+                        </div>
+                        <div class="separator">-</div>
+                        <div class="field">
+                            <span>Max</span>
+                            <input type="number" class="input-max" value="200">
+                        </div>
+                    </div>
+                    <div class="slider">
+                        <div class="progress"></div>
+                    </div>
+                    <div class="range-input">
+                        <input onchange="searchByPriceMinToMax()" id="priceMin" type="range" class="range-min" min="0" max="200" value="0" step="5">
+                        <input onchange="searchByPriceMinToMax()" id="priceMax" type="range" class="range-max" min="0" max="200" value="200" step="5">
+                    </div>
+                </div>
+            <div class="col-md-9 default-cursor">
+                <div class="d-flex align-items-center justify-content-center section-title mb-4 pt-4 pt-md-0 text-black" style="font-size: 35px !important;">
+                    <hr class="d-inline-block me-3" width="15%" />
+                    List Products
+                    <hr class="d-inline-block ms-3" width="15%" />
+                </div>
+                <c:choose>
+                    <c:when test="${empty requestScope.NO_PRODUCT}">
+                        <!-- Products List -->
+                        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-lg-3 justify-content-center" id="content">
+                            <c:forEach items="${requestScope.listPlants}" var="LP">
+                                <!-- Product -->
+                                <div class="col mb-5">
+                                    <div class="card h-100">
+                                        <!-- Sale badge-->
+                                        <div class="position-absolute bg-black text-white default-cursor"
+                                             style="padding: 5px 15px; left: 15px; top: 15px;">
+                                            ${LP.status == 1 ? "Available" : "Sold out"}
+                                        </div>
+                                        <!-- Product image-->  
+                                        <c:url var="linkImg" value="PlantDetailController">
+                                            <c:param name="pid" value="${LP.id}"></c:param>
+                                        </c:url>
+                                        <a href="${linkImg}" class="img-h-350"><img src="${LP.imgPath}" class="img-h-350" alt="Plant IMG" class="img-h-350" class="img-fluid" /></a>
+                                        <!-- Product details-->
+                                        <div class="card-body p-2">
+                                            <div class="text-center product-info">
+                                                <div class="category ms-3 mt-3 text-start">
+                                                    ${sessionScope.listCategories.get(LP.categoryId)}
                                                 </div>
-                                            </div>
-                                            <!-- Product actions-->
-                                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                                <div class="text-center">
-                                                    <a onclick="addToCartAsync(${LP.id})" class="btn btn-outline-dark mt-auto w-50"><i
-                                                            class="bi bi-cart-plus-fill"></i></a>
+                                                <!-- Product name-->
+                                                <div class="name">
+                                                    <c:url var="linkName" value="PlantDetailController">
+                                                        <c:param name="pid" value="${LP.id}"></c:param>
+                                                    </c:url>
+                                                    <a href="${linkName}" class="text-decoration-none text-black">
+                                                        ${LP.name}
+                                                    </a>
+                                                </div>
+                                                <!-- Product reviews-->
+                                                <div class="d-flex justify-content-center small text-warning mb-2">
+                                                    <div class="bi-star-fill"></div>
+                                                    <div class="bi-star-fill"></div>
+                                                    <div class="bi-star-fill"></div>
+                                                    <div class="bi-star-fill"></div>
+                                                    <div class="bi-star-fill"></div>
+                                                </div>
+                                                <!-- Product price-->
+                                                <div class="price text-center fs-4 fw-bold default-cursor text-black">
+                                                    ${LP.price}$
                                                 </div>
                                             </div>
                                         </div>
+                                        <!-- Product actions-->
+                                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                            <div class="text-center">
+                                                <a onclick="addToCartAsync(${LP.id})" class="btn btn-outline-dark mt-auto w-50"><i
+                                                        class="bi bi-cart-plus-fill"></i></a>
+                                            </div>
+                                        </div>
                                     </div>
-                                </c:forEach>
-                            </div>
-                            <!-- Pagging -->
-                            <nav class="d-flex justify-content-center" aria-label="Page navigation">
-                                <ul class="pagination">
-                                    <c:url var="prepagelink" value="ViewAllController">
-                                        <c:param name="pagenumber" value="${page - 1}"></c:param>
-                                        <c:param name="category" value="${requestScope.category}"></c:param>
-                                    </c:url>
-                                    <li class="page-item ${page == 1 ? "disabled" : ""}"><a class="page-link" href="${prepagelink}">Previous</a></li>
-                                        <c:forEach begin="1" end="${requestScope.totalPage}" var="i">
-                                            <c:url var="curpagelink" value="ViewAllController">
-                                                <c:param name="pagenumber" value="${i}"></c:param>
-                                                <c:param name="category" value="${requestScope.category}"></c:param>
-                                            </c:url>
-                                        <li class="page-item ${i == page ? "active" : ""}"><a class="page-link" href="${curpagelink}">${i}</a></li>
-                                        </c:forEach>
-                                        <c:url var="nextpagelink" value="ViewAllController">
-                                            <c:param name="pagenumber" value="${page + 1}"></c:param>
+                                </div>
+                            </c:forEach>
+                        </div>
+                        <!-- Pagging -->
+                        <nav class="d-flex justify-content-center" aria-label="Page navigation">
+                            <ul class="pagination">
+                                <c:url var="prepagelink" value="ViewAllController">
+                                    <c:param name="pagenumber" value="${page - 1}"></c:param>
+                                    <c:param name="category" value="${requestScope.category}"></c:param>
+                                </c:url>
+                                <li class="page-item ${page == 1 ? "disabled" : ""}"><a class="page-link" href="${prepagelink}">Previous</a></li>
+                                    <c:forEach begin="1" end="${requestScope.totalPage}" var="i">
+                                        <c:url var="curpagelink" value="ViewAllController">
+                                            <c:param name="pagenumber" value="${i}"></c:param>
                                             <c:param name="category" value="${requestScope.category}"></c:param>
                                         </c:url>
-                                    <li class="page-item ${page == totalPage ? "disabled" : ""}"><a class="page-link" href="${nextpagelink}">Next</a></li>
-                                </ul>
-                            </nav>
-                        </c:when>
-                        <c:otherwise>
-                            <h3>${requestScope.NO_PRODUCT}</h3>
-                        </c:otherwise>
-                    </c:choose>
+                                    <li class="page-item ${i == page ? "active" : ""}"><a class="page-link" href="${curpagelink}">${i}</a></li>
+                                    </c:forEach>
+                                    <c:url var="nextpagelink" value="ViewAllController">
+                                        <c:param name="pagenumber" value="${page + 1}"></c:param>
+                                        <c:param name="category" value="${requestScope.category}"></c:param>
+                                    </c:url>
+                                <li class="page-item ${page == totalPage ? "disabled" : ""}"><a class="page-link" href="${nextpagelink}">Next</a></li>
+                            </ul>
+                        </nav>
+                    </c:when>
+                    <c:otherwise>
+                        <h3>${requestScope.NO_PRODUCT}</h3>
+                    </c:otherwise>
+                </c:choose>
 
-                </div>
             </div>
         </div>
-        <!-- Subscribe News Letter -->
-        <%@include file="components/subscribeNewsLetterComponent.jsp" %>
-        <!-- Footer -->
-        <%@include file="components/footerComponent.jsp" %>
-        <!-- Bootstrap core JS -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Axios Async -->
-        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-        <script src="js/toast-alert.js"></script>
-        <script src="js/add-to-cart-async.js"></script>
-        <!-- Jquery -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <!-- Toast Alert script -->
-        <script src="js/toast-alert.js"></script>
-        <script src="js/subscribe-newsletter.js"></script>
-        <!-- Home Slider JS -->
-        <script src="vendor/slick/slick.min.js"></script>
-        <script src="js/slick-custom.js"></script>
-<script src="vendor/animsition/js/animsition.min.js"></script>
-<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-        <script>
-                                                        $('.js-pscroll').each(function () {
-                                                            $(this).css('position', 'relative');
-                                                            $(this).css('overflow', 'hidden');
-                                                            var ps = new PerfectScrollbar(this, {
-                                                                wheelSpeed: 1,
-                                                                scrollingThreshold: 1000,
-                                                                wheelPropagation: false,
-                                                            });
-
-                                                            $(window).on('resize', function () {
-                                                                ps.update();
-                                                            })
+    </div>
+    <!-- Subscribe News Letter -->
+    <%@include file="components/subscribeNewsLetterComponent.jsp" %>
+    <!-- Footer -->
+    <%@include file="components/footerComponent.jsp" %>
+    <!-- Bootstrap core JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Axios Async -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="js/toast-alert.js"></script>
+    <script src="js/add-to-cart-async.js"></script>
+    <!-- Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Toast Alert script -->
+    <script src="js/toast-alert.js"></script>
+    <script src="js/subscribe-newsletter.js"></script>
+    <!-- Home Slider JS -->
+    <script src="vendor/slick/slick.min.js"></script>
+    <script src="js/slick-custom.js"></script>
+    <script src="vendor/animsition/js/animsition.min.js"></script>
+    <script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script>
+                                                    $('.js-pscroll').each(function () {
+                                                        $(this).css('position', 'relative');
+                                                        $(this).css('overflow', 'hidden');
+                                                        var ps = new PerfectScrollbar(this, {
+                                                            wheelSpeed: 1,
+                                                            scrollingThreshold: 1000,
+                                                            wheelPropagation: false,
                                                         });
-                                                        
-                                                        
-                                                        
-            function category(cateid) {
-                $.ajax({
-                    url: "/PlantShop/categoryshop",
-                    type: "get",
-                    data: {
-                        cid: cateid
-                    },
-                    success: function (data) {
-                        document.getElementById("content").innerHTML = data;
-                    }
-                });
-            }
-            function searchByName(param) {
-                var txtSearch = param.value;
-                $.ajax({
-                    url: "/PlantShop/SearchName",
-                    type: "get",
-                    data: {
-                        txt: txtSearch
-                    },
-                    success: function (data) {
-                        document.getElementById("content").innerHTML = data;
-                    }
-                });
-            }
-            function searchByPriceMinToMax() {
-                var numMin = document.getElementById("priceMin").value;
-                var numMax = document.getElementById("priceMax").value;
-                $.ajax({
-                    url: "/PlantShop/searchmintomax",
-                    type: "get",
-                    data: {
-                        priceMin: numMin,
-                        priceMax: numMax
-                    },
-                    success: function (data) {
-                        document.getElementById("content").innerHTML = data;
-                    }
-                });
-            }
-        </script>
-        <!-- Main -->
-        <script src="js/main.js"></script>
-    </body>
+
+                                                        $(window).on('resize', function () {
+                                                            ps.update();
+                                                        })
+                                                    });
+
+
+
+
+                                                    function searchByName(param) {
+                                                        var txtSearch = param.value;
+                                                        $.ajax({
+                                                            url: "/PlantShop/SearchName",
+                                                            type: "get",
+                                                            data: {
+                                                                txt: txtSearch
+                                                            },
+                                                            success: function (data) {
+                                                                document.getElementById("content").innerHTML = data;
+                                                            }
+                                                        });
+                                                    }
+                                                    function searchByPriceMinToMax() {
+                                                        var numMin = document.getElementById("priceMin").value;
+                                                        var numMax = document.getElementById("priceMax").value;
+
+                                                        $.ajax({
+                                                            url: "/PlantShop/SearchMinMaxPrice",
+                                                            type: "get",
+                                                            data: {
+                                                                priceMin: numMin,
+                                                                priceMax: numMax
+                                                            },
+                                                            success: function (data) {
+                                                                document.getElementById("content").innerHTML = data;
+                                                            }
+                                                        });
+                                                    }
+
+                                                    const rangeInput = document.querySelectorAll(".range-input input"),
+                                                            priceInput = document.querySelectorAll(".price-input input"),
+                                                            range = document.querySelector(".slider .progress");
+                                                    let priceGap = 1;
+                                                    priceInput.forEach(input => {
+                                                        input.addEventListener("input", e => {
+                                                            let minPrice = parseInt(priceInput[0].value),
+                                                                    maxPrice = parseInt(priceInput[1].value);
+
+                                                            if ((maxPrice - minPrice >= priceGap) && maxPrice <= rangeInput[1].max) {
+                                                                if (e.target.className === "input-min") {
+                                                                    rangeInput[0].value = minPrice;
+                                                                    range.style.left = ((minPrice / rangeInput[0].max) * 5) + "%";
+                                                                } else {
+                                                                    rangeInput[1].value = maxPrice;
+                                                                    range.style.right = 5 - (maxPrice / rangeInput[1].max) * 5 + "%";
+                                                                }
+                                                            }
+                                                        });
+                                                    });
+                                                    rangeInput.forEach(input => {
+                                                        input.addEventListener("input", e => {
+                                                            let minVal = parseInt(rangeInput[0].value),
+                                                                    maxVal = parseInt(rangeInput[1].value);
+                                                            if ((maxVal - minVal) < priceGap) {
+                                                                if (e.target.className === "range-min") {
+                                                                    rangeInput[0].value = maxVal - priceGap
+                                                                } else {
+                                                                    rangeInput[1].value = minVal + priceGap;
+                                                                }
+                                                            } else {
+                                                                priceInput[0].value = minVal;
+                                                                priceInput[1].value = maxVal;
+                                                                range.style.left = ((minVal / rangeInput[0].max) * 5) + "%";
+                                                                range.style.right = 5 - (maxVal / rangeInput[1].max) * 5 + "%";
+                                                            }
+                                                        });
+                                                    });
+    </script>
+    <!-- Main -->
+    <script src="js/main.js"></script>
+</body>
 
 </html>

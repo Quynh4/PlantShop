@@ -117,8 +117,6 @@
                 </div>
             </div>
         </section>
-        <!-- Section Loyalty -->
-        <%@include file="components/loyaltyComponent.jsp" %>
         <!-- Section Best Seller -->
         <section class="pt-5 text-black">
             <div style="background-color: #f3f3f3;">

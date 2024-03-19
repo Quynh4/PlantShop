@@ -40,6 +40,64 @@ public class PlantDAO {
     private static final String GET_LIST_TOP_PLANTS_RANDOM = "SELECT TOP(?) * FROM Plants WHERE cateId = ? ORDER BY NEWID()";
     private static final String GET_RANDOM_N_PLANTS = "SELECT TOP(?) * FROM Plants ORDER BY NEWID()";
 
+    
+    
+    
+            
+            public List<Plant> searchPriceMinToMax(String min, String max) throws SQLException {
+        List<Plant> list = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement psm = null;
+        ResultSet rs = null;
+        try {
+            String getPlants = "select pid, pName, price, imgPath, description, status, P.cateId FROM Plants P JOIN Categories C ON P.cateId = C.cateId  where [price] >= ? and [price]<= ? ";
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+
+                psm = conn.prepareStatement(getPlants);
+                psm.setInt(1, Integer.parseInt(min));
+                psm.setInt(2, Integer.parseInt(max));
+                rs = psm.executeQuery();
+                if (rs != null) {
+                    while (rs.next()) {
+                        int id = rs.getInt("PID");
+                        String fullName = rs.getString("PName");
+                        int price = rs.getInt("price");
+                        String imgPath = rs.getString("imgPath");
+                        String description = rs.getString("description");
+                        int status = rs.getInt("status");
+                        int cateId = rs.getInt("CateID");
+                        Plant plant = new Plant(id, fullName, price, imgPath, description, status, cateId);
+                        list.add(plant);
+                    }
+                }
+            }
+        } catch (Exception e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (psm != null) {
+                psm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return list;
+    }
+            
+            
+            public static void main(String[] args) throws SQLException {
+        PlantDAO dao = new PlantDAO();
+        List<Plant> l = dao.searchPriceMinToMax("0", "20000");
+                for (Plant plant : l) {
+                    System.out.println(plant);
+                }
+    }
+                   
+
+            
     public List<Plant> getRandomNPlants(int quantity) throws SQLException {
         List<Plant> list = new ArrayList<>();
         Connection conn = null;
