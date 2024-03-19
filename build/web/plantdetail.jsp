@@ -22,13 +22,30 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
         <link href="css/my-styles.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
-<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
-<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
-<link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
-<link rel="stylesheet" type="text/css" href="css/util.css">
+        <link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+        <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+        <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+        <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+        <link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
+        <link rel="stylesheet" type="text/css" href="css/util.css">
         <link rel="stylesheet" type="text/css" href="css/main.css">
+
+        <style>
+
+            .product-detail ul li{
+                margin: 0;
+                list-style: none;
+                background: url(https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/checked.png) left center no-repeat;
+                background-size: 18px;
+                padding-left: 1.7rem;
+                margin: 0.4rem 0;
+                font-weight: 600;
+                opacity: 0.9;
+            }
+            .product-detail ul li span{
+                font-weight: 400;
+            }
+        </style>
     </head>
 
     <body class="animsition">
@@ -50,24 +67,36 @@
         <section>
             <div class="container px-4 px-lg-5 my-5">
                 <div class="row gx-4 gx-lg-5 align-items-center mb-4">
-                    <div class="col-md-6 text-md-end"><img class="card-img-top mb-5 mb-md-0" src="${plant.imgPath}" alt="..." style="width: 70%"/>
+                    <div class="col-md-6 text-md-end"><img class="card-img-top mb-5 mb-md-0 img-h-350 bg-image hover-zoom" src="${plant.imgPath}" alt="..." style="width: 70%"/>
                     </div>
                     <div class="col-md-6">
                         <div class="small mb-1 default-cursor">#${plant.id}</div>
-                        <div class="small mb-1 default-cursor">Category: ${sessionScope.listCategories.get(plant.categoryId)}</div>
                         <h1 class="display-5 fw-bolder default-cursor">${plant.name}</h1>
+                        <!-- Product reviews-->
+                        <div class="d-flex small text-warning mb-2">
+                            <div class="bi-star-fill"></div>
+                            <div class="bi-star-fill"></div>
+                            <div class="bi-star-fill"></div>
+                            <div class="bi-star-fill"></div>
+                            <div class="bi-star-fill"></div>
+                        </div>
                         <div class="fs-1 mb-3 default-cursor">
                             <span class="text-danger">$${plant.price}</span>
                         </div>
-                        <p class="lead default-cursor">Short description: ${plant.description}</p>
-                        <div class="d-flex">
+
+                        <div class= "product-detail">
+                            <ul>
+                                <li>Available: <span>in stock</span></li>
+                                <li>Category: <span>${sessionScope.listCategories.get(plant.categoryId)}</span></li>
+                                <li>Shipping Area: <span>All over the world</span></li>
+                                <li>Shipping Fee: <span>Free</span></li>
+                            </ul>
+
+                        </div>
+                        <div class="d-flex my-4">
                             <a onclick="addToCartAsync(${plant.id})" class="btn btn-outline-dark flex-shrink-0">
                                 <i class="bi-cart-fill me-1"></i>
                                 Add to cart
-                            </a>
-                            <a class="btn btn-outline-success ms-2 flex-shrink-0" type="button">
-                                <i class="bi-cart-fill me-1"></i>
-                                Buy now
                             </a>
                         </div>
                     </div>
@@ -75,15 +104,11 @@
                 <!-- Tabs -->
                 <nav>
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                        <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Home</button>
-                        <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</button>
-                        <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</button>
+                        <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Description</button>
                     </div>
                 </nav>
                 <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">...</div>
-                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
-                    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
+                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">${plant.description}</div>
                 </div>
             </div>
         </section>
@@ -131,7 +156,7 @@
                                         </div>
                                         <!-- Product price-->
                                         <div class="price text-center fs-4 fw-bold default-cursor">
-                                            
+
                                             $${o.price}
                                         </div>
                                     </div>
@@ -166,22 +191,22 @@
         <!-- Home Slider JS -->
         <script src="vendor/slick/slick.min.js"></script>
         <script src="js/slick-custom.js"></script>
-<script src="vendor/animsition/js/animsition.min.js"></script>
-<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+        <script src="vendor/animsition/js/animsition.min.js"></script>
+        <script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
         <script>
-                                                    $('.js-pscroll').each(function () {
-                                                        $(this).css('position', 'relative');
-                                                        $(this).css('overflow', 'hidden');
-                                                        var ps = new PerfectScrollbar(this, {
-                                                            wheelSpeed: 1,
-                                                            scrollingThreshold: 1000,
-                                                            wheelPropagation: false,
-                                                        });
+                                            $('.js-pscroll').each(function () {
+                                                $(this).css('position', 'relative');
+                                                $(this).css('overflow', 'hidden');
+                                                var ps = new PerfectScrollbar(this, {
+                                                    wheelSpeed: 1,
+                                                    scrollingThreshold: 1000,
+                                                    wheelPropagation: false,
+                                                });
 
-                                                        $(window).on('resize', function () {
-                                                            ps.update();
-                                                        })
-                                                    });
+                                                $(window).on('resize', function () {
+                                                    ps.update();
+                                                })
+                                            });
         </script>
         <!-- Main -->
         <script src="js/main.js"></script>

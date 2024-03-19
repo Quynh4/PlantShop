@@ -65,20 +65,6 @@
                         <input oninput="searchByName(this)" value="${txtSearch}" name="txt" type="text" class="form-control" placeholder="Input name...">
                     </div>
                     <h3 class="my-3 default-cursor text-black">Search by price</h3>
-<!--
-                    <form>
-                        <div class="align-items-center d-flex md-outline mb-4">
-                            <div class="md-outline">
-                                <input oninput="searchByPriceMinToMax()" id="priceMin" type="text" class="form-control" placeholder="Min price">
-                            </div> $
-                            <p class="px-2"> - </p>
-                            <div class="md-outline">
-                                <input oninput="searchByPriceMinToMax()" id="priceMax" type="text" class="form-control" placeholder="Max price">
-                            </div>
-                            $
-                        </div>
-                    </form>   -->
-
                     <div class="price-input">
                         <div class="field">
                             <span>Min</span>
