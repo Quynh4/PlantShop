@@ -9,40 +9,49 @@ import dao.PlantDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.Category;
 import model.Plant;
 
-@WebServlet(name = "SearchName", urlPatterns = {"/SearchName"})
-public class SearchName extends HttpServlet {
+public class SearchAjax extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
+        /* TODO output your page here. You may use following sample code. */
+
+//        final int PAGE_SIZE = 6;
+//        int page = 1;
+//        if (pagenumber != null) {
+//                page = Integer.parseInt(pagenumber);
+//            }
+
         HttpSession session = request.getSession();
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         request.setCharacterEncoding("UTF-8");
-        
+
         String txtSearch = request.getParameter("txt");
+        String priceMin = request.getParameter("priceMin");
+        String priceMax = request.getParameter("priceMax");
+        int cid = Integer.parseInt(request.getParameter("cid"));
+        String pagenumber = request.getParameter("pagenumber");
+
         PlantDAO dao = new PlantDAO();
-        List<Plant> list = dao.searchByName(txtSearch);
-        
+        List<Plant> list = dao.searchAjax(txtSearch, priceMin, priceMax, cid);
+
         Map<Integer, String> lc = new CategoryDAO().getCategories();
 
         for (Plant plant : list) {
             String linkImg = "PlantDetailController?pid=" + plant.getId();
-            out.println("<div class=\"col mb-5\">\n"
+            out.println(
+                    "<div class=\"col mb-5\">\n"
                     + "                                        <div class=\"card h-100\">\n"
                     + "                                            <!-- Sale badge-->\n"
                     + "                                            <div class=\"position-absolute bg-black text-white default-cursor\"\n"
@@ -83,7 +92,6 @@ public class SearchName extends HttpServlet {
                     + "                                            </div>\n"
                     + "                                        </div>\n"
                     + "                                    </div>");
-
         }
     }
 
@@ -102,25 +110,17 @@ public class SearchName extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(SearchName.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SearchAjax.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(SearchName.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SearchAjax.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

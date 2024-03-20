@@ -46,8 +46,8 @@ public class ViewAllController extends HttpServlet {
                 request.setAttribute("page", page);
                 request.setAttribute("totalPage", totalPage);
                 request.setAttribute("listPlants", listPlants);
-                session.setAttribute("urlHistory", "ViewAllController"
-                        + ((pagenumber != null) ? ("?pagenumber=" + pagenumber) : ""));
+//                session.setAttribute("urlHistory", "ViewAllController"
+//                        + ((pagenumber != null) ? ("?pagenumber=" + pagenumber) : ""));
                 request.getRequestDispatcher("product.jsp").forward(request, response);
             } else {
                 List<Plant> listPlants = dao.getPlantsByCategoryWithPagging(Integer.parseInt(category), page, PAGE_SIZE);
@@ -61,13 +61,13 @@ public class ViewAllController extends HttpServlet {
                     request.setAttribute("totalPage", totalPage);
                     request.setAttribute("category", category);
                     request.setAttribute("listPlants", listPlants);
-                    session.setAttribute("urlHistory", "ViewAllController?category=" + category
-                            + ((pagenumber != null) ? ("&pagenumber=" + pagenumber) : ""));
+//                    session.setAttribute("urlHistory", "ViewAllController?category=" + category
+//                            + ((pagenumber != null) ? ("&pagenumber=" + pagenumber) : ""));
                     request.getRequestDispatcher("product.jsp").forward(request, response);
                 } else {
                     request.setAttribute("category", category);
                     request.setAttribute("NO_PRODUCT", "There are currently no products in this category");
-                    session.setAttribute("urlHistory", "ViewAllController?category=" + category);
+//                    session.setAttribute("urlHistory", "ViewAllController?category=" + category);
                     request.getRequestDispatcher("product.jsp").forward(request, response);
                 }
             }

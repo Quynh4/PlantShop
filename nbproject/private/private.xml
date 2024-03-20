@@ -3,7 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/D:/PlantShop/src/java/controller/sync/ViewAllController.java</file>
+            <file>file:/D:/PlantShop/web/css/my-styles.css</file>
+            <file>file:/D:/PlantShop/src/java/dao/PlantDAO.java</file>
             <file>file:/D:/PlantShop/web/home.jsp</file>
+            <file>file:/D:/PlantShop/src/java/controller/sync/SearchAjax.java</file>
+            <file>file:/D:/PlantShop/web/product.jsp</file>
+            <file>file:/D:/PlantShop/web/css/styles.css</file>
         </group>
     </open-files>
 </project-private>

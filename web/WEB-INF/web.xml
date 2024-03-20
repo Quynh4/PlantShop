@@ -179,6 +179,10 @@
         <servlet-name>SearchMinMaxPrice</servlet-name>
         <servlet-class>controller.sync.SearchMinMaxPrice</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SearchAjax</servlet-name>
+        <servlet-class>controller.sync.SearchAjax</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/HomeController</url-pattern>
@@ -346,6 +350,10 @@
     <servlet-mapping>
         <servlet-name>SearchMinMaxPrice</servlet-name>
         <url-pattern>/SearchMinMaxPrice</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchAjax</servlet-name>
+        <url-pattern>/SearchAjax</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
