@@ -25,7 +25,7 @@ public class HomeController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            HttpSession sessison = request.getSession();
+            HttpSession session = request.getSession();
             
             // Our Product Session
             List<Plant> listPlants = new PlantDAO().getTop4Plants();
@@ -34,14 +34,13 @@ public class HomeController extends HttpServlet {
             // Best Seller Session
             Map<Integer, String> listCategories = new CategoryDAO().getCategories();
             List<Plant> listBestSellerPlants = new PlantDAO().getTop4PlantsByCateId((int) listCategories.keySet().toArray()[0]);
-            sessison.setAttribute("listCategories", listCategories);
+            session.setAttribute("listCategories", listCategories);
             request.setAttribute("listBestSellerPlants", listBestSellerPlants);
             
             // Latest Blog Session
             List<Blog> listBlogs = new BlogDAO().getRandomNLatestBlogs(3);
             request.setAttribute("listBlogs", listBlogs);
             
-            HttpSession session = request.getSession();
             session.setAttribute("urlHistory", "HomeController");
             session.setAttribute("destPage", "home");
         } catch (Exception e) {

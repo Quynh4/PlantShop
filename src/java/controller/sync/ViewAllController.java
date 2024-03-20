@@ -1,5 +1,6 @@
 package controller.sync;
 
+import dao.CategoryDAO;
 import dao.PlantDAO;
 import model.Plant;
 import java.io.IOException;
@@ -9,6 +10,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.util.Map;
 
 /**
  *
@@ -20,11 +22,12 @@ public class ViewAllController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            final int PAGE_SIZE = 9;
-            
+            final int PAGE_SIZE = 6;
+
             HttpSession session = request.getSession();
             session.setAttribute("destPage", "plant");
-            
+            Map<Integer, String> listCategories = new CategoryDAO().getCategories();
+            session.setAttribute("listCategories", listCategories);
             String category = request.getParameter("category");
             String pagenumber = request.getParameter("pagenumber");
             int page = 1;
@@ -44,7 +47,7 @@ public class ViewAllController extends HttpServlet {
                 request.setAttribute("totalPage", totalPage);
                 request.setAttribute("listPlants", listPlants);
                 session.setAttribute("urlHistory", "ViewAllController"
-                                                 + ((pagenumber != null) ? ("?pagenumber=" + pagenumber) : ""));
+                        + ((pagenumber != null) ? ("?pagenumber=" + pagenumber) : ""));
                 request.getRequestDispatcher("product.jsp").forward(request, response);
             } else {
                 List<Plant> listPlants = dao.getPlantsByCategoryWithPagging(Integer.parseInt(category), page, PAGE_SIZE);
@@ -59,7 +62,7 @@ public class ViewAllController extends HttpServlet {
                     request.setAttribute("category", category);
                     request.setAttribute("listPlants", listPlants);
                     session.setAttribute("urlHistory", "ViewAllController?category=" + category
-                                                 + ((pagenumber != null) ? ("&pagenumber=" + pagenumber) : ""));
+                            + ((pagenumber != null) ? ("&pagenumber=" + pagenumber) : ""));
                     request.getRequestDispatcher("product.jsp").forward(request, response);
                 } else {
                     request.setAttribute("category", category);

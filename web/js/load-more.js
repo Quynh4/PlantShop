@@ -43,7 +43,6 @@ function loadMore(action, elem) {
                                         </div>
                                         <!-- Product price-->
                                         <div class="price text-center fs-4 fw-bold default-cursor">
-                                            
                                             $${plants[i]['price']}
                                         </div>
                                     </div>
