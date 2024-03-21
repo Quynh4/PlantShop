@@ -11,40 +11,45 @@ window.addEventListener('DOMContentLoaded', event => {
     const processingOrderTable = document.getElementById('processingOrderTable');
     const completedOrderTable = document.getElementById('completedOrderTable');
     const canceledOrderTable = document.getElementById('canceledOrderTable');
-    
+    const shippingOrderTable = document.getElementById('shippingOrderTable');
+
     if (plantsTable) {
         new simpleDatatables.DataTable(plantsTable);
     }
-    
+
     if (accountsTable) {
         new simpleDatatables.DataTable(accountsTable);
     }
-    
+
     if (ordersTable) {
         new simpleDatatables.DataTable(ordersTable);
     }
-    
+
     if (adminAccountTable) {
         new simpleDatatables.DataTable(adminAccountTable);
     }
-    
+
     if (activeUserAccountTable) {
         new simpleDatatables.DataTable(activeUserAccountTable);
     }
-    
+
     if (inactiveUserAccountTable) {
         new simpleDatatables.DataTable(inactiveUserAccountTable);
     }
-    
+
     if (processingOrderTable) {
         new simpleDatatables.DataTable(processingOrderTable);
     }
-    
+
     if (completedOrderTable) {
         new simpleDatatables.DataTable(completedOrderTable);
     }
-    
+
     if (canceledOrderTable) {
         new simpleDatatables.DataTable(canceledOrderTable);
     }
-});
+    if (shippingOrderTable) {
+        new simpleDatatables.DataTable(shippingOrderTable);
+    }
+}
+);

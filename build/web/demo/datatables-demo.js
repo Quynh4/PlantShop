@@ -14,4 +14,5 @@ $(document).ready(function() {
   $('#processingOrderTable').DataTable();
   $('#completedOrderTable').DataTable();
   $('#canceledOrderTable').DataTable();
+  $('#shippingOrderTable').DataTable();
 });

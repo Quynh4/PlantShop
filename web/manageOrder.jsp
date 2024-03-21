@@ -15,6 +15,8 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
     </head>
     <body class="sb-nav-fixed">
         <!-- Admin navbar -->
@@ -62,11 +64,11 @@
                                 <button type="submit" class="btn btn-primary">Search</button>
                             </div>
                         </form>
-                        <!-- Table Order Processing -->
+                        <!-- Processing -->
                         <div class="card mb-4">
                             <div class="card-header fw-bold">
                                 <i class="bi bi-table"></i>
-                                Processing Order Table
+                                Processing
                             </div>
                             <div class="card-body">
                                 <table id="processingOrderTable">
@@ -80,7 +82,6 @@
                                             <th>Acc Id</th>
                                             <th>Status</th>
                                             <th>Shipping Id</th><th>Detail</th>
-                                            
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -101,41 +102,14 @@
                                                         </c:url>
                                                         <a href="${detailLink}" class="text-decoration-none" target="_blank">Detail</a></td>
                                                     <td>
-                                                        
-                                                        <select onchange="changeOrder(${order.id}, this)">
-                                            <option value="1" ${order.statusId==1 ? "selected" : ""}>Đang chờ xác nhận</option>
-                                            <option value="2" ${order.statusId==2 ? "selected" : ""}>Đang chuẩn bị hàng</option>
-                                            <option value="3" ${order.statusId==3 ? "selected" : ""}>Đang giao hàng</option>
-                                            <option value="4" ${order.statusId==4 ? "selected" : ""}>Hàng đã tới</option>
-                                            <option value="5" ${order.statusId==5 ? "selected" : ""}>Đã nhận hàng</option>
-                                            <option value="6" ${order.statusId==6 ? "selected" : ""}>Đã hủy</option>
-                                        </select>
-                                                        <span>
-                                                            <button type="button" class="btn btn-outline-success w-100" data-bs-toggle="modal" data-bs-target="#blockBtn${LO.orderId}">
-                                                                Complete
-                                                            </button>
-                                                            <div class="modal fade" id="blockBtn${LO.orderId}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                                <div class="modal-dialog modal-dialog-centered">
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                            <h5 class="modal-title" id="exampleModalLabel">Alert</h5>
-                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                        </div>
-                                                                        <div class="p-4 text-center fs-3"
-                                                                             style="color: red;">
-                                                                            You are confirming order completion with order id "<span class="text-dark">${LO.orderId}</span>"
-                                                                        </div>
-                                                                        <form action="ChangeOrderController" method="POST">
-                                                                            <input type="hidden" name="orderId" value="${LO.orderId}"/>
-                                                                            <div class="modal-footer">
-                                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                                                                                <button id="update-profile-btn" type="submit" class="btn btn-danger" name="action" value="completeOrder">Yes</button>
-                                                                            </div>
-                                                                        </form>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </span>
+                                                        <select onchange="changeOrder(${LO.orderId}, this)">
+                                                            <option value="1" ${order.statusId==1 ? "selected" : ""}>Processing</option>
+                                                             <div class="dropdown-divider"></div>
+                                                            <option value="2" ${order.statusId==2 ? "selected" : ""}>Completed</option>
+                                                            <option value="3" ${order.statusId==3 ? "selected" : ""}>Canceled</option>
+                                                            <option value="4" ${order.statusId==4 ? "selected" : ""}>Shipping</option>
+                                                        </select>
+
                                                     </td>
                                                 </tr>
                                             </c:if>
@@ -144,11 +118,65 @@
                                 </table>
                             </div>
                         </div>
-                        <!-- Table Order Completed -->
+                        <!-- Shipping -->
                         <div class="card mb-4">
                             <div class="card-header fw-bold">
                                 <i class="bi bi-table"></i>
-                                Completed Order Table
+                                Shipping
+                            </div>
+                            <div class="card-body">
+                                <table id="shippingOrderTable" >
+                                    <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Order Date</th>
+                                            <th>Ship Date</th>
+                                            <th>Note</th>
+                                            <th>Total Price</th>
+                                            <th>Acc Id</th>
+                                            <th>Status</th>
+                                            <th>Shipping Id</th><th>Detail</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <c:forEach items="${requestScope.listOrders}" var="LO">
+                                            <c:if test="${LO.status == 4}">
+                                                <tr>
+                                                    <td>${LO.orderId}</td>
+                                                    <td>${LO.orderDate}</td>
+                                                    <td>${not empty LO.shipDate ? LO.shipDate : "Null"}</td>
+                                                    <td>${LO.note}</td>
+                                                    <td>$${LO.totalPrice}</td>
+                                                    <td>${LO.accId}</td>
+                                                    <td><span class="text-warning">Shipping</span></td>
+                                                    <td>${LO.shippingId}</td>
+                                                    <td><c:url var="detailLink" value="UserViewOrderDetailController">
+                                                            <c:param name="orderId" value="${LO.orderId}"></c:param>
+                                                        </c:url>
+                                                        <a href="${detailLink}" class="text-decoration-none" target="_blank">Detail</a></td>
+                                                    <td>
+                                                        <select onchange="changeOrder(${LO.orderId}, this)">
+                                                            <option value="1" ${order.statusId==1 ? "selected" : ""}>Processing</option>
+                                                             <div class="dropdown-divider"></div>
+                                                            <option value="2" ${order.statusId==2 ? "selected" : ""}>Completed</option>
+                                                            <option value="3" ${order.statusId==3 ? "selected" : ""}>Canceled</option>
+                                                            <option value="4" ${order.statusId==4 ? "selected" : ""}>Shipping</option>
+                                                        </select>
+
+                                                    </td>
+                                                </tr>
+                                            </c:if>
+                                        </c:forEach>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- Completed -->
+                        <div class="card mb-4">
+                            <div class="card-header fw-bold">
+                                <i class="bi bi-table"></i>
+                                Completed
                             </div>
                             <div class="card-body">
                                 <table id="completedOrderTable">
@@ -200,11 +228,11 @@
                                 </table>
                             </div>
                         </div>
-                        <!-- Table Order Canceled -->
+                        <!-- Canceled -->
                         <div class="card mb-4">
                             <div class="card-header fw-bold">
                                 <i class="bi bi-table"></i>
-                                Canceled Order Table
+                                Canceled
                             </div>
                             <div class="card-body">
                                 <table id="canceledOrderTable">
@@ -269,30 +297,65 @@
         <script src="js/datatables-simple-demo.js"></script>
         <script src="js/my-scripts.js"></script>
         <script>
-            let checkin = $('#dp1').datepicker({
-                autoclose: true
-            }).on('changeDate', function (ev) {
-                if (ev.date.valueOf() > checkout.datepicker("getDate").valueOf() || !checkout.datepicker("getDate").valueOf()) {
+                                                            let checkin = $('#dp1').datepicker({
+                                                                autoclose: true
+                                                            }).on('changeDate', function (ev) {
+                                                                if (ev.date.valueOf() > checkout.datepicker("getDate").valueOf() || !checkout.datepicker("getDate").valueOf()) {
 
-                    let newDate = new Date(ev.date);
-                    newDate.setDate(newDate.getDate() + 1);
-                    checkout.datepicker("update", newDate);
+                                                                    let newDate = new Date(ev.date);
+                                                                    newDate.setDate(newDate.getDate() + 1);
+                                                                    checkout.datepicker("update", newDate);
 
-                }
-                $('#dp2')[0].focus();
-            });
+                                                                }
+                                                                $('#dp2')[0].focus();
+                                                            });
 
-            let checkout = $('#dp2').datepicker({
-                beforeShowDay: function (date) {
-                    if (!checkin.datepicker("getDate").valueOf()) {
-                        return date.valueOf() >= new Date().valueOf();
-                    } else {
-                        return date.valueOf() > checkin.datepicker("getDate").valueOf();
-                    }
-                },
-                autoclose: true
+                                                            let checkout = $('#dp2').datepicker({
+                                                                beforeShowDay: function (date) {
+                                                                    if (!checkin.datepicker("getDate").valueOf()) {
+                                                                        return date.valueOf() >= new Date().valueOf();
+                                                                    } else {
+                                                                        return date.valueOf() > checkin.datepicker("getDate").valueOf();
+                                                                    }
+                                                                },
+                                                                autoclose: true
 
-            }).on('changeDate', function (ev) { });
+                                                            }).on('changeDate', function (ev) { });
+
+
+                                                            function changeOrder(orderId, select) {
+                                                                // Show a confirmation dialog
+                                                                Swal.fire({
+                                                                    title: 'Do you sure?',
+                                                                    text: 'Do you want to update this order?',
+                                                                    icon: 'warning',
+                                                                    showCancelButton: true, // Show the Cancel button
+                                                                    confirmButtonText: 'Yes',
+                                                                    cancelButtonText: 'No',
+                                                                    reverseButtons: true
+                                                                }).then((result) => {
+                                                                    // If confirmed, redirect or perform the cancel action
+                                                                    if (result.isConfirmed) {
+                                                                        Swal.fire(
+                                                                                'Updated!',
+                                                                                'This order has been updated!',
+                                                                                'success'
+                                                                                ).then((result) => {
+                                                                            // If confirmed, redirect or perform the cancel action
+                                                                            if (result.isConfirmed) {
+                                                                                window.location.href = "ChangeOrderController?orderId=" + orderId + "&action=" + select.value;
+                                                                            }
+                                                                        })
+                                                                    } else if (result.dismiss === Swal.DismissReason.cancel) {
+                                                                        // If canceled, do something else or nothing
+                                                                        Swal.fire(
+                                                                                'Cancel',
+                                                                                'Nothing change!',
+                                                                                'error'
+                                                                                );
+                                                                    }
+                                                                });
+                                                            }
         </script>
     </body>
 </html>

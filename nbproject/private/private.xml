@@ -4,19 +4,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/PlantShop/web/manageOrder.jsp</file>
-            <file>file:/D:/PlantShop/web/css/my-styles.css</file>
-            <file>file:/D:/PlantShop/web/orderdetail.jsp</file>
-            <file>file:/D:/PlantShop/web/product.jsp</file>
-            <file>file:/D:/PlantShop/web/css/styles.css</file>
-            <file>file:/D:/PlantShop/src/java/dao/OrderDetailDAO.java</file>
-            <file>file:/D:/PlantShop/web/registration.jsp</file>
-            <file>file:/D:/PlantShop/web/manageAccount.jsp</file>
-            <file>file:/D:/PlantShop/web/order.jsp</file>
-            <file>file:/D:/PlantShop/src/java/controller/admin/AdminManageOrderController.java</file>
-            <file>file:/D:/PlantShop/src/java/controller/client/UserViewOrderController.java</file>
-            <file>file:/D:/PlantShop/src/java/controller/client/UserViewOrderDetailController.java</file>
-            <file>file:/D:/PlantShop/src/java/model/OrderDetail.java</file>
-            <file>file:/D:/PlantShop/src/java/controller/sync/UpdateAccountController.java</file>
+            <file>file:/D:/PlantShop/web/js/datatables-simple-demo.js</file>
+            <file>file:/D:/PlantShop/web/demo/datatables-demo.js</file>
         </group>
     </open-files>
 </project-private>

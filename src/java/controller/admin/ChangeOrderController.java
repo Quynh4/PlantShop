@@ -19,15 +19,27 @@ public class ChangeOrderController extends HttpServlet {
         try {
             String action = request.getParameter("action");
             if (action != null) {
-                switch(action) {
-                    case "completeOrder":
-                        String orderIdTxt = request.getParameter("orderId");
+                String orderIdTxt = request.getParameter("orderId");
+                switch (action) {
+                    case "2":
                         if (orderIdTxt != null) {
                             boolean check = new OrderDAO().finishOrder(Integer.parseInt(orderIdTxt), 2);
                             if (check) {
                                 request.setAttribute("MSG_SUCCESS", "You have successfully completed orders!");
                             } else {
                                 request.setAttribute("MSG_ERROR", "An error occurred! Completed order failed!");
+                            }
+                        } else {
+                            request.setAttribute("MSG_ERROR", "Oops, something went wrong! Try later!");
+                        }
+                        break;
+                    default:
+                        if (orderIdTxt != null) {
+                            boolean check = new OrderDAO().updateOrderStatus(Integer.parseInt(orderIdTxt), Integer.parseInt(action));
+                            if (check) {
+                                request.setAttribute("MSG_SUCCESS", "You have successfully updated orders!");
+                            } else {
+                                request.setAttribute("MSG_ERROR", "An error occurred! Update order failed!");
                             }
                         } else {
                             request.setAttribute("MSG_ERROR", "Oops, something went wrong! Try later!");

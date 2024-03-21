@@ -127,6 +127,10 @@
                                                     <c:when test="${O.status == 3}">
                                                         <div class="text-danger">Canceled</div>
                                                     </c:when>
+                                                    <c:when test="${O.status == 4}">
+                                                        <div class="text-info">Shipping</div>
+                                                    </c:when>    
+                                                        
                                                 </c:choose>
                                             </td>
                                             <td>
