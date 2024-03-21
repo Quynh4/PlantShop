@@ -79,7 +79,8 @@
                                             <th>Total Price</th>
                                             <th>Acc Id</th>
                                             <th>Status</th>
-                                            <th>Shipping Id</th>
+                                            <th>Shipping Id</th><th>Detail</th>
+                                            
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -95,14 +96,24 @@
                                                     <td>${LO.accId}</td>
                                                     <td><span class="text-warning">Processing</span></td>
                                                     <td>${LO.shippingId}</td>
+                                                    <td><c:url var="detailLink" value="UserViewOrderDetailController">
+                                                            <c:param name="orderId" value="${LO.orderId}"></c:param>
+                                                        </c:url>
+                                                        <a href="${detailLink}" class="text-decoration-none" target="_blank">Detail</a></td>
                                                     <td>
-                                                        <!-- Block btn -->
+                                                        
+                                                        <select onchange="changeOrder(${order.id}, this)">
+                                            <option value="1" ${order.statusId==1 ? "selected" : ""}>Đang chờ xác nhận</option>
+                                            <option value="2" ${order.statusId==2 ? "selected" : ""}>Đang chuẩn bị hàng</option>
+                                            <option value="3" ${order.statusId==3 ? "selected" : ""}>Đang giao hàng</option>
+                                            <option value="4" ${order.statusId==4 ? "selected" : ""}>Hàng đã tới</option>
+                                            <option value="5" ${order.statusId==5 ? "selected" : ""}>Đã nhận hàng</option>
+                                            <option value="6" ${order.statusId==6 ? "selected" : ""}>Đã hủy</option>
+                                        </select>
                                                         <span>
-                                                            <!-- Button trigger modal -->
                                                             <button type="button" class="btn btn-outline-success w-100" data-bs-toggle="modal" data-bs-target="#blockBtn${LO.orderId}">
                                                                 Complete
                                                             </button>
-                                                            <!-- Modal -->
                                                             <div class="modal fade" id="blockBtn${LO.orderId}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                                 <div class="modal-dialog modal-dialog-centered">
                                                                     <div class="modal-content">
@@ -150,7 +161,7 @@
                                             <th>Total Price</th>
                                             <th>Acc Id</th>
                                             <th>Status</th>
-                                            <th>Shipping Id</th>
+                                            <th>Shipping Id</th><th>Detail</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -162,7 +173,7 @@
                                             <th>Total Price</th>
                                             <th>Status</th>
                                             <th>Acc Id</th>
-                                            <th>Shipping Id</th>
+                                            <th>Shipping Id</th><th>Detail</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -177,6 +188,11 @@
                                                     <td>${LO.accId}</td>
                                                     <td><span class="text-success">Completed</span></td>
                                                     <td>${LO.shippingId}</td>
+                                                    <td><c:url var="detailLink" value="UserViewOrderDetailController">
+                                                            <c:param name="orderId" value="${LO.orderId}"></c:param>
+                                                        </c:url>
+                                                        <a href="${detailLink}" class="text-decoration-none" target="_blank">Detail</a>
+                                                    </td>
                                                 </tr>
                                             </c:if>
                                         </c:forEach>
@@ -201,7 +217,7 @@
                                             <th>Total Price</th>
                                             <th>Acc Id</th>
                                             <th>Status</th>
-                                            <th>Shipping Id</th>
+                                            <th>Shipping Id</th><th>Detail</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -213,7 +229,7 @@
                                             <th>Total Price</th>
                                             <th>Status</th>
                                             <th>Acc Id</th>
-                                            <th>Shipping Id</th>
+                                            <th>Shipping Id</th><th>Detail</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -228,6 +244,11 @@
                                                     <td>${LO.accId}</td>
                                                     <td><span class="text-danger">Canceled</span></td>
                                                     <td>${LO.shippingId}</td>
+                                                    <td><c:url var="detailLink" value="UserViewOrderDetailController">
+                                                            <c:param name="orderId" value="${LO.orderId}"></c:param>
+                                                        </c:url>
+                                                        <a href="${detailLink}" class="text-decoration-none" target="_blank">Detail</a>
+                                                    </td>
                                                 </tr>
                                             </c:if>
                                         </c:forEach>

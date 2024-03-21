@@ -245,7 +245,7 @@
                                             <th>Total Price</th>
                                             <th>Acc Id</th>
                                             <th>Status</th>
-                                            <th>Shipping Id</th>
+                                            <th>Shipping Id</th><th>Detail</th>
                                         </tr>
                                     </thead>
                                     <tbody>
