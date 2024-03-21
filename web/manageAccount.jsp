@@ -183,7 +183,7 @@
                                                                              style="color: red;">
                                                                             You are doing unblocking a user named "<span class="text-dark">${LA.fullName}</span>" with email as "<span class="text-dark">${LA.email}</span>"
                                                                         </div>
-                                                                        <form action="UpdateAccount" method="POST">
+                                                                        <form action="UpdateAccountController" method="POST">
                                                                             <input type="hidden" name="email" value="${LA.email}"/>
                                                                             <div class="modal-footer">
                                                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>

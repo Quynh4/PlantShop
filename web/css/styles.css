@@ -11387,3 +11387,12 @@ input[type="range"]::-moz-range-thumb{
   -moz-appearance: none;
   box-shadow: 0 0 6px rgba(0,0,0,0.05);
 }
+
+
+
+.prod_cont:hover {
+                transform: scale(1.1); /* Phóng to phần tử 110% khi hover. */
+                border: 2px solid #ccc; /* Thêm đường viền có độ rộng 2px màu xanh. */
+                /* Hoặc sử dụng outline nếu bạn muốn viền không ảnh hưởng đến kích thước tổng của phần tử. */
+                /* outline: 2px solid blue; */
+            }

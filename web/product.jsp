@@ -28,6 +28,7 @@
         <link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
         <link rel="stylesheet" type="text/css" href="css/util.css">
         <link rel="stylesheet" type="text/css" href="css/main.css">
+    
     </head>
 
     <body class="animsition">
@@ -81,8 +82,8 @@
                         <div class="progress"></div>
                     </div>
                     <div class="range-input">
-                        <input id="priceMin" type="range" class="range-min" min="0" max="200" value="0" step="5">
-                        <input id="priceMax" type="range" class="range-max" min="0" max="200" value="200" step="5">
+                        <input id="priceMin" onchange="searchAjax()" type="range" class="range-min" min="0" max="200" value="0" step="5">
+                        <input id="priceMax" onchange="searchAjax()" type="range" class="range-max" min="0" max="200" value="200" step="5">
                     </div>
                 </div>
 
